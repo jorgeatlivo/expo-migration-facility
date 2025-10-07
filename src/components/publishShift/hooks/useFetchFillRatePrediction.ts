@@ -1,13 +1,12 @@
-import { useEffect, useRef } from 'react';
+import { useEffect, useLayoutEffect, useState } from 'react';
 
 import { useQuery, useQueryClient } from '@tanstack/react-query';
+import { useDebounce } from 'use-debounce';
 
 import {
   FillRatePredictionParams,
   fetchShiftFillRateProbabilities,
 } from '@/services/shifts';
-
-import { useDebouncedValue } from '@/hooks/useDebouncedValue';
 
 export const FETCH_FILL_RATE_PREDICTION = 'FETCH_FILL_RATE_PREDICTION';
 
@@ -15,30 +14,37 @@ export const useFetchFillRatePrediction = (
   params: Omit<FillRatePredictionParams, 'temporalId'>
 ) => {
   const queryClient = useQueryClient();
-  const temporalId = useRef<string | undefined>();
-  const debouncedParams = useDebouncedValue(
-    { ...params, temporalId: temporalId.current },
-    300
-  );
+  const [debouncedParams] = useDebounce(params, 300);
+  const [temporalId, setTemporalId] = useState<string | undefined>();
 
   const queryData = useQuery({
-    queryKey: [FETCH_FILL_RATE_PREDICTION, JSON.stringify(debouncedParams)],
-    queryFn: () => fetchShiftFillRateProbabilities(debouncedParams),
+    queryKey: [FETCH_FILL_RATE_PREDICTION, debouncedParams],
+    queryFn: () =>
+      fetchShiftFillRateProbabilities({
+        ...debouncedParams,
+        temporalId,
+      }),
     enabled: !!params.unit && !!params.category,
     keepPreviousData: true,
     retry: false,
   });
 
-  if (!temporalId.current && queryData.data?.temporalId) {
-    temporalId.current = queryData.data.temporalId;
-  }
+  useLayoutEffect(() => {
+    if (!temporalId && queryData.data?.temporalId) {
+      setTemporalId(queryData.data.temporalId);
+    }
+  }, [queryData?.data?.temporalId, temporalId]);
 
+  /**
+   * Cleanup the query and temporalId when the component unmounts
+   */
   useEffect(
     () => () => {
       queryClient.removeQueries({ queryKey: [FETCH_FILL_RATE_PREDICTION] });
-      temporalId.current = undefined;
+      setTemporalId(undefined);
     },
-    [queryClient]
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+    []
   );
 
   return queryData;

@@ -32,7 +32,7 @@ import {
 
 import ActionButton from '@/components/buttons/ActionButton';
 import { DropDownInput } from '@/components/common/DropDownInput';
-import { EditShiftTimeDetails } from '@/components/editShift/EditShiftTimeDetails';
+import EditShiftTimeDetails from '@/components/editShift/EditShiftTimeDetails';
 import { useFetchFillRatePrediction } from '@/components/publishShift/hooks/useFetchFillRatePrediction';
 import StyledText from '@/components/StyledText';
 import { CategoryTag } from '@/components/shiftDetails/CategoryTag';
@@ -111,7 +111,7 @@ const priceVariantItems = [
   },
 ];
 
-export const PublishShiftComponent: React.FC<PublishShiftComponentProps> = ({
+const PublishShiftComponent: React.FC<PublishShiftComponentProps> = ({
   initialValues,
   livoPoolOnboarded,
   livoInternalOnboarded,
@@ -188,13 +188,17 @@ export const PublishShiftComponent: React.FC<PublishShiftComponentProps> = ({
   const { t } = useTranslation();
 
   const publishShiftButtonText = useMemo(() => {
-    if (isEditing) return t('save_changes');
+    if (isEditing) {
+      return t('save_changes');
+    }
 
-    if (!livoPoolOnboarded && livoInternalOnboarded)
+    if (!livoPoolOnboarded && livoInternalOnboarded) {
       return t('shift_list_publish_shift_button');
+    }
 
-    if (isInternalVisible && isExternalVisible)
+    if (isInternalVisible && isExternalVisible) {
       return t('publish_livo_and_internal_shift');
+    }
 
     return t(
       isInternalVisible ? 'publish_internal_shift' : 'publish_livo_shift'
@@ -255,21 +259,42 @@ export const PublishShiftComponent: React.FC<PublishShiftComponentProps> = ({
       ? t('require_one_visible_group_to_publish')
       : '';
 
-  const fillRatePrediction = useFetchFillRatePrediction({
-    startTime: shiftStartTime.toISOString(),
-    endTime: shiftEndTime.toISOString(),
-    onboardingShiftsRequired,
-    category: category?.code ?? '',
-    recurrentDates: [shiftDate.toISOString().split('T')[0]],
-    capacity: +capacity,
+  const memoPredictionParams = useMemo(() => {
+    return {
+      startTime: shiftStartTime.toISOString(),
+      endTime: shiftEndTime.toISOString(),
+      onboardingShiftsRequired,
+      category: category?.code ?? '',
+      recurrentDates: [shiftDate.toISOString().split('T')[0]],
+      capacity: +capacity,
+      details,
+      externalVisible: isExternalVisible,
+      internalVisible: isInternalVisible,
+      unit,
+      totalPay,
+      professionalField,
+      shiftId: initialValues.shiftId,
+    };
+  }, [
+    capacity,
+    category?.code,
     details,
-    externalVisible: isExternalVisible,
-    internalVisible: isInternalVisible,
-    unit,
-    totalPay,
+    initialValues.shiftId,
+    isExternalVisible,
+    isInternalVisible,
+    onboardingShiftsRequired,
     professionalField,
-    shiftId: initialValues.shiftId,
-  });
+    shiftDate,
+    shiftEndTime,
+    shiftStartTime,
+    totalPay,
+    unit,
+  ]);
+
+  /**
+   * use memo params to avoid infinite rerender in debounce hooks
+   */
+  const fillRatePrediction = useFetchFillRatePrediction(memoPredictionParams);
 
   const validEntries = useMemo(
     () =>
@@ -436,7 +461,9 @@ export const PublishShiftComponent: React.FC<PublishShiftComponentProps> = ({
   ]);
 
   const onSearchProfessionalsForInvitation = useCallback(() => {
-    if (!isShiftInvitationActive) return;
+    if (!isShiftInvitationActive) {
+      return;
+    }
 
     navigation.navigate(
       ProtectedStackRoutes.SearchProfessionalForShiftInvitation,
@@ -655,6 +682,8 @@ export const PublishShiftComponent: React.FC<PublishShiftComponentProps> = ({
     </View>
   );
 };
+
+export default PublishShiftComponent;
 
 const styles = StyleSheet.create({
   screen: {

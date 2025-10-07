@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { memo, useState } from 'react';
 import { StyleSheet, View } from 'react-native';
 import { useTranslation } from 'react-i18next';
 
@@ -23,7 +23,7 @@ interface EditShiftTimeDetailsProps {
   timeInDay?: string;
 }
 
-export const EditShiftTimeDetails: React.FC<EditShiftTimeDetailsProps> = ({
+const EditShiftTimeDetails: React.FC<EditShiftTimeDetailsProps> = ({
   setShiftDate,
   shiftDate,
   setShiftStartTime,
@@ -114,6 +114,8 @@ export const EditShiftTimeDetails: React.FC<EditShiftTimeDetailsProps> = ({
     </View>
   );
 };
+
+export default memo(EditShiftTimeDetails);
 
 export const styles = StyleSheet.create({
   customTextInput: {

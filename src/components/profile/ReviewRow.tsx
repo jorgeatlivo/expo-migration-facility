@@ -20,7 +20,7 @@ export const ReviewRow: React.FC<ReviewRowProps> = ({
     <>
       {!!totalReviews && (
         <View style={styles.container}>
-          <IconStarFilled name="star-filled" size={12} color="#FFCE1F" />
+          <IconStarFilled size={12} color="#FFCE1F" />
           <Typography variant="subtitle/small">{averageRating}</Typography>
           <Typography variant="info/caption" color={'#5B6478'}>
             {t('review_label', {

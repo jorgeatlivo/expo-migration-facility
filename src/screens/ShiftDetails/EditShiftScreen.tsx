@@ -22,8 +22,7 @@ import { AppDispatch } from '@/store/configureStore';
 
 import { LoadingScreen } from '@/components/common/LoadingScreen';
 import { CancelShiftModalContent } from '@/components/modals/CancelShiftModalContent';
-import {
-  PublishShiftComponent,
+import PublishShiftComponent, {
   PublishShiftConfig,
 } from '@/components/publishShift/PublishShiftComponent';
 

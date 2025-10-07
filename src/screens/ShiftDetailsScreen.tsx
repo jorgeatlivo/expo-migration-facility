@@ -1,7 +1,12 @@
 import React, { useCallback, useEffect, useMemo, useState } from 'react';
-import { RefreshControl, ScrollView, StyleSheet, View } from 'react-native';
+import {
+  RefreshControl,
+  ScrollView,
+  StyleSheet,
+  TouchableOpacity,
+  View,
+} from 'react-native';
 import { useTranslation } from 'react-i18next';
-import { TouchableOpacity } from 'react-native';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
 import { useDispatch, useSelector } from 'react-redux';
 import { StackScreenProps } from '@react-navigation/stack';
@@ -177,6 +182,7 @@ export const ShiftDetailsScreen: React.FC<ShiftDetailsScreen> = ({
     shiftInfoData.isLoading,
     shiftInfoData?.shiftInfo?.shiftActionsAllow,
     claimRequests,
+    t,
   ]);
 
   const refreshData = useCallback(() => {

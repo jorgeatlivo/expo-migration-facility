@@ -1,4 +1,3 @@
-import React from 'react';
 import { StyleSheet, View } from 'react-native';
 import { useTranslation } from 'react-i18next';
 
@@ -25,7 +24,7 @@ const OnboardingShiftRequiredCheckbox = ({
           <IconSquareCheckFilled
             size={24}
             color={'#0277C8'}
-            stroke={0.3}
+            strokeWidth={0.3}
             style={{ marginRight: -SPACE_VALUES.small }}
           />
         }

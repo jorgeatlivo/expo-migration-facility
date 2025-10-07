@@ -35,8 +35,8 @@ function SkillTags({ shift }: { shift: Shift }) {
       gap={SPACE_VALUES.tiny}
       style={styles.skills}
     >
-      {shift.skills.map((skill, index) => {
-        return <TagComponent key={index} text={skill.displayText} />;
+      {shift.skills.map((skill) => {
+        return <TagComponent key={skill.value} text={skill.displayText} />;
       })}
     </Row>
   );

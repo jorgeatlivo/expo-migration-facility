@@ -23,8 +23,7 @@ import { buildShiftDateTime } from '@/utils/utils';
 
 import { ProtectedStackRoutes } from '@/router/ProtectedStack';
 import { Category, RootState } from '@/types';
-import {
-  PublishShiftComponent,
+import PublishShiftComponent, {
   PublishShiftConfig,
 } from './PublishShiftComponent';
 
@@ -187,7 +186,9 @@ function getOnboardingShiftsConfig(
   isExternalVisible: boolean,
   onboardingShifts?: OnboardingShiftsConfig
 ) {
-  if (!isExternalVisible || !onboardingShifts?.featureEnabled) return false;
+  if (!isExternalVisible || !onboardingShifts?.featureEnabled) {
+    return false;
+  }
 
   return onboardingShifts?.defaultValue ?? false;
 }

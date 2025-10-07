@@ -1,56 +1,56 @@
-import React, { useState } from 'react';
-import { Button, Platform, View } from 'react-native';
+import { useMemo } from 'react';
+import { View } from 'react-native';
 
-import DateTimePicker, {
-  DateTimePickerEvent,
-} from '@react-native-community/datetimepicker';
+import moment from 'moment';
 
-import i18n from '@/locale/i18n';
+import { DropDownInput } from '@/components/common/DropDownInput';
+import { useDatePickerModal } from '@/components/modals/DatePickerModal';
 
 interface ShiftDateTimePickerProps {
   placeholder: string;
   onSelectedDateHandler: (date: Date) => void;
   value: Date;
   mode: 'date' | 'time';
-  minimumDate?: Date;
   iconName?: string;
 }
 
 export const ShiftDateTimePicker = ({
   placeholder,
   onSelectedDateHandler,
-  minimumDate,
   value,
   mode,
   iconName,
 }: ShiftDateTimePickerProps) => {
-  const [show, setShow] = useState(false);
+  const { showModal } = useDatePickerModal('date-picker-modal');
 
-  const onChange = (_: DateTimePickerEvent, selectedDate?: Date) => {
-    setShow(Platform.OS === 'ios'); // keep open on iOS
-    if (selectedDate) {
-      onSelectedDateHandler(selectedDate);
-    }
+  const todayMemo = useMemo(() => {
+    return new Date();
+  }, []);
+
+  const onPressInput = () => {
+    showModal({
+      mode: mode,
+      value: value,
+      onSelectedTimeHandler: onSelectedDateHandler,
+      minimumDate: todayMemo,
+    });
   };
 
-  return (
-    <View style={{ alignSelf: 'center' }}>
-      {Platform.OS === 'android' && (
-        <Button title={value.toDateString()} onPress={() => setShow(true)} />
-      )}
+  const dateFormat = mode === 'time' ? 'HH:mm' : 'DD MMM YYYY';
+  const formattedDateTime = moment(value).format(dateFormat);
 
-      {show && (
-        <DateTimePicker
-          value={value}
-          mode={mode}
-          display={Platform.OS === 'ios' ? 'inline' : 'default'}
-          onChange={onChange}
-          minimumDate={minimumDate}
-          locale={i18n.language}
-          style={{ alignSelf: 'center' }}
-          placeholderText={placeholder}
-        />
-      )}
+  return (
+    <View>
+      {/*{Platform.OS === 'android' && (*/}
+      {/*  <Button title={value.toDateString()} onPress={() => setShow(true)} />*/}
+      {/*)}*/}
+      <DropDownInput
+        placeholderAsLabel
+        placeholder={placeholder}
+        selectedLabel={formattedDateTime}
+        navigateToOptions={onPressInput}
+        iconName={iconName}
+      />
     </View>
   );
 };

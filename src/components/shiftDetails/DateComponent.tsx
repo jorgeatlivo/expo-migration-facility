@@ -1,44 +1,26 @@
 import React from 'react';
-import { View } from 'react-native';
 
-import { IconCalendarMonth, IconClock } from 'tabler-icons-react-native';
+import { IconCalendarMonth } from 'tabler-icons-react-native';
+
+import Row from '@/components/atoms/Row';
+import StyledText from '@/components/StyledText';
 
 import { typographyStyles } from '@/styles/livoFonts';
 import { SPACE_VALUES } from '@/styles/spacing';
-import {
-  formattedSchedule,
-  formattedShortMonth,
-  formattedWeekDay,
-} from '@/utils/utils';
-import StyledText from '@/components/StyledText';;
+import { formattedSchedule, formattedShortMonth } from '@/utils/utils';
 
 interface DateComponentProps {
   startTime: string;
   finishTime: string;
-  isAprox?: boolean;
 }
 
 export const DateComponent: React.FC<DateComponentProps> = ({
   startTime,
   finishTime,
-  isAprox,
 }) => (
-  <View
-    style={{
-      flexDirection: 'row',
-      alignItems: 'center',
-      marginBottom: 8,
-      flexShrink: 1,
-    }}
-  >
+  <Row alignItems={'center'} flexShrink={1} style={{ marginBottom: 8 }}>
     <IconCalendarMonth size={16} style={{ marginRight: 8 }} color="#757C8E" />
-    <View
-      style={{
-        flexShrink: 1,
-        flexDirection: 'row',
-        alignItems: 'center',
-      }}
-    >
+    <Row alignItems={'center'} flexShrink={1}>
       <StyledText
         style={{
           ...typographyStyles.body.regular,
@@ -54,6 +36,6 @@ export const DateComponent: React.FC<DateComponentProps> = ({
       >
         {formattedSchedule(startTime, finishTime)}
       </StyledText>
-    </View>
-  </View>
+    </Row>
+  </Row>
 );
