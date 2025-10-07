@@ -117,7 +117,7 @@
       "client_info": {
         "mobilesdk_app_id": "1:89135036749:android:7564563dcdeab5ddf81f04",
         "android_client_info": {
-          "package_name": "com.getlivo.professionalapp.internal.dev"
+          "package_name": "com.getlivo.facilityapp.dev"
         }
       },
       "oauth_client": [
@@ -153,7 +153,7 @@
       "client_info": {
         "mobilesdk_app_id": "1:89135036749:android:6f04a17be0a383acf81f04",
         "android_client_info": {
-          "package_name": "com.getlivo.professionalapp.internal"
+          "package_name": "com.getlivo.facilityapp"
         }
       },
       "oauth_client": [
@@ -189,7 +189,7 @@
       "client_info": {
         "mobilesdk_app_id": "1:89135036749:android:38416cbb1ef3ff49f81f04",
         "android_client_info": {
-          "package_name": "com.getlivo.professionalapp.internal.dev"
+          "package_name": "com.getlivo.facilityapp.dev"
         }
       },
       "oauth_client": [

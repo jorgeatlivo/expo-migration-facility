@@ -32,7 +32,7 @@ export function DatePickerModal(props: DatePickerModalProps) {
         props.onSelectedTimeHandler(date);
       }
 
-      if (props.mode === 'date') {
+      if (props.mode === 'date' || Platform.OS === 'android') {
         props.onDismissed?.();
       }
     },

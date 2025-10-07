@@ -18,7 +18,7 @@ function withDevResStringsXml(config) {
       );
       const stringsXmlPath = path.join(valuesDir, 'strings.xml');
       const content = `<resources>
-    <string name="app_name">Livo DEV</string>
+    <string name="app_name">Livo Centros DEV</string>
 </resources>
 `;
 

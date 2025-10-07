@@ -42,7 +42,7 @@ npx expo prebuild --platform "$PLATFORM"
 # Run appropriate expo command
 if [[ "$PLATFORM" == "android" ]]; then
   if [[ "$VARIANT" == "dev" ]]; then
-    expo run:android --variant=devDebug --app-id com.getlivo.professionalapp.internal.dev "${EXTRA_ARGS[@]}"
+    expo run:android --variant=devDebug --app-id com.getlivo.facilityapp.dev "${EXTRA_ARGS[@]}"
   else
     expo run:android --variant=prodDebug "${EXTRA_ARGS[@]}"
   fi
