@@ -3,7 +3,7 @@ import {useTranslation} from 'react-i18next';
 import {View} from 'react-native';
 import {typographyStyles} from '@/styles/livoFonts';
 import {SPACE_VALUES} from '@/styles/spacing';
-import StyledText from '../StyledText';
+import StyledText from '@/components/StyledText';
 
 interface DetailsComponentProps {
   details: string;

@@ -1,7 +1,7 @@
 import React from 'react';
 import { StyleSheet } from 'react-native';
 import LivoIcon from '@/assets/icons/LivoIcon';
-import { NotificationsBadge } from '../common/NotificationsBadge';
+import { NotificationsBadge } from '@/components/common/NotificationsBadge';
 
 interface ShiftCardTagProps {
   totalPendingClaims: number;

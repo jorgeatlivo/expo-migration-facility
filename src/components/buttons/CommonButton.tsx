@@ -1,6 +1,5 @@
 import React from 'react';
 import {
-  TouchableOpacity,
   StyleSheet,
   TouchableOpacityProps,
   StyleProp,
@@ -10,7 +9,7 @@ import {
   View,
   ActivityIndicator,
 } from 'react-native';
-import StyledText from '../StyledText';
+import StyledText from '@/components/StyledText';
 import { typographyStyles } from '@/styles/livoFonts';
 import {
   BADGE_GRAY,
@@ -19,7 +18,7 @@ import {
   PRIMARY_BLUE,
 } from '@/styles/colors';
 import { SPACE_VALUES } from '@/styles/spacing';
-import Row from '../atoms/Row';
+import Row from '@/components/atoms/Row';
 import LivoIcon from '@/assets/icons/LivoIcon';
 import { TouchableWrapper } from '@/components/buttons/TouchableWrapper';
 

@@ -15,7 +15,7 @@ import React, { useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { Alert, View, StyleSheet } from 'react-native';
 import { useSelector, useDispatch } from 'react-redux';
-import { LoadingScreen } from '../common/LoadingScreen';
+import { LoadingScreen } from '@/components/common/LoadingScreen';
 import { buildShiftDateTime } from '@/utils/utils';
 import {
   PublishShiftComponent,

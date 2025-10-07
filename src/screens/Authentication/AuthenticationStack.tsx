@@ -4,7 +4,7 @@ import { CustomHeaderBackIcon } from '@/components/common/CustomHeaderBackIcon';
 import { BLACK } from '@/styles/colors';
 import { useSelector } from 'react-redux';
 import { RootState } from '@/types';
-import { VerifyMFAScreen } from '../VerifyMFAScreen';
+import { VerifyMFAScreen } from '@/screens/VerifyMFAScreen';
 import { ForgotPasswordScreen } from './ForgotPassword';
 import { SignInScreen } from './SignIn';
 

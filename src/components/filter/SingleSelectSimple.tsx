@@ -6,7 +6,7 @@ import {
   ViewStyle,
   TouchableOpacity,
 } from 'react-native';
-import StyledText from '../StyledText';
+import StyledText from '@/components/StyledText';
 import { typographyStyles } from '@/styles/livoFonts';
 import LivoIcon from '@/assets/icons/LivoIcon';
 import { ACTION_BLUE, BLUE_FADED } from '@/styles/colors';

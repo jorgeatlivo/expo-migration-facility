@@ -7,7 +7,7 @@ import {
   View,
   ViewStyle,
 } from 'react-native';
-import { CategoryTag } from '../../shiftDetails/CategoryTag';
+import { CategoryTag } from '@/components/shiftDetails/CategoryTag';
 import {
   ACTION_BLACK,
   ACTION_BLUE,
@@ -17,8 +17,8 @@ import {
 import { typographyStyles } from '@/styles/livoFonts';
 import { SPACE_VALUES } from '@/styles/spacing';
 import { Category, RootState, ShiftModalityEnum } from '@/types';
-import { SquareProfilePicture } from '../../claimReviews/SquareProfileImage';
-import StyledText from '../../StyledText';
+import { SquareProfilePicture } from '@/components/claimReviews/SquareProfileImage';
+import StyledText from '@/components/StyledText';
 import FavoriteTag from '@/components/profile/FavoriteTag';
 import { useSelector } from 'react-redux';
 import LivoIcon from '@/assets/icons/LivoIcon';

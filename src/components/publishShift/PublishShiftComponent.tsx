@@ -16,9 +16,9 @@ import {
   Alert,
 } from 'react-native';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
-import ActionButton from '../buttons/ActionButton';
-import { EditShiftTimeDetails } from '../editShfit/EditShiftTimeDetails';
-import { VisibilityComponent } from '../shiftDetails/VisibilityComponent';
+import ActionButton from '@/components/buttons/ActionButton';
+import { EditShiftTimeDetails } from '@/components/editShift/EditShiftTimeDetails';
+import { VisibilityComponent } from '@/components/shiftDetails/VisibilityComponent';
 import { CapacitySelectorComponent } from './CapacitySelectorComponent';
 import { EditDetailsComponent } from './EditDetailsComponent';
 import { EditPriceComponent } from './EditPriceComponent';
@@ -36,7 +36,7 @@ import { WHITE, DIVIDER_GRAY } from '@/styles/colors';
 import { SPACE_VALUES } from '@/styles/spacing';
 import { ValueDisplayPair, UserFeatureEnum, Category } from '@/types';
 import moment from 'moment';
-import { ProfessionalsSelectorComponent } from '../widgets/professionals/ProfessionalsSelectorComponent';
+import { ProfessionalsSelectorComponent } from '@/components/widgets/professionals/ProfessionalsSelectorComponent';
 import { useNavigation } from '@react-navigation/native';
 import {
   ProtectedStackParamsList,
@@ -45,10 +45,10 @@ import {
 import { StackNavigationProp } from '@react-navigation/stack';
 import { buildShiftDateTime } from '@/utils/utils';
 import { ProfessionalOverviewDTO } from '@/types/professionals';
-import StyledText from '../StyledText';
+import StyledText from '@/components/StyledText';
 import { typographyStyles } from '@/styles/livoFonts';
-import { DropDownInput } from '../common/DropDownInput';
-import { CategoryTag } from '../shiftDetails/CategoryTag';
+import { DropDownInput } from '@/components/common/DropDownInput';
+import { CategoryTag } from '@/components/shiftDetails/CategoryTag';
 import { CompensationSelector } from './CompensationSelector';
 import { useFetchFillRatePrediction } from '@/components/publishShift/hooks/useFetchFillRatePrediction';
 import { FillRateBanner } from './FillRateBanner';

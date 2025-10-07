@@ -1,12 +1,12 @@
 import React from 'react';
 import { TouchableOpacity, View, StyleSheet } from 'react-native';
 import { ClaimRequest } from '@/services/shifts';
-import StyledText from '../../StyledText';
-import { ReviewRow } from '../../profile/ReviewRow';
-import { FirstShifterTag } from '../../profile/FirstShifterTag';
+import StyledText from '@/components/StyledText';
+import { ReviewRow } from '@/components/profile/ReviewRow';
+import { FirstShifterTag } from '@/components/profile/FirstShifterTag';
 import { typographyStyles } from '@/styles/livoFonts';
-import { SquareProfilePicture } from '../../claimReviews/SquareProfileImage';
-import FavoriteTag from '../../profile/FavoriteTag';
+import { SquareProfilePicture } from '@/components/claimReviews/SquareProfileImage';
+import FavoriteTag from '@/components/profile/FavoriteTag';
 import { commonStyles } from '@/styles/commonStyles';
 import { Typography } from '@/components/atoms/Typography';
 import { markdown } from '@/utils/markdown';

@@ -5,7 +5,7 @@ import Modal from 'react-native-modal';
 import Icon from 'react-native-vector-icons/FontAwesome';
 import {BLACK, CORAL} from '@/styles/colors';
 import {LayoutTextEnum} from '@/styles/fonts';
-import StyledText from '../StyledText';
+import StyledText from '@/components/StyledText';
 
 interface CancelEditModalProps {
   visible: boolean;

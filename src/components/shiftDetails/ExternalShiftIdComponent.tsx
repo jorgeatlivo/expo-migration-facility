@@ -5,7 +5,7 @@ import LivoIcon from '@/assets/icons/LivoIcon';
 import {typographyStyles} from '@/styles/livoFonts';
 import {SPACE_VALUES} from '@/styles/spacing';
 import {copyToClipboard} from '@/utils/utils';
-import StyledText from '../StyledText';
+import StyledText from '@/components/StyledText';
 
 interface ExternalShiftIdComponentProps {
   externalShiftId: string;

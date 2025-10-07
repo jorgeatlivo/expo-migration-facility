@@ -7,7 +7,7 @@ import {
   TouchableOpacity,
   StyleSheet,
 } from 'react-native';
-import StyledText from '../StyledText';
+import StyledText from '@/components/StyledText';
 import { typographyStyles } from '@/styles/livoFonts';
 import { ACTION_BLUE, SLATE_GRAY } from '@/styles/colors';
 import Row from '@/components/atoms/Row';

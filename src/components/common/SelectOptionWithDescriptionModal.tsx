@@ -12,8 +12,8 @@ import { ACTION_BLACK, WHITE } from '@/styles/colors';
 import { SPACE_VALUES } from '@/styles/spacing';
 import LivoIcon from '@/assets/icons/LivoIcon';
 
-import StyledText from '../StyledText';
-import ActionButton from '../buttons/ActionButton';
+import StyledText from '@/components/StyledText';
+import ActionButton from '@/components/buttons/ActionButton';
 import AutoCompleteTextInput from './AutoCompleteTextInput';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
 import CustomTextInput from './CustomTextInput';

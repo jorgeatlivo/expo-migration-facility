@@ -1,12 +1,12 @@
 import React, { useState } from 'react';
-import { View } from 'react-native';
-import { BottomModal } from '../modals/BottomModal';
-import StyledText from '../StyledText';
+import {Pressable, View} from 'react-native';
+import { BottomModal } from '@/components/modals/BottomModal';
+import StyledText from '@/components/StyledText';
 import { typographyStyles } from '@/styles/livoFonts';
-import SingleSelectTag from '../common/SingleSelectTag';
-import ActionButton from '../buttons/ActionButton';
-import { IconX } from 'react-native-tabler-icons/tabler';
+import SingleSelectTag from '@/components/common/SingleSelectTag';
+import ActionButton from '@/components/buttons/ActionButton';
 import { useTranslation } from 'react-i18next';
+import {IconX} from "tabler-icons-react-native";
 
 interface EditCapacityProps extends React.ComponentProps<typeof BottomModal> {
   capacity: number;
@@ -37,17 +37,20 @@ export const EditCapacityModal: React.FC<EditCapacityProps> = ({
     }
     return acc;
   }, [] as { label: string; id: string; isDisabled?: boolean }[]);
-
+  
+  
+  // todo localise
   return (
     <BottomModal {...props}>
       <View>
         <View style={{ alignItems: 'flex-end', marginBottom: 12 }}>
+          <Pressable onPress={() => props.dismissModal()}>
           <IconX
             size={24}
             color={'#303136'} // Icon/Strong
             style={{ alignSelf: 'flex-end' }}
-            onPress={() => props.dismissModal()}
           />
+          </Pressable>
         </View>
         <StyledText /* Label/Large */
           style={{

@@ -3,8 +3,8 @@ import { useTranslation } from 'react-i18next';
 import { StyleSheet } from 'react-native';
 import { typographyStyles } from '@/styles/livoFonts';
 import { SPACE_VALUES } from '@/styles/spacing';
-import CustomTextInput from '../common/CustomTextInput';
-import StyledText from '../StyledText';
+import CustomTextInput from '@/components/common/CustomTextInput';
+import StyledText from '@/components/StyledText';
 import Col from '@/components/atoms/Col';
 import { BLUE_FADED } from '@/styles/colors';
 

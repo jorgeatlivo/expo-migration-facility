@@ -5,7 +5,7 @@ import {ClaimRequest} from '@/services/shifts';
 import {PRIMARY_BLUE, WHITE} from '@/styles/colors';
 import {commonStyles} from '@/styles/commonStyles';
 import {LayoutTextEnum} from '@/styles/fonts';
-import StyledText from '../StyledText';
+import StyledText from '@/components/StyledText';
 import {ProfileImage} from './ProfileImage';
 
 interface ClaimRequestProps {

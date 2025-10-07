@@ -5,13 +5,12 @@ import {
   SpecializationDTO,
   fetchShiftClaimRejectReasons,
 } from '@/services/shifts';
-import LivoTextInput from '../common/LivoTextInput';
-import SingleSelect from '../common/SingleSelect';
-import { BottomModal } from '../modals/BottomModal';
-import StyledText from '../StyledText';
+import LivoTextInput from '@/components/common/LivoTextInput';
+import SingleSelect from '@/components/common/SingleSelect';
+import { BottomModal } from '@/components/modals/BottomModal';
+import StyledText from '@/components/StyledText';
 import { typographyStyles } from '@/styles/livoFonts';
-import { ACTION_BLUE, BLACK, CORAL, WHITE } from '@/styles/colors';
-import CommonButton from '@/components/buttons/CommonButton';
+import { ACTION_BLUE, BLACK } from '@/styles/colors';
 import { SPACE_VALUES } from '@/styles/spacing';
 import Col from '@/components/atoms/Col';
 import CancelButton from '@/components/buttons/CancelButton';

@@ -1,6 +1,6 @@
 import React from 'react';
 import { Category } from '@/types';
-import { CategoryTag } from '../shiftDetails/CategoryTag';
+import { CategoryTag } from '@/components/shiftDetails/CategoryTag';
 import { SPACE_VALUES } from '@/styles/spacing';
 import { ScrollView, TouchableOpacity } from 'react-native';
 import LivoIcon from '@/assets/icons/LivoIcon';

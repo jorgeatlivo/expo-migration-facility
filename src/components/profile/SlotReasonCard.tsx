@@ -16,8 +16,8 @@ import {AppDispatch} from '@/store/configureStore';
 import {ACTION_BLUE, BADGE_GRAY, WHITE} from '@/styles/colors';
 import {typographyStyles} from '@/styles/livoFonts';
 import {SPACE_VALUES} from '@/styles/spacing';
-import SelectAttributeModal from '../common/SelectOptionWithDescriptionModal';
-import StyledText from '../StyledText';
+import SelectAttributeModal from '@/components/common/SelectOptionWithDescriptionModal';
+import StyledText from '@/components/StyledText';
 
 interface SlotReasonCardProps {
   slotReason: SlotReason;
@@ -70,7 +70,7 @@ export default function SlotReasonCard({
       })
       .catch(error => {
         const errorMessage =
-          error instanceof ApiApplicationError === true
+          error instanceof ApiApplicationError
             ? error.message
             : t('shift_list_error_server_message');
         Alert.alert('Error', errorMessage);

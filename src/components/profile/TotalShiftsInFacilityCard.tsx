@@ -4,7 +4,7 @@ import {View} from 'react-native';
 import {BADGE_GRAY} from '@/styles/colors';
 import {commonStyles} from '@/styles/commonStyles';
 import {typographyStyles} from '@/styles/livoFonts';
-import StyledText from '../StyledText';
+import StyledText from '@/components/StyledText';
 
 interface TotalShiftsInFacilityCardProps {
   totalShiftsInFacility: number;

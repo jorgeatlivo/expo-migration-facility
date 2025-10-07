@@ -1,5 +1,5 @@
 import { StyleSheet, TouchableOpacity } from 'react-native';
-import StyledText from '../StyledText';
+import StyledText from '@/components/StyledText';
 import { typographyStyles } from '@/styles/livoFonts';
 import { SPACE_VALUES } from '@/styles/spacing';
 import Row from '@/components/atoms/Row';

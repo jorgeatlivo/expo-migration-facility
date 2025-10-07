@@ -6,7 +6,7 @@ import {
   View,
   ViewStyle,
 } from 'react-native';
-import StyledText from '../StyledText';
+import StyledText from '@/components/StyledText';
 import { typographyStyles } from '@/styles/livoFonts';
 import { ACTION_BLUE, DIVIDER_GRAY } from '@/styles/colors';
 import LivoIcon from '@/assets/icons/LivoIcon';

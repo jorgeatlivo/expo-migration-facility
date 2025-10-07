@@ -1,7 +1,6 @@
 import React, {ReactNode} from 'react';
 import {StyleSheet, View} from 'react-native';
-import { LayoutTextEnum } from '@/styles/fonts';
-import StyledText from '../StyledText';
+import StyledText from '@/components/StyledText';
 import { typographyStyles } from '@/styles/livoFonts';
 import { SPACE_VALUES } from '@/styles/spacing';
 

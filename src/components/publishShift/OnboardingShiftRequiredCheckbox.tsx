@@ -1,6 +1,6 @@
 import { StyleSheet, View } from 'react-native';
 import React from 'react';
-import CustomCheckBox from '../common/CustomCheckBox';
+import CustomCheckBox from '@/components/common/CustomCheckBox';
 import { IconSquare, IconSquareCheckFilled } from 'tabler-icons-react-native';
 import { useTranslation } from 'react-i18next';
 import { SPACE_VALUES } from '@/styles/spacing';

@@ -5,10 +5,11 @@ import {
   TextInput,
   TextInputProps,
   View,
+ StyleProp
 } from 'react-native';
 import { SPACE_VALUES } from '@/styles/spacing';
 import { typographyStyles } from '@/styles/livoFonts';
-import StyledText from '../StyledText';
+import StyledText from '@/components/StyledText';
 import {
   BADGE_GRAY,
   BLUE_FADED,
@@ -19,7 +20,6 @@ import {
 } from '@/styles/colors';
 import Row from '@/components/atoms/Row';
 import LivoIcon from '@/assets/icons/LivoIcon';
-import { StyleProp } from 'react-native';
 
 interface CustomTextInputProps extends TextInputProps {
   endAdornment?: string;

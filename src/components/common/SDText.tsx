@@ -2,7 +2,7 @@ import React from 'react';
 import { StyleProp, StyleSheet, View, ViewStyle } from 'react-native';
 import { SPACE_VALUES } from '@/styles/spacing';
 import { TextDTO } from '@/types/widgets';
-import StyledText from '../StyledText';
+import StyledText from '@/components/StyledText';
 import { resolveTypographyStyles } from '@/utils/utils';
 import { SDIcon } from './SDIcon';
 

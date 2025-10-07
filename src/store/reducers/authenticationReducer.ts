@@ -1,4 +1,4 @@
-import { MFA_SIGN_IN, RESTORE_TOKEN, SIGN_IN, SIGN_OUT, TOGGLE_SIGNING_IN, TOGGLE_SIGNING_UP } from '../actions/actionTypes';
+import { RESTORE_TOKEN, SIGN_IN, SIGN_OUT, TOGGLE_SIGNING_IN, TOGGLE_SIGNING_UP } from '@/store/actions/actionTypes';
 
 const initialState = {
   token: null,

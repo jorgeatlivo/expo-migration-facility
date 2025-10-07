@@ -12,7 +12,7 @@ import { ProfessionalProfile } from '@/services/shifts';
 import { BADGE_GRAY, WHITE, YELLOW } from '@/styles/colors';
 import { typographyStyles } from '@/styles/livoFonts';
 import { SPACE_VALUES } from '@/styles/spacing';
-import StyledText from '../StyledText';
+import StyledText from '@/components/StyledText';
 import { ProtectedStackRoutes } from '@/router/ProtectedStack';
 
 interface ReviewsCardProps {

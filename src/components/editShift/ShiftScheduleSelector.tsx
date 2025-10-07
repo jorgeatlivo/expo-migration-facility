@@ -1,13 +1,13 @@
 import React from 'react';
 import { StyleSheet, TouchableOpacity, View } from 'react-native';
-import { shiftTimeInDayLabels } from '../claimReviews/Separators';
+import { shiftTimeInDayLabels } from '@/components/claimReviews/Separators';
 import LivoIcon from '@/assets/icons/LivoIcon';
-import StyledText from '../StyledText';
+import StyledText from '@/components/StyledText';
 import { typographyStyles } from '@/styles/livoFonts';
 import { SPACE_VALUES } from '@/styles/spacing';
 import { ACTION_BLUE, BORDER_GRAY, WHITE } from '@/styles/colors';
 import { useTranslation } from 'react-i18next';
-import { Typography } from '../atoms/Typography';
+import { Typography } from '@/components/atoms/Typography';
 
 interface ShiftScheduleSelectorProps {
   schedules: {

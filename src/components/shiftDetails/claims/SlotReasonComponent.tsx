@@ -5,7 +5,7 @@ import LivoIcon from '@/assets/icons/LivoIcon';
 import {SlotReason} from '@/services/shifts';
 import {typographyStyles} from '@/styles/livoFonts';
 import {SPACE_VALUES} from '@/styles/spacing';
-import StyledText from '../../StyledText';
+import StyledText from '@/components/StyledText';
 
 interface SlotReasonComponentProps {
   reason: SlotReason | null;

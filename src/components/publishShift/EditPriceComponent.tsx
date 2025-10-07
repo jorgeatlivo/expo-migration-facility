@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { useTranslation } from 'react-i18next';
-import { TouchableOpacity, View } from 'react-native';
+import { TouchableOpacity, View , StyleSheet } from 'react-native';
 import LivoIcon from '@/assets/icons/LivoIcon';
 import {
   BLACK,
@@ -11,11 +11,12 @@ import {
 } from '@/styles/colors';
 import { typographyStyles } from '@/styles/livoFonts';
 import { SPACE_VALUES } from '@/styles/spacing';
-import StyledText from '../StyledText';
-import CustomTextInput, { customInputStyles } from '../common/CustomTextInput';
+import StyledText from '@/components/StyledText';
+import CustomTextInput, { customInputStyles } from '@/components/common/CustomTextInput';
 import { DropDownPickerModal } from './DropDownPickerModal';
-import Row from '../atoms/Row';
-import Col from '../atoms/Col';
+import Row from '@/components/atoms/Row';
+import Col from '@/components/atoms/Col';
+
 
 interface EditPriceComponentProps {
   price?: string;
@@ -104,8 +105,6 @@ export const EditPriceComponent: React.FC<EditPriceComponentProps> = ({
     </>
   );
 };
-
-import { StyleSheet } from 'react-native';
 
 const styles = StyleSheet.create({
   wrapper: {

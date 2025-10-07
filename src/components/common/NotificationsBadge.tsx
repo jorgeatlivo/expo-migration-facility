@@ -1,6 +1,6 @@
 import React, { FC } from 'react';
 import { View, StyleSheet } from 'react-native';
-import StyledText from '../StyledText';
+import StyledText from '@/components/StyledText';
 import { typographyStyles } from '@/styles/livoFonts';
 
 interface NotificationsBadgeProps {

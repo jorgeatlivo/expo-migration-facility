@@ -6,11 +6,11 @@ import {
   StyleProp,
   ViewStyle,
 } from 'react-native';
-import StyledText from '../StyledText';
+import StyledText from '@/components/StyledText';
 import { typographyStyles } from '@/styles/livoFonts';
 import { SPACE_VALUES } from '@/styles/spacing';
 import { BLUE_FADED, WHITE } from '@/styles/colors';
-import Row from '../atoms/Row';
+import Row from '@/components/atoms/Row';
 
 interface ToggleSwitchProps {
   description?: string;
@@ -27,7 +27,6 @@ export default function ToggleSwitch({
   style,
   hide = false,
 }: ToggleSwitchProps) {
-  if (!hide) {
     const animation = useRef(new Animated.Value(0)).current;
 
     useEffect(() => {
@@ -50,7 +49,7 @@ export default function ToggleSwitch({
       outputRange: ['#E3E6EC', '#149EF2'],
     });
 
-    return (
+    return hide ? null :(
       <Row alignItems={'center'} style={style}>
         <TouchableOpacity onPress={toggleSwitch}>
           <Animated.View style={[styles.toggle, { backgroundColor }]}>
@@ -67,8 +66,7 @@ export default function ToggleSwitch({
         )}
       </Row>
     );
-  }
-  return null;
+
 }
 
 const styles = StyleSheet.create({

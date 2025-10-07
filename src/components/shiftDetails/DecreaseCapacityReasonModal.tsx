@@ -6,11 +6,11 @@ import {
   fetchShiftCancelReasons,
 } from '@/services/shifts';
 import { typographyStyles } from '@/styles/livoFonts';
-import CancelButton from '../buttons/CancelButton';
-import LivoTextInput from '../common/LivoTextInput';
-import SingleSelect from '../common/SingleSelect';
-import { BottomModal } from '../modals/BottomModal';
-import StyledText from '../StyledText';
+import CancelButton from '@/components/buttons/CancelButton';
+import LivoTextInput from '@/components/common/LivoTextInput';
+import SingleSelect from '@/components/common/SingleSelect';
+import { BottomModal } from '@/components/modals/BottomModal';
+import StyledText from '@/components/StyledText';
 
 //Deprecated
 interface DecreaseCapacityModalProps

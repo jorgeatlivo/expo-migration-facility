@@ -3,7 +3,7 @@ import {useTranslation} from 'react-i18next';
 import {TouchableOpacity} from 'react-native';
 import {ACTION_BLUE} from '@/styles/colors';
 import {typographyStyles} from '@/styles/livoFonts';
-import StyledText from '../StyledText';
+import StyledText from '@/components/StyledText';
 
 interface DownloadCVButtonProps {
   onPress: () => any;

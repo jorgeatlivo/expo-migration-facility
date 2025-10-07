@@ -1,7 +1,7 @@
 import { StyleSheet } from 'react-native';
-import { BADGE_GRAY, WHITE } from '../colors';
-import { SPACE_VALUES } from '../spacing';
-import { typographyStyles } from '../livoFonts';
+import { BADGE_GRAY, WHITE } from '@/styles/colors';
+import { SPACE_VALUES } from '@/styles/spacing';
+import { typographyStyles } from '@/styles/livoFonts';
 
 export const SectionStyles = StyleSheet.create({
   section: {

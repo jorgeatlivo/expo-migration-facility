@@ -1,6 +1,6 @@
 import { StyleSheet } from 'react-native';
-import { SPACE_VALUES } from '../spacing';
-import { BORDER_GRAY, WHITE } from '../colors';
+import { SPACE_VALUES } from '@/styles/spacing';
+import { BORDER_GRAY, WHITE } from '@/styles/colors';
 
 export const ScreenStyles = StyleSheet.create({
   screen: {

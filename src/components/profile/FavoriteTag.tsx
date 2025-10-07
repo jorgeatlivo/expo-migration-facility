@@ -5,7 +5,7 @@ import LivoIcon from '@/assets/icons/LivoIcon';
 import {BLUE_FADED, CORAL} from '@/styles/colors';
 import {typographyStyles} from '@/styles/livoFonts';
 import {SPACE_VALUES} from '@/styles/spacing';
-import StyledText from '../StyledText';
+import StyledText from '@/components/StyledText';
 
 interface FavoriteTagProps {
   size?: 'regular' | 'small';

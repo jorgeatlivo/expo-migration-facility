@@ -1,7 +1,7 @@
 import React from 'react';
 import { View } from 'react-native';
 import { SPACE_VALUES } from '@/styles/spacing';
-import SelectTags from '../common/CustomSelectTags';
+import SelectTags from '@/components/common/CustomSelectTags';
 
 interface CapacitySelectorComponentProps {
   capacity: string;

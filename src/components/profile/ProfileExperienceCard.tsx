@@ -6,7 +6,7 @@ import { CVType, ProfessionalProfile } from '@/services/shifts';
 import { BADGE_GRAY } from '@/styles/colors';
 import { commonStyles } from '@/styles/commonStyles';
 import { typographyStyles } from '@/styles/livoFonts';
-import StyledText from '../StyledText';
+import StyledText from '@/components/StyledText';
 import { DownloadCVButton } from './DownloadCVButton';
 
 interface ProfileExperienceCardProps {

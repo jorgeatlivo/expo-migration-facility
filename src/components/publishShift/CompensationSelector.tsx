@@ -5,7 +5,7 @@ import LivoIcon from '@/assets/icons/LivoIcon';
 import { typographyStyles } from '@/styles/livoFonts';
 import { SPACE_VALUES } from '@/styles/spacing';
 import { ACTION_BLUE, BORDER_GRAY } from '@/styles/colors';
-import StyledText from '../StyledText';
+import StyledText from '@/components/StyledText';
 
 interface CompensationSelectorProps {
   options: CompensationSelectionOption[];

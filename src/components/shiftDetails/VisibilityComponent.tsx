@@ -6,7 +6,7 @@ import { typographyStyles } from '@/styles/livoFonts';
 import { SPACE_VALUES } from '@/styles/spacing';
 import { modalityTags } from '@/styles/utils';
 import { ShiftModalityEnum } from '@/types';
-import StyledText from '../StyledText';
+import StyledText from '@/components/StyledText';
 import Row from '@/components/atoms/Row';
 
 interface VisibilityComponentProps {

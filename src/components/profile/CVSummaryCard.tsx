@@ -1,7 +1,7 @@
 import React from 'react';
 import {commonStyles} from '@/styles/commonStyles';
 import {View} from 'react-native';
-import StyledText from '../StyledText';
+import StyledText from '@/components/StyledText';
 import {typographyStyles} from '@/styles/livoFonts';
 import {BADGE_GRAY} from '@/styles/colors';
 

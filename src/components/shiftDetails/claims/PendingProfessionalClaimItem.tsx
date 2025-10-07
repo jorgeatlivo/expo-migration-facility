@@ -19,11 +19,11 @@ import { typographyStyles } from '@/styles/livoFonts';
 import { SPACE_VALUES } from '@/styles/spacing';
 import { modalityTags } from '@/styles/utils';
 import { RootState, ShiftModalityEnum } from '@/types';
-import ActionButton from '../../buttons/ActionButton';
-import SelectAttributeModal from '../../common/SelectOptionWithDescriptionModal';
-import { ProfileExperienceComponent } from '../../profile/ProfileExperienceComponent';
-import StyledText from '../../StyledText';
-import { RejectProfessionalModal } from '../RejectProfessionalReasonModal';
+import ActionButton from '@/components/buttons/ActionButton';
+import SelectAttributeModal from '@/components/common/SelectOptionWithDescriptionModal';
+import { ProfileExperienceComponent } from '@/components/profile/ProfileExperienceComponent';
+import StyledText from '@/components/StyledText';
+import { RejectProfessionalModal } from '@/components/shiftDetails/RejectProfessionalReasonModal';
 import { InternalPendingClaimBody } from './InternalPendingClaimBody';
 import { InternalProfileHeaderComponent } from './InternalProfileHeader';
 import { ProfileHeaderComponent } from './ProfileHeaderComponent';
@@ -97,7 +97,7 @@ export const PendingProfessionalClaimItem: React.FC<
       .catch((error) => {
         setLoading(false);
         const errorMessage =
-          error instanceof ApiApplicationError === true
+          error instanceof ApiApplicationError
             ? error.message
             : t('shift_list_error_server_message');
         Alert.alert('Error', errorMessage);
@@ -123,7 +123,7 @@ export const PendingProfessionalClaimItem: React.FC<
       .catch((error) => {
         setLoading(false);
         const errorMessage =
-          error instanceof ApiApplicationError === true
+          error instanceof ApiApplicationError
             ? error.message
             : t('shift_list_error_server_message');
         Alert.alert('Error', errorMessage);

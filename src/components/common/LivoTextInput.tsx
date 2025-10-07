@@ -1,8 +1,8 @@
 import React from 'react';
 import { StyleSheet, TextInput, TextInputProps, View } from 'react-native';
-import { GRAY, LIGHT_GRAY, WHITE } from '@/styles/colors';
-import { LayoutTextEnum, fontWeight } from '@/styles/fonts';
-import StyledText from '../StyledText';
+import { GRAY, WHITE } from '@/styles/colors';
+import { fontWeight } from '@/styles/fonts';
+import StyledText from '@/components/StyledText';
 
 interface LivoTextInputProps extends TextInputProps {
   style?: any;

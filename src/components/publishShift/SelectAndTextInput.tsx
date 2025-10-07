@@ -10,13 +10,13 @@ import {
 } from '@/styles/colors';
 import { typographyStyles } from '@/styles/livoFonts';
 import { SPACE_VALUES } from '@/styles/spacing';
-import StyledText from '../StyledText';
-import CustomTextInput from '../common/CustomTextInput';
-import Row from '../atoms/Row';
+import StyledText from '@/components/StyledText';
+import CustomTextInput from '@/components/common/CustomTextInput';
+import Row from '@/components/atoms/Row';
 import { DropDownPickerModal } from './DropDownPickerModal';
 import Col from '@/components/atoms/Col';
 import { FullscreenPickerModal } from '@/components/publishShift/FullscreenPickerModal';
-import { DropDownInput } from '../common/DropDownInput';
+import { DropDownInput } from '@/components/common/DropDownInput';
 
 interface SelectAndTextInputProps {
   value: string | undefined;

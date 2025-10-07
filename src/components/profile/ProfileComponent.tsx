@@ -5,7 +5,7 @@ import {ScrollView} from 'react-native-gesture-handler';
 import {ClaimRequest, ProfessionalProfile} from '@/services/shifts';
 import {SPACE_VALUES} from '@/styles/spacing';
 import {FacilityStaffProfile, ShiftModalityEnum} from '@/types';
-import SectionHeader from '../common/SectionHeader';
+import SectionHeader from '@/components/common/SectionHeader';
 import CancellationRequestCard from './CancellationRequestCard';
 import CompensationOptionCard from './CompensationOptionCard';
 import {CVSummaryCard} from './CVSummaryCard';

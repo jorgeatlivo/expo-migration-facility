@@ -5,10 +5,10 @@ import { IconX } from 'tabler-icons-react-native';
 import { SpecializationDTO, fetchShiftCancelReasons } from '@/services/shifts';
 import { WHITE } from '@/styles/colors';
 import { FontWeightEnum, typographyStyles } from '@/styles/livoFonts';
-import CommonButton from '../buttons/CommonButton';
-import CustomTextInput from '../common/CustomTextInput';
-import { SingleSelectSimple } from '../filter/SingleSelectSimple';
-import StyledText from '../StyledText';
+import CommonButton from '@/components/buttons/CommonButton';
+import CustomTextInput from '@/components/common/CustomTextInput';
+import { SingleSelectSimple } from '@/components/filter/SingleSelectSimple';
+import StyledText from '@/components/StyledText';
 
 interface Props {
   cancelShift: (cancelReason: string, reasonDetails: string) => void;

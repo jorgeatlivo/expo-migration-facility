@@ -1,9 +1,9 @@
 import {View} from 'react-native';
 import React from 'react';
 import {typographyStyles} from '@/styles/livoFonts';
-import {DateComponent} from '../shiftDetails/DateComponent';
+import {DateComponent} from '@/components/shiftDetails/DateComponent';
 import {Shift} from '@/types';
-import StyledText from '../StyledText';
+import StyledText from '@/components/StyledText';
 
 interface ShiftSummaryProps {
   shift: Shift;

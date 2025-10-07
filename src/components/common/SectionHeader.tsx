@@ -1,7 +1,7 @@
 import React from 'react';
 import { StyleProp, StyleSheet, View, ViewStyle } from 'react-native';
 import LivoIcon from '@/assets/icons/LivoIcon';
-import StyledText from '../StyledText';
+import StyledText from '@/components/StyledText';
 import { DIVIDER_GRAY } from '@/styles/colors';
 import { SPACE_VALUES } from '@/styles/spacing';
 import { typographyStyles } from '@/styles/livoFonts';

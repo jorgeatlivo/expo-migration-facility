@@ -16,45 +16,6 @@ interface ShiftDateTimePickerProps {
 }
 
 export const ShiftDateTimePicker = ({placeholder, onSelectedDateHandler, minimumDate, value, mode, iconName}: ShiftDateTimePickerProps) => {
-  // const [isVisible, setVisibility] = useState(false);
-  //
-  // const showDatePicker = () => {
-  //   setVisibility(true);
-  // };
-  //
-  // const hideDatePicker = () => {
-  //   setVisibility(false);
-  // };
-  //
-  // const handleConfirm = (date: Date) => {
-  //   hideDatePicker();
-  //   props.onSelectedDateHandler(date);
-  // };
-  //
-  // const dateFormat = props.mode === 'time' ? 'HH:mm' : 'DD MMM YYYY';
-  // const formattedDateTime = moment(props.value).format(dateFormat);
-  //
-  // return (
-  //   <>
-  //     <DropDownInput
-  //       placeholderAsLabel
-  //       placeholder={props.placeholder}
-  //       selectedLabel={formattedDateTime}
-  //       navigateToOptions={showDatePicker}
-  //       iconName={props.iconName}
-  //     />
-  //     <DateTimePickerModal
-  //       isVisible={isVisible}
-  //       date={props.value}
-  //       mode={props.mode}
-  //       is24Hour={true}
-  //       onConfirm={handleConfirm}
-  //       onCancel={hideDatePicker}
-  //       minuteInterval={5}
-  //       minimumDate={new Date()}
-  //     />
-  //   </>
-  // );
   const [show, setShow] = useState(false);
 
   const onChange = (_: DateTimePickerEvent, selectedDate?: Date) => {

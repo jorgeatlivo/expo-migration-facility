@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { TouchableOpacity, StyleSheet } from 'react-native';
 import { SPACE_VALUES } from '@/styles/spacing';
-import StyledText from '../StyledText';
+import StyledText from '@/components/StyledText';
 import { FontWeightEnum, typographyStyles } from '@/styles/livoFonts';
 import {
   ACTION_BLUE,

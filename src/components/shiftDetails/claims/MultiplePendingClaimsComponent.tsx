@@ -4,7 +4,7 @@ import { View, StyleSheet } from 'react-native';
 import { ScrollView } from 'react-native-gesture-handler';
 import { ClaimRequest, ShiftClaimStatus } from '@/services/shifts';
 import { SPACE_VALUES } from '@/styles/spacing';
-import { NotificationsBadge } from '../../common/NotificationsBadge';
+import { NotificationsBadge } from '@/components/common/NotificationsBadge';
 import { PendingProfessionalClaimItem } from './PendingProfessionalClaimItem';
 import { ProfessionalClaimRow } from './ProfessionalClaimRow';
 import { Typography } from '@/components/atoms/Typography';

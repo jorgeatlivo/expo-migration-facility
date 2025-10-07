@@ -1,8 +1,8 @@
 import React, { PropsWithChildren } from 'react';
 import { StyleSheet, View } from 'react-native';
 import { typographyStyles } from '@/styles/livoFonts';
-import StyledText from '../StyledText';
-import CommonButton from '../buttons/CommonButton';
+import StyledText from '@/components/StyledText';
+import CommonButton from '@/components/buttons/CommonButton';
 import { ACTION_BLUE, WHITE } from '@/styles/colors';
 import { SPACE_VALUES } from '@/styles/spacing';
 

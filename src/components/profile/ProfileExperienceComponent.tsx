@@ -6,7 +6,7 @@ import { ACTION_BLUE } from '@/styles/colors';
 import { commonStyles } from '@/styles/commonStyles';
 import { typographyStyles } from '@/styles/livoFonts';
 import { SPACE_VALUES } from '@/styles/spacing';
-import StyledText from '../StyledText';
+import StyledText from '@/components/StyledText';
 import { DownloadCVButton } from './DownloadCVButton';
 import { InformationRow } from './InformationRow';
 

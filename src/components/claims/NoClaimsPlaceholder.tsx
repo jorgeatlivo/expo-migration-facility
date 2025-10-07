@@ -5,8 +5,8 @@ import { StyleProp, StyleSheet, View, ViewStyle } from 'react-native';
 import { BLUE_FADED } from '@/styles/colors';
 import { typographyStyles } from '@/styles/livoFonts';
 import { SPACE_VALUES } from '@/styles/spacing';
-import { Divider } from '../common/Divider';
-import StyledText from '../StyledText';
+import { Divider } from '@/components/common/Divider';
+import StyledText from '@/components/StyledText';
 import OpenFavoriteProfessionals from './OpenFavoriteProfessionals';
 
 type NoClaimsPlaceholderProps = {

@@ -3,8 +3,8 @@ import {View} from 'react-native';
 import {typographyStyles} from '@/styles/livoFonts';
 import {SPACE_VALUES} from '@/styles/spacing';
 import {ShiftModalityEnum} from '@/types';
-import SelectTags from '../common/CustomSelectTags';
-import StyledText from '../StyledText';
+import SelectTags from '@/components/common/CustomSelectTags';
+import StyledText from '@/components/StyledText';
 
 interface InternalExternalSwitchComponentProps {
   modality: ShiftModalityEnum;

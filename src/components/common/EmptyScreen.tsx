@@ -4,8 +4,8 @@ import { View } from 'react-native';
 import { WHITE } from '@/styles/colors';
 import { typographyStyles } from '@/styles/livoFonts';
 import { SPACE_VALUES } from '@/styles/spacing';
-import ActionButton from '../buttons/ActionButton';
-import StyledText from '../StyledText';
+import ActionButton from '@/components/buttons/ActionButton';
+import StyledText from '@/components/StyledText';
 
 interface EmptyScreenProps {
   onPress: () => void;
