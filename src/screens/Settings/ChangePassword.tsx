@@ -1,22 +1,26 @@
-import { StackScreenProps } from '@react-navigation/stack';
 import React, { useEffect, useState } from 'react';
-import { useTranslation } from 'react-i18next';
 import { Alert, StyleSheet, View } from 'react-native';
+import { useTranslation } from 'react-i18next';
 import { SafeAreaView } from 'react-native-safe-area-context';
-import StyledText from '@/components/StyledText';
+import { StackScreenProps } from '@react-navigation/stack';
+
+import { ApiApplicationError } from '@/services/api';
+import { changePasswordRequest } from '@/services/authentication';
+
 import ActionButton from '@/components/buttons/ActionButton';
 import CustomTextInput from '@/components/common/CustomTextInput';
 import { LoadingScreen } from '@/components/common/LoadingScreen';
-import { ApiApplicationError } from '@/services/api';
-import { changePasswordRequest } from '@/services/authentication';
+import KeyboardAwareScrollView from '@/components/layout/KeyboardAwareScrollView';
+import StyledText from '@/components/StyledText';
+
 import { DARK_BLUE, WHITE } from '@/styles/colors';
 import { commonStyles } from '@/styles/commonStyles';
 import { LayoutTextEnum } from '@/styles/fonts';
+
 import {
   ProtectedStackParamsList,
   ProtectedStackRoutes,
 } from '@/router/ProtectedStack';
-import KeyboardAwareScrollView from "@/components/layout/KeyboardAwareScrollView";
 
 type ChangePasswordProps = StackScreenProps<
   ProtectedStackParamsList,

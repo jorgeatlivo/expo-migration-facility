@@ -1,5 +1,4 @@
 import React from 'react';
-import { useTranslation } from 'react-i18next';
 import {
   StyleProp,
   StyleSheet,
@@ -7,12 +6,17 @@ import {
   View,
   ViewStyle,
 } from 'react-native';
-import LivoIcon from '@/assets/icons/LivoIcon';
+import { useTranslation } from 'react-i18next';
+
 import { ProfessionalProfile } from '@/services/shifts';
+
+import StyledText from '@/components/StyledText';
+
 import { BADGE_GRAY, WHITE, YELLOW } from '@/styles/colors';
 import { typographyStyles } from '@/styles/livoFonts';
 import { SPACE_VALUES } from '@/styles/spacing';
-import StyledText from '@/components/StyledText';
+
+import LivoIcon from '@/assets/icons/LivoIcon';
 import { ProtectedStackRoutes } from '@/router/ProtectedStack';
 
 interface ReviewsCardProps {

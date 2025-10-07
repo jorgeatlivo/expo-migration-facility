@@ -1,9 +1,12 @@
-import moment from 'moment';
-import { decode } from 'base-64';
-import Clipboard from '@react-native-clipboard/clipboard';
-import i18n from '@/locale/i18n';
-import { typographyStyles } from '@/styles/livoFonts';
 import { Dimensions } from 'react-native';
+
+import Clipboard from '@react-native-clipboard/clipboard';
+import { decode } from 'base-64';
+import moment from 'moment';
+
+import { typographyStyles } from '@/styles/livoFonts';
+
+import i18n from '@/locale/i18n';
 
 const { width } = Dimensions.get('window');
 export const MAX_CAPACITY = 5;
@@ -193,7 +196,10 @@ export function resolveIconSize(size: string) {
   return 1;
 }
 
-export function buildShiftDateTime(shiftDate: Date, shiftTime: Date): moment.Moment {
+export function buildShiftDateTime(
+  shiftDate: Date,
+  shiftTime: Date
+): moment.Moment {
   return moment({
     year: shiftDate.getFullYear(),
     month: shiftDate.getMonth(),
@@ -204,13 +210,13 @@ export function buildShiftDateTime(shiftDate: Date, shiftTime: Date): moment.Mom
 }
 
 export function splitName(fullName: string): [string, string] {
-  const [first, ...rest] = fullName.trim().split(/\s+/)
-  return [first, rest.join(' ')]
+  const [first, ...rest] = fullName.trim().split(/\s+/);
+  return [first, rest.join(' ')];
 }
 
 export function sortBy<T extends object>(array: T[], iteratee: any) {
   const getValue =
-    typeof iteratee === "function"
+    typeof iteratee === 'function'
       ? iteratee
       : (item: T) => (item as any)[iteratee];
 

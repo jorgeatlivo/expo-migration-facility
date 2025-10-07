@@ -1,7 +1,10 @@
 import React from 'react';
 import { Image, StyleSheet, View } from 'react-native';
-import { GRAY } from '@/styles/colors';
+
 import Icon from 'react-native-vector-icons/FontAwesome';
+
+import { GRAY } from '@/styles/colors';
+
 import { Avatar } from '@/assets/images/Avatar';
 
 interface ProfessionalImageProps {
@@ -24,7 +27,9 @@ export const ProfessionalImage: React.FC<ProfessionalImageProps> = ({
             borderRadius: 8,
           }}
         />
-      ) : <Avatar size={imageSize} />}
+      ) : (
+        <Avatar size={imageSize} />
+      )}
     </View>
   );
 };

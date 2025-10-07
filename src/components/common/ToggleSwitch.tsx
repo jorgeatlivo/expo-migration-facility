@@ -1,16 +1,18 @@
-import React, { useRef, useEffect } from 'react';
+import { useEffect, useRef } from 'react';
 import {
-  TouchableOpacity,
   Animated,
-  StyleSheet,
   StyleProp,
+  StyleSheet,
+  TouchableOpacity,
   ViewStyle,
 } from 'react-native';
+
+import Row from '@/components/atoms/Row';
 import StyledText from '@/components/StyledText';
+
+import { BLUE_FADED, WHITE } from '@/styles/colors';
 import { typographyStyles } from '@/styles/livoFonts';
 import { SPACE_VALUES } from '@/styles/spacing';
-import { BLUE_FADED, WHITE } from '@/styles/colors';
-import Row from '@/components/atoms/Row';
 
 interface ToggleSwitchProps {
   description?: string;
@@ -27,46 +29,42 @@ export default function ToggleSwitch({
   style,
   hide = false,
 }: ToggleSwitchProps) {
-    const animation = useRef(new Animated.Value(0)).current;
+  const animation = useRef(new Animated.Value(0)).current;
 
-    useEffect(() => {
-      // Whenever isOn changes, update the animation to reflect the change
-      Animated.timing(animation, {
-        toValue: isOn ? 16 : 0, // Move the circle based on the toggle
-        duration: 200,
-        useNativeDriver: false,
-      }).start();
-    }, [isOn]);
+  useEffect(() => {
+    // Whenever isOn changes, update the animation to reflect the change
+    Animated.timing(animation, {
+      toValue: isOn ? 16 : 0, // Move the circle based on the toggle
+      duration: 200,
+      useNativeDriver: false,
+    }).start();
+  }, [isOn]);
 
-    // Handle toggle
-    const toggleSwitch = () => {
-      onToggle(!isOn);
-    };
+  // Handle toggle
+  const toggleSwitch = () => {
+    onToggle(!isOn);
+  };
 
-    // Interpolate background color from gray to blue
-    const backgroundColor = animation.interpolate({
-      inputRange: [0, 16],
-      outputRange: ['#E3E6EC', '#149EF2'],
-    });
+  // Interpolate background color from gray to blue
+  const backgroundColor = animation.interpolate({
+    inputRange: [0, 16],
+    outputRange: ['#E3E6EC', '#149EF2'],
+  });
 
-    return hide ? null :(
-      <Row alignItems={'center'} style={style}>
-        <TouchableOpacity onPress={toggleSwitch}>
-          <Animated.View style={[styles.toggle, { backgroundColor }]}>
-            <Animated.View
-              style={[
-                styles.circle,
-                { transform: [{ translateX: animation }] },
-              ]}
-            />
-          </Animated.View>
-        </TouchableOpacity>
-        {description && (
-          <StyledText style={styles.text}>{description}</StyledText>
-        )}
-      </Row>
-    );
-
+  return hide ? null : (
+    <Row alignItems={'center'} style={style}>
+      <TouchableOpacity onPress={toggleSwitch}>
+        <Animated.View style={[styles.toggle, { backgroundColor }]}>
+          <Animated.View
+            style={[styles.circle, { transform: [{ translateX: animation }] }]}
+          />
+        </Animated.View>
+      </TouchableOpacity>
+      {description && (
+        <StyledText style={styles.text}>{description}</StyledText>
+      )}
+    </Row>
+  );
 }
 
 const styles = StyleSheet.create({

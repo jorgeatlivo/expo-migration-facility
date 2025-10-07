@@ -1,12 +1,15 @@
-import { NavigationProp } from '@react-navigation/native';
 import React from 'react';
-import { useTranslation } from 'react-i18next';
 import { StyleProp, StyleSheet, View, ViewStyle } from 'react-native';
+import { useTranslation } from 'react-i18next';
+import { NavigationProp } from '@react-navigation/native';
+
+import { Divider } from '@/components/common/Divider';
+import StyledText from '@/components/StyledText';
+
 import { BLUE_FADED } from '@/styles/colors';
 import { typographyStyles } from '@/styles/livoFonts';
 import { SPACE_VALUES } from '@/styles/spacing';
-import { Divider } from '@/components/common/Divider';
-import StyledText from '@/components/StyledText';
+
 import OpenFavoriteProfessionals from './OpenFavoriteProfessionals';
 
 type NoClaimsPlaceholderProps = {

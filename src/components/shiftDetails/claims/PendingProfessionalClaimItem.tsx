@@ -1,33 +1,37 @@
 import React, { useState } from 'react';
+import { Alert, StyleSheet, TouchableOpacity, View } from 'react-native';
 import { useTranslation } from 'react-i18next';
-import { Alert, TouchableOpacity, View, StyleSheet } from 'react-native';
 import { useDispatch, useSelector } from 'react-redux';
-import LivoIcon from '@/assets/icons/LivoIcon';
-import { useModal } from '@/hooks/ModalContext';
+
 import { ApiApplicationError } from '@/services/api';
 import {
   ClaimRequest,
-  shiftClaimAccept,
-  shiftClaimReject,
   SlotReason,
   SlotReasonOption,
+  shiftClaimAccept,
+  shiftClaimReject,
 } from '@/services/shifts';
 import { fetchShiftInfoDataAction } from '@/store/actions/shiftActions';
 import { AppDispatch } from '@/store/configureStore';
-import { commonStyles } from '@/styles/commonStyles';
-import { typographyStyles } from '@/styles/livoFonts';
-import { SPACE_VALUES } from '@/styles/spacing';
-import { modalityTags } from '@/styles/utils';
-import { RootState, ShiftModalityEnum } from '@/types';
+
 import ActionButton from '@/components/buttons/ActionButton';
 import SelectAttributeModal from '@/components/common/SelectOptionWithDescriptionModal';
 import { ProfileExperienceComponent } from '@/components/profile/ProfileExperienceComponent';
 import StyledText from '@/components/StyledText';
 import { RejectProfessionalModal } from '@/components/shiftDetails/RejectProfessionalReasonModal';
+
+import { useModal } from '@/hooks/ModalContext';
+import { ACTION_BLACK, BORDER_GRAY, NOTIFICATION_RED } from '@/styles/colors';
+import { commonStyles } from '@/styles/commonStyles';
+import { typographyStyles } from '@/styles/livoFonts';
+import { SPACE_VALUES } from '@/styles/spacing';
+import { modalityTags } from '@/styles/utils';
+
+import LivoIcon from '@/assets/icons/LivoIcon';
+import { RootState, ShiftModalityEnum } from '@/types';
 import { InternalPendingClaimBody } from './InternalPendingClaimBody';
 import { InternalProfileHeaderComponent } from './InternalProfileHeader';
 import { ProfileHeaderComponent } from './ProfileHeaderComponent';
-import { ACTION_BLACK, BORDER_GRAY, NOTIFICATION_RED } from '@/styles/colors';
 
 interface PendingProfessionalClaimItemProps {
   shiftId: number;

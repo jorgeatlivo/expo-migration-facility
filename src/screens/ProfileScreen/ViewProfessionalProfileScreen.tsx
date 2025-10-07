@@ -1,21 +1,24 @@
-import { StackScreenProps } from '@react-navigation/stack';
 import React from 'react';
 import { RefreshControl, ScrollView, StyleSheet, View } from 'react-native';
-
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
 import { useSelector } from 'react-redux';
+import { StackScreenProps } from '@react-navigation/stack';
+
+import AnalyticsService from '@/services/analytics/analytics.service';
+import { AnalyticEvents } from '@/services/analytics/events';
+
 import { LoadingScreen } from '@/components/common/LoadingScreen';
 import { ProfileComponent } from '@/components/profile/ProfileComponent';
+
+import { useFetchProfessionalProfile } from '@/hooks/useFetchProfessionalProfile';
 import { LIGHT_GRAY, WHITE } from '@/styles/colors';
-import { RootState } from '@/types';
+import { SPACE_VALUES } from '@/styles/spacing';
+
 import {
   ProtectedStackParamsList,
   ProtectedStackRoutes,
 } from '@/router/ProtectedStack';
-import { SPACE_VALUES } from '@/styles/spacing';
-import { useFetchProfessionalProfile } from '@/hooks/useFetchProfessionalProfile';
-import AnalyticsService from '@/services/analytics/analytics.service';
-import { AnalyticEvents } from '@/services/analytics/events';
+import { RootState } from '@/types';
 
 type ProfessionalProfileScreenProps = StackScreenProps<
   ProtectedStackParamsList,

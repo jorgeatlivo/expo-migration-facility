@@ -1,7 +1,4 @@
-import { useHeaderHeight } from '@react-navigation/elements';
-import { StackScreenProps } from '@react-navigation/stack';
 import React, { useRef, useState } from 'react';
-import { useTranslation } from 'react-i18next';
 import {
   Alert,
   Keyboard,
@@ -13,10 +10,11 @@ import {
   TouchableWithoutFeedback,
   View,
 } from 'react-native';
+import { useTranslation } from 'react-i18next';
 import { useDispatch } from 'react-redux';
-import ActionButton from '@/components/buttons/ActionButton';
-import { LoadingScreen } from '@/components/common/LoadingScreen';
-import StyledText from '@/components/StyledText';
+import { useHeaderHeight } from '@react-navigation/elements';
+import { StackScreenProps } from '@react-navigation/stack';
+
 import { ApiApplicationError, setApiToken } from '@/services/api';
 import {
   signInRequest,
@@ -25,6 +23,12 @@ import {
 } from '@/services/authentication';
 import { signInAction } from '@/store/actions/authenticationActions';
 import { loadUserId } from '@/store/actions/configurationActions';
+
+import Row from '@/components/atoms/Row';
+import ActionButton from '@/components/buttons/ActionButton';
+import { LoadingScreen } from '@/components/common/LoadingScreen';
+import StyledText from '@/components/StyledText';
+
 import {
   ACTION_BLUE,
   BADGE_GRAY,
@@ -35,11 +39,11 @@ import {
 import { typographyStyles } from '@/styles/livoFonts';
 import { SPACE_VALUES } from '@/styles/spacing';
 import { decodeJWT } from '@/utils/utils';
+
 import {
   AuthenticationStackParamslist,
   AuthStackRoutes,
 } from './Authentication/AuthenticationStack';
-import Row from '@/components/atoms/Row';
 
 type VerifyMFAScreenProps = StackScreenProps<
   AuthenticationStackParamslist,
@@ -73,8 +77,8 @@ export const VerifyMFAScreen: React.FC<VerifyMFAScreenProps> = ({ route }) => {
     verifyMFARequest(email, OTP.join(''))
       .then(async (token) => {
         setIsLoading(false);
-        await setSignInConfiguration(token!!);
-        dispatch(signInAction(token!!));
+        await setSignInConfiguration(token!);
+        dispatch(signInAction(token!));
       })
       .catch((error) => {
         setIsLoading(false);

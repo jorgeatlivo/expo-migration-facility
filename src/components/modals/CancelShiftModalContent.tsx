@@ -1,14 +1,18 @@
 import React, { useEffect, useState } from 'react';
-import { useTranslation } from 'react-i18next';
 import { Alert, StyleSheet, TouchableOpacity, View } from 'react-native';
+import { useTranslation } from 'react-i18next';
+
 import { IconX } from 'tabler-icons-react-native';
-import { SpecializationDTO, fetchShiftCancelReasons } from '@/services/shifts';
-import { WHITE } from '@/styles/colors';
-import { FontWeightEnum, typographyStyles } from '@/styles/livoFonts';
+
+import { fetchShiftCancelReasons, SpecializationDTO } from '@/services/shifts';
+
 import CommonButton from '@/components/buttons/CommonButton';
 import CustomTextInput from '@/components/common/CustomTextInput';
 import { SingleSelectSimple } from '@/components/filter/SingleSelectSimple';
 import StyledText from '@/components/StyledText';
+
+import { WHITE } from '@/styles/colors';
+import { FontWeightEnum, typographyStyles } from '@/styles/livoFonts';
 
 interface Props {
   cancelShift: (cancelReason: string, reasonDetails: string) => void;
@@ -90,7 +94,9 @@ export const CancelShiftModalContent: React.FC<Props> = ({
         return (
           <View key={option.name}>
             <SingleSelectSimple
-              option={option?.displayText ?? option.translations?.es ?? option.name}
+              option={
+                option?.displayText ?? option.translations?.es ?? option.name
+              }
               onPress={() => {
                 setCancelReason(option.name);
                 setErrorMessage('');

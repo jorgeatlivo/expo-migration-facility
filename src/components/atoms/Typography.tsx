@@ -7,14 +7,15 @@ import {
   TextStyle,
 } from 'react-native';
 
+import { Logger } from '@/services/logger.service';
+
+import { BLACK } from '@/styles/colors';
 import {
   TextProperties,
   TextSize,
   TypographyStyles,
   typographyStyles,
 } from '@/styles/livoFonts';
-import { Logger } from '@/services/logger.service';
-import { BLACK } from '@/styles/colors';
 
 type TypographyVariant = keyof TypographyStyles;
 type TypographySize = keyof TextSize;
@@ -49,7 +50,7 @@ export const Typography: React.FC<TypographyProps> = ({
       // Parse the variant string to extract variant type and size
       const [variantType, sizeType] = variant.split('/') as [
         TypographyVariant,
-        TypographySize
+        TypographySize,
       ];
 
       // Get style from typography configuration

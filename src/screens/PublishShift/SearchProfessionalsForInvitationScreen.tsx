@@ -1,21 +1,25 @@
 import React, { useState } from 'react';
-import { SearchProfessionals } from '@/components/widgets/professionals/SearchProfessionals';
+import { StyleSheet, TouchableOpacity, View } from 'react-native';
 import { useTranslation } from 'react-i18next';
-import { renderProfessionalProfileCardByOverviewDTO } from '@/components/widgets/professionals/ProfessionalProfileCard';
-import { useSearchProfessionalsForShiftInvitations } from '@/hooks/useSearchProfessionalsForShiftInvitation';
+import { StackScreenProps } from '@react-navigation/stack';
+
+import AnalyticsService from '@/services/analytics/analytics.service';
+import { AnalyticEvents } from '@/services/analytics/events';
+
+import CommonButton from '@/components/buttons/CommonButton';
 import { LoadingScreen } from '@/components/common/LoadingScreen';
+import { renderProfessionalProfileCardByOverviewDTO } from '@/components/widgets/professionals/ProfessionalProfileCard';
+import { SearchProfessionals } from '@/components/widgets/professionals/SearchProfessionals';
+
+import { useSearchProfessionalsForShiftInvitations } from '@/hooks/useSearchProfessionalsForShiftInvitation';
+import { ACTION_BLUE, BACKGROUND_BLUE, WHITE } from '@/styles/colors';
+import { SPACE_VALUES } from '@/styles/spacing';
+import { ProfessionalOverviewDTO } from '@/types/professionals';
+
 import {
   ProtectedStackParamsList,
   ProtectedStackRoutes,
 } from '@/router/ProtectedStack';
-import { StackScreenProps } from '@react-navigation/stack';
-import { StyleSheet, TouchableOpacity, View } from 'react-native';
-import CommonButton from '@/components/buttons/CommonButton';
-import { ACTION_BLUE, BACKGROUND_BLUE, WHITE } from '@/styles/colors';
-import { SPACE_VALUES } from '@/styles/spacing';
-import { ProfessionalOverviewDTO } from '@/types/professionals';
-import AnalyticsService from '@/services/analytics/analytics.service';
-import { AnalyticEvents } from '@/services/analytics/events';
 
 type SearchProfessionalsForShiftInvitationScreenProps = StackScreenProps<
   ProtectedStackParamsList,

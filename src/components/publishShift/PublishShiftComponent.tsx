@@ -1,59 +1,64 @@
-import { useHeaderHeight } from '@react-navigation/elements';
 import React, {
-  useMemo,
-  useState,
   useCallback,
   useEffect,
+  useMemo,
   useRef,
+  useState,
 } from 'react';
-import { useFetchFacility } from '@/hooks/useFetchFacility';
-import { useTranslation } from 'react-i18next';
 import {
-  View,
+  Alert,
   KeyboardAvoidingView,
   Platform,
   StyleSheet,
-  Alert,
+  View,
 } from 'react-native';
+import { useTranslation } from 'react-i18next';
+import Animated, { LinearTransition } from 'react-native-reanimated';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
-import ActionButton from '@/components/buttons/ActionButton';
-import { EditShiftTimeDetails } from '@/components/editShift/EditShiftTimeDetails';
-import { VisibilityComponent } from '@/components/shiftDetails/VisibilityComponent';
-import { CapacitySelectorComponent } from './CapacitySelectorComponent';
-import { EditDetailsComponent } from './EditDetailsComponent';
-import { EditPriceComponent } from './EditPriceComponent';
-import { SelectAndTextInput } from './SelectAndTextInput';
-import i18n from '@/locale/i18n';
-import OnboardingShiftRequiredCheckbox from './OnboardingShiftRequiredCheckbox';
+import { useHeaderHeight } from '@react-navigation/elements';
+import { useNavigation } from '@react-navigation/native';
+import { StackNavigationProp } from '@react-navigation/stack';
+
+import moment from 'moment';
+
+import { ApiApplicationError } from '@/services/api';
 import {
-  ShiftTimeConfigDTO,
-  ShiftConfigDTO,
+  CompensationOptionsConfig,
   checkEligibleProfessionalsForShift,
   OnboardingShiftsConfig,
-  CompensationOptionsConfig,
+  ShiftConfigDTO,
+  ShiftTimeConfigDTO,
 } from '@/services/shifts';
-import { WHITE, DIVIDER_GRAY } from '@/styles/colors';
-import { SPACE_VALUES } from '@/styles/spacing';
-import { ValueDisplayPair, UserFeatureEnum, Category } from '@/types';
-import moment from 'moment';
+
+import ActionButton from '@/components/buttons/ActionButton';
+import { DropDownInput } from '@/components/common/DropDownInput';
+import { EditShiftTimeDetails } from '@/components/editShift/EditShiftTimeDetails';
+import { useFetchFillRatePrediction } from '@/components/publishShift/hooks/useFetchFillRatePrediction';
+import StyledText from '@/components/StyledText';
+import { CategoryTag } from '@/components/shiftDetails/CategoryTag';
+import { VisibilityComponent } from '@/components/shiftDetails/VisibilityComponent';
 import { ProfessionalsSelectorComponent } from '@/components/widgets/professionals/ProfessionalsSelectorComponent';
-import { useNavigation } from '@react-navigation/native';
+
+import { useFetchFacility } from '@/hooks/useFetchFacility';
+import { DIVIDER_GRAY, WHITE } from '@/styles/colors';
+import { typographyStyles } from '@/styles/livoFonts';
+import { SPACE_VALUES } from '@/styles/spacing';
+import { ProfessionalOverviewDTO } from '@/types/professionals';
+import { buildShiftDateTime } from '@/utils/utils';
+
+import i18n from '@/locale/i18n';
 import {
   ProtectedStackParamsList,
   ProtectedStackRoutes,
 } from '@/router/ProtectedStack';
-import { StackNavigationProp } from '@react-navigation/stack';
-import { buildShiftDateTime } from '@/utils/utils';
-import { ProfessionalOverviewDTO } from '@/types/professionals';
-import StyledText from '@/components/StyledText';
-import { typographyStyles } from '@/styles/livoFonts';
-import { DropDownInput } from '@/components/common/DropDownInput';
-import { CategoryTag } from '@/components/shiftDetails/CategoryTag';
+import { Category, UserFeatureEnum, ValueDisplayPair } from '@/types';
+import { CapacitySelectorComponent } from './CapacitySelectorComponent';
 import { CompensationSelector } from './CompensationSelector';
-import { useFetchFillRatePrediction } from '@/components/publishShift/hooks/useFetchFillRatePrediction';
+import { EditDetailsComponent } from './EditDetailsComponent';
+import { EditPriceComponent } from './EditPriceComponent';
 import { FillRateBanner } from './FillRateBanner';
-import Animated, { LinearTransition } from 'react-native-reanimated';
-import { ApiApplicationError } from '@/services/api';
+import OnboardingShiftRequiredCheckbox from './OnboardingShiftRequiredCheckbox';
+import { SelectAndTextInput } from './SelectAndTextInput';
 
 export type PublishShiftConfig = {
   unit: string;

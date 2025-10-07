@@ -1,11 +1,14 @@
-import { StyleSheet, TouchableOpacity } from 'react-native';
-import Row from '@/components/atoms/Row';
-import { SPACE_VALUES } from '@/styles/spacing';
-import LivoIcon from '@/assets/icons/LivoIcon';
-import { ACTION_BLUE, BLUE_FADED } from '@/styles/colors';
-import StyledText from '@/components/StyledText';
 import React from 'react';
+import { StyleSheet, TouchableOpacity } from 'react-native';
+
+import Row from '@/components/atoms/Row';
+import StyledText from '@/components/StyledText';
+
+import { ACTION_BLUE, BLUE_FADED } from '@/styles/colors';
 import { typographyStyles } from '@/styles/livoFonts';
+import { SPACE_VALUES } from '@/styles/spacing';
+
+import LivoIcon from '@/assets/icons/LivoIcon';
 
 export const ModalPickerSelectItem = ({
   label,

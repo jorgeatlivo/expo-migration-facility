@@ -1,8 +1,10 @@
 import React from 'react';
-import { TouchableOpacity } from 'react-native-gesture-handler';
-import { View, StyleSheet } from 'react-native';
-import LivoIcon from '@/assets/icons/LivoIcon';
+import { StyleSheet, View } from 'react-native';
+import { TouchableOpacity } from 'react-native';
+
 import { SPACE_VALUES } from '@/styles/spacing';
+
+import LivoIcon from '@/assets/icons/LivoIcon';
 
 interface CustomHeaderBackIconProps {
   goBack: () => void;

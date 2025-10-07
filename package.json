@@ -8,7 +8,9 @@
     "android": "expo run:android",
     "ios": "expo run:ios",
     "web": "expo start --web",
-    "lint": "expo lint"
+    "lint": "biome lint .",
+    "format": "biome format --write .",
+    "biome:check": "biome check --write ."
   },
   "dependencies": {
     "@expo/vector-icons": "^14.1.0",
@@ -85,11 +87,10 @@
     "use-debounce": "^10.0.6"
   },
   "devDependencies": {
+    "@biomejs/biome": "2.2.5",
     "@react-native-community/cli": "^20.0.2",
     "@types/base-64": "^1.0.2",
     "@types/react": "~19.0.10",
-    "eslint": "^9.25.0",
-    "eslint-config-expo": "~9.2.0",
     "sharp": "^0.34.4",
     "typescript": "~5.8.3"
   },

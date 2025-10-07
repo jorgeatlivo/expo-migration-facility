@@ -1,9 +1,12 @@
 import React from 'react';
-import { View, StyleSheet } from 'react-native';
-import LivoIcon from '@/assets/icons/LivoIcon';
-import { typographyStyles } from '@/styles/livoFonts';
+import { StyleSheet, View } from 'react-native';
+
 import StyledText from '@/components/StyledText';
+
+import { typographyStyles } from '@/styles/livoFonts';
 import { SPACE_VALUES } from '@/styles/spacing';
+
+import LivoIcon from '@/assets/icons/LivoIcon';
 
 interface ShiftInfoRowProps {
   icon: string;

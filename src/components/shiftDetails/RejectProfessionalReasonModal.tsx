@@ -1,19 +1,22 @@
 import React, { useEffect, useState } from 'react';
-import { useTranslation } from 'react-i18next';
 import { Alert, StyleSheet, View } from 'react-native';
+import { useTranslation } from 'react-i18next';
+
 import {
-  SpecializationDTO,
   fetchShiftClaimRejectReasons,
+  SpecializationDTO,
 } from '@/services/shifts';
+
+import Col from '@/components/atoms/Col';
+import CancelButton from '@/components/buttons/CancelButton';
 import LivoTextInput from '@/components/common/LivoTextInput';
 import SingleSelect from '@/components/common/SingleSelect';
 import { BottomModal } from '@/components/modals/BottomModal';
 import StyledText from '@/components/StyledText';
-import { typographyStyles } from '@/styles/livoFonts';
+
 import { ACTION_BLUE, BLACK } from '@/styles/colors';
+import { typographyStyles } from '@/styles/livoFonts';
 import { SPACE_VALUES } from '@/styles/spacing';
-import Col from '@/components/atoms/Col';
-import CancelButton from '@/components/buttons/CancelButton';
 
 interface RejectProfessionalModalProps
   extends React.ComponentProps<typeof BottomModal> {

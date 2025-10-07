@@ -1,23 +1,26 @@
 import React from 'react';
-import { ProfessionalProfile } from '@/services/shifts';
 import {
+  ActivityIndicator,
   FlatList,
   StyleProp,
   StyleSheet,
-  ViewStyle,
-  View,
   TouchableOpacity,
+  View,
+  ViewStyle,
 } from 'react-native';
-import SearchBar from '@/components/common/SearchBar';
-import StyledText from '@/components/StyledText';
-import { ACTION_BLUE, BADGE_GRAY, WHITE } from '@/styles/colors';
-import { SPACE_VALUES } from '@/styles/spacing';
-import { typographyStyles } from '@/styles/livoFonts';
 import { useTranslation } from 'react-i18next';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
+
+import { ProfessionalProfile } from '@/services/shifts';
+
+import { Divider } from '@/components/common/Divider';
+import SearchBar from '@/components/common/SearchBar';
+import StyledText from '@/components/StyledText';
+
+import { ACTION_BLUE, BADGE_GRAY, WHITE } from '@/styles/colors';
+import { typographyStyles } from '@/styles/livoFonts';
+import { SPACE_VALUES } from '@/styles/spacing';
 import { ProfessionalOverviewDTO } from '@/types/professionals';
-import { ActivityIndicator } from 'react-native';
-import {Divider} from "@/components/common/Divider";
 
 interface SearchProfessionalsProps {
   professionals: ProfessionalOverviewDTO[] | ProfessionalProfile[];
@@ -83,7 +86,9 @@ export function SearchProfessionals({
         ListEmptyComponent={
           !isLoadingNextPage && !isRefreshing ? (
             <View style={styles.emptyContainer}>
-              <StyledText style={styles.emptyText}>{emptyListMessage}</StyledText>
+              <StyledText style={styles.emptyText}>
+                {emptyListMessage}
+              </StyledText>
               <TouchableOpacity onPress={onClearSearch}>
                 <StyledText style={styles.clearSearchText}>
                   {t('clear_search_label')}

@@ -8,19 +8,21 @@ import {
   TouchableWithoutFeedback,
   View,
 } from 'react-native';
-import { ACTION_BLACK, WHITE } from '@/styles/colors';
-import { SPACE_VALUES } from '@/styles/spacing';
-import LivoIcon from '@/assets/icons/LivoIcon';
-
-import StyledText from '@/components/StyledText';
-import ActionButton from '@/components/buttons/ActionButton';
-import AutoCompleteTextInput from './AutoCompleteTextInput';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
-import CustomTextInput from './CustomTextInput';
 import { HeaderHeightContext } from '@react-navigation/elements';
-import { typographyStyles } from '@/styles/livoFonts';
-import Row from '@/components/atoms/Row';
+
 import Col from '@/components/atoms/Col';
+import Row from '@/components/atoms/Row';
+import ActionButton from '@/components/buttons/ActionButton';
+import StyledText from '@/components/StyledText';
+
+import { ACTION_BLACK, WHITE } from '@/styles/colors';
+import { typographyStyles } from '@/styles/livoFonts';
+import { SPACE_VALUES } from '@/styles/spacing';
+
+import LivoIcon from '@/assets/icons/LivoIcon';
+import AutoCompleteTextInput from './AutoCompleteTextInput';
+import CustomTextInput from './CustomTextInput';
 
 interface SelectOptionWithDescriptionModalProps<T> {
   label: string;

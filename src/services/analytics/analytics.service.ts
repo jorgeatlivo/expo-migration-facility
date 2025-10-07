@@ -1,10 +1,10 @@
+import remoteConfig from '@react-native-firebase/remote-config';
+
 import { IAnalyticsAdapter } from '@/services/analytics/adapters/analytics.adapter';
 import PostHogAnalyticsAdapter from '@/services/analytics/adapters/posthog.adapter';
-import {AnalyticEvents} from "@/services/analytics/events";
+import { AnalyticEvents } from '@/services/analytics/events';
 
-import remoteConfig from '@react-native-firebase/remote-config';
 import ENV from '@/constants/env';
-
 
 type Config = {
   shouldAvailable: boolean;

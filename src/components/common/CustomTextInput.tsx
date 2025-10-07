@@ -1,15 +1,16 @@
 import React from 'react';
 import {
   Platform,
+  StyleProp,
   StyleSheet,
   TextInput,
   TextInputProps,
   View,
- StyleProp
 } from 'react-native';
-import { SPACE_VALUES } from '@/styles/spacing';
-import { typographyStyles } from '@/styles/livoFonts';
+
+import Row from '@/components/atoms/Row';
 import StyledText from '@/components/StyledText';
+
 import {
   BADGE_GRAY,
   BLUE_FADED,
@@ -18,7 +19,9 @@ import {
   NOTIFICATION_RED,
   WHITE,
 } from '@/styles/colors';
-import Row from '@/components/atoms/Row';
+import { typographyStyles } from '@/styles/livoFonts';
+import { SPACE_VALUES } from '@/styles/spacing';
+
 import LivoIcon from '@/assets/icons/LivoIcon';
 
 interface CustomTextInputProps extends TextInputProps {

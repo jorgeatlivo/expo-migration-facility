@@ -35,18 +35,18 @@ interface CustomCheckBoxProps {
 const animationTime = 200;
 
 const CustomCheckBox: React.FC<CustomCheckBoxProps> = ({
-                                                         option,
-                                                         onPress,
-                                                         checked,
-                                                         disabled,
-                                                         partial,
-                                                         type = 'radiobox',
-                                                         style,
+  option,
+  onPress,
+  checked,
+  disabled,
+  partial,
+  type = 'radiobox',
+  style,
 
-                                                         textStyle,
-                                                         rowStyle,
-                                                         singleSelect,
-                                                       }) => {
+  textStyle,
+  rowStyle,
+  singleSelect,
+}) => {
   const scale = useSharedValue(1);
   const progress = useSharedValue(checked ? 1 : 0);
   const lastCheckWasPartial = useRef<string>(type);
@@ -85,24 +85,24 @@ const CustomCheckBox: React.FC<CustomCheckBoxProps> = ({
   }
 
   return (
-      <Pressable onPress={toggle} style={style} disabled={disabled}>
-        <Animated.View style={[styles.iconContainer, animatedStyle]}>
-          <Animated.View style={[StyleSheet.absoluteFill, checkedStyle]}>
-            <LivoIcon
-                size={24}
-                name={`${lastCheckWasPartial.current}-checked`}
-                color={disabled ? DARK_GRAY : ACTION_BLUE}
-            />
-          </Animated.View>
-          <Animated.View style={[StyleSheet.absoluteFill, uncheckedStyle]}>
-            <LivoIcon
-                size={24}
-                name={`${type}-unchecked`}
-                color={disabled ? DARK_GRAY : BADGE_GRAY}
-            />
-          </Animated.View>
+    <Pressable onPress={toggle} style={style} disabled={disabled}>
+      <Animated.View style={[styles.iconContainer, animatedStyle]}>
+        <Animated.View style={[StyleSheet.absoluteFill, checkedStyle]}>
+          <LivoIcon
+            size={24}
+            name={`${lastCheckWasPartial.current}-checked`}
+            color={disabled ? DARK_GRAY : ACTION_BLUE}
+          />
         </Animated.View>
-      </Pressable>
+        <Animated.View style={[StyleSheet.absoluteFill, uncheckedStyle]}>
+          <LivoIcon
+            size={24}
+            name={`${type}-unchecked`}
+            color={disabled ? DARK_GRAY : BADGE_GRAY}
+          />
+        </Animated.View>
+      </Animated.View>
+    </Pressable>
   );
 };
 

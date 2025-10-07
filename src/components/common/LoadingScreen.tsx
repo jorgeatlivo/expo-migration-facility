@@ -1,10 +1,11 @@
 import React from 'react';
-import {ActivityIndicator, StyleSheet, View} from 'react-native';
+import { ActivityIndicator, StyleSheet, View } from 'react-native';
+
 import { GRAY } from '@/styles/colors';
 
 export const LoadingScreen = (props: any) => {
   return (
-    <View style={{...styles.loadingContainer, ...props.style}}>
+    <View style={{ ...styles.loadingContainer, ...props.style }}>
       <ActivityIndicator size="large" color={GRAY} />
     </View>
   );

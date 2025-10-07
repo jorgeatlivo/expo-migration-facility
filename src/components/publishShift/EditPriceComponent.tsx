@@ -1,7 +1,14 @@
 import React, { useState } from 'react';
+import { StyleSheet, TouchableOpacity, View } from 'react-native';
 import { useTranslation } from 'react-i18next';
-import { TouchableOpacity, View , StyleSheet } from 'react-native';
-import LivoIcon from '@/assets/icons/LivoIcon';
+
+import Col from '@/components/atoms/Col';
+import Row from '@/components/atoms/Row';
+import CustomTextInput, {
+  customInputStyles,
+} from '@/components/common/CustomTextInput';
+import StyledText from '@/components/StyledText';
+
 import {
   BLACK,
   BLUE_FADED,
@@ -11,12 +18,9 @@ import {
 } from '@/styles/colors';
 import { typographyStyles } from '@/styles/livoFonts';
 import { SPACE_VALUES } from '@/styles/spacing';
-import StyledText from '@/components/StyledText';
-import CustomTextInput, { customInputStyles } from '@/components/common/CustomTextInput';
-import { DropDownPickerModal } from './DropDownPickerModal';
-import Row from '@/components/atoms/Row';
-import Col from '@/components/atoms/Col';
 
+import LivoIcon from '@/assets/icons/LivoIcon';
+import { DropDownPickerModal } from './DropDownPickerModal';
 
 interface EditPriceComponentProps {
   price?: string;

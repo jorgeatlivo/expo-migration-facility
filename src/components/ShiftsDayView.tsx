@@ -1,18 +1,21 @@
-import moment from 'moment';
 import React, { useMemo } from 'react';
-import { useTranslation } from 'react-i18next';
 import { StyleSheet } from 'react-native';
-import { formatDate } from '@/common/utils';
+import { useTranslation } from 'react-i18next';
+
+import moment from 'moment';
+
 import { PURPLE } from '@/styles/colors';
 import { typographyStyles } from '@/styles/livoFonts';
 import { BORDER, SPACE_VALUES } from '@/styles/spacing';
+
+import { formatDate } from '@/common/utils';
 import { DayShift, Shift } from '@/types';
-import { shiftTimeInDayLabels } from './claimReviews/Separators';
-import { TagComponent } from './profile/TagComponent';
-import { ShiftCard } from './shiftList/ShiftCard';
-import StyledText from './StyledText';
 import Col from './atoms/Col';
 import Row from './atoms/Row';
+import { shiftTimeInDayLabels } from './claimReviews/Separators';
+import { TagComponent } from './profile/TagComponent';
+import StyledText from './StyledText';
+import { ShiftCard } from './shiftList/ShiftCard';
 
 interface ShiftsDayViewProps {
   dayShift: DayShift;

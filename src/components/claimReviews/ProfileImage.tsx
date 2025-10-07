@@ -1,7 +1,9 @@
 import React from 'react';
-import {Image, StyleSheet, View} from 'react-native';
-import {GRAY} from '@/styles/colors';
+import { Image, StyleSheet, View } from 'react-native';
+
 import Icon from 'react-native-vector-icons/FontAwesome';
+
+import { GRAY } from '@/styles/colors';
 
 interface ProfileImageProps {
   imageSize: number;
@@ -16,7 +18,7 @@ export const ProfileImage: React.FC<ProfileImageProps> = ({
     <View style={styles.imageContainer}>
       {profileImage ? (
         <Image
-          source={{uri: profileImage}}
+          source={{ uri: profileImage }}
           style={{
             width: imageSize,
             height: imageSize,

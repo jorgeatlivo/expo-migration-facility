@@ -1,10 +1,13 @@
 import React, { useEffect, useState } from 'react';
-import { useTranslation } from 'react-i18next';
 import { Alert, StyleSheet, View } from 'react-native';
+import { useTranslation } from 'react-i18next';
 import ReactNativeModal from 'react-native-modal';
-import { SpecializationDTO, fetchShiftCancelReasons } from '@/services/shifts';
+
+import { fetchShiftCancelReasons, SpecializationDTO } from '@/services/shifts';
+
 import { CORAL, GRAY, NOTIFICATION_RED, WHITE } from '@/styles/colors';
-import { LayoutTextEnum, fontWeight } from '@/styles/fonts';
+import { fontWeight, LayoutTextEnum } from '@/styles/fonts';
+
 import CommonButton from './buttons/CommonButton';
 import UndoButton from './buttons/UndoButton';
 import CustomCheckBox from './common/CustomCheckBox';

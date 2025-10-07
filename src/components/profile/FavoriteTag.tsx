@@ -1,11 +1,14 @@
 import React from 'react';
-import {useTranslation} from 'react-i18next';
-import {StyleSheet, View} from 'react-native';
-import LivoIcon from '@/assets/icons/LivoIcon';
-import {BLUE_FADED, CORAL} from '@/styles/colors';
-import {typographyStyles} from '@/styles/livoFonts';
-import {SPACE_VALUES} from '@/styles/spacing';
+import { StyleSheet, View } from 'react-native';
+import { useTranslation } from 'react-i18next';
+
 import StyledText from '@/components/StyledText';
+
+import { BLUE_FADED, CORAL } from '@/styles/colors';
+import { typographyStyles } from '@/styles/livoFonts';
+import { SPACE_VALUES } from '@/styles/spacing';
+
+import LivoIcon from '@/assets/icons/LivoIcon';
 
 interface FavoriteTagProps {
   size?: 'regular' | 'small';
@@ -18,7 +21,7 @@ export default function FavoriteTag({
   style,
   size = 'regular',
 }: FavoriteTagProps) {
-  const {t} = useTranslation();
+  const { t } = useTranslation();
   return (
     <View style={[styles.container, outline && styles.border, style]}>
       <LivoIcon name="heart-filled" size={16} color={CORAL} />

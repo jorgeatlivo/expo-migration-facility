@@ -1,9 +1,11 @@
 import React, { PropsWithChildren } from 'react';
 import { StyleSheet, View } from 'react-native';
-import { typographyStyles } from '@/styles/livoFonts';
-import StyledText from '@/components/StyledText';
+
 import CommonButton from '@/components/buttons/CommonButton';
+import StyledText from '@/components/StyledText';
+
 import { ACTION_BLUE, WHITE } from '@/styles/colors';
+import { typographyStyles } from '@/styles/livoFonts';
 import { SPACE_VALUES } from '@/styles/spacing';
 
 type ConfirmationModalProps = PropsWithChildren<{

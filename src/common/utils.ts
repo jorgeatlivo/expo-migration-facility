@@ -1,7 +1,9 @@
-import moment from 'moment';
 import { Alert, Linking } from 'react-native';
-import { DayShift, Shift } from '@/types';
+
+import moment from 'moment';
+
 import i18n from '@/locale/i18n';
+import { DayShift, Shift } from '@/types';
 
 function isToday(date: Date): boolean {
   return moment(date).isSame(moment.now(), 'day');

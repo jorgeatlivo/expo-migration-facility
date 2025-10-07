@@ -1,10 +1,13 @@
-import {useTranslation} from 'react-i18next';
-import {View} from 'react-native';
-import {typographyStyles} from '@/styles/livoFonts';
-import {SPACE_VALUES} from '@/styles/spacing';
-import {ShiftModalityEnum} from '@/types';
+import { View } from 'react-native';
+import { useTranslation } from 'react-i18next';
+
 import SelectTags from '@/components/common/CustomSelectTags';
 import StyledText from '@/components/StyledText';
+
+import { typographyStyles } from '@/styles/livoFonts';
+import { SPACE_VALUES } from '@/styles/spacing';
+
+import { ShiftModalityEnum } from '@/types';
 
 interface InternalExternalSwitchComponentProps {
   modality: ShiftModalityEnum;
@@ -13,8 +16,8 @@ interface InternalExternalSwitchComponentProps {
 
 export const InternalExternalSwitchComponent: React.FC<
   InternalExternalSwitchComponentProps
-> = ({modality, setModality}) => {
-  const {t} = useTranslation();
+> = ({ modality, setModality }) => {
+  const { t } = useTranslation();
 
   const modalityItems = [
     {
@@ -30,12 +33,14 @@ export const InternalExternalSwitchComponent: React.FC<
     <View
       style={{
         marginBottom: SPACE_VALUES.xLarge,
-      }}>
+      }}
+    >
       <StyledText
         style={{
           ...typographyStyles.heading.small,
           marginBottom: SPACE_VALUES.medium,
-        }}>
+        }}
+      >
         {t('publish_shift_external_internal_shift_switch')}
       </StyledText>
       <SelectTags

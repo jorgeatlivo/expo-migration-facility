@@ -1,5 +1,7 @@
-import axios, {AxiosInstance} from 'axios';
 import DeviceInfo from 'react-native-device-info';
+
+import axios, { AxiosInstance } from 'axios';
+
 import ENV from '@/constants/env';
 
 interface LokaliseBundleResponse {
@@ -36,7 +38,7 @@ export class Lokalise {
     private baseURL: string,
     private sdkToken: string,
     private projectId: string,
-    private usePreRelease: boolean,
+    private usePreRelease: boolean
   ) {
     this.api = axios.create({
       baseURL: this.baseURL,
@@ -56,7 +58,7 @@ export class Lokalise {
         headers: {
           'x-ota-api-token': this.sdkToken,
         },
-      },
+      }
     );
 
     if (response.status === 204) {
@@ -86,7 +88,7 @@ export class Lokalise {
       translations[lang.iso] = {
         translation: {},
       };
-      lang.items.forEach(item => {
+      lang.items.forEach((item) => {
         translations[lang.iso].translation[item.key] = item.value;
       });
     });
@@ -99,5 +101,5 @@ export const lokalise = new Lokalise(
   ENV.LOKALISE_OTA_URL!,
   ENV.LOKALISE_SDK_TOKEN!,
   ENV.LOKALISE_PROJECT_ID!,
-  ENV.IS_A_DEV_DISTRIBUTION,
+  ENV.IS_A_DEV_DISTRIBUTION
 );

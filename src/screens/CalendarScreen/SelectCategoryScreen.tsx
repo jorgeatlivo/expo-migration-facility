@@ -1,10 +1,12 @@
+import React from 'react';
 import { StackScreenProps } from '@react-navigation/stack';
+
 import { SelectCategoryComponent } from '@/components/publishShift/SelectCategoryComponent';
+
 import {
   ProtectedStackParamsList,
   ProtectedStackRoutes,
 } from '@/router/ProtectedStack';
-import React from 'react';
 
 type SelectCategoryScreenProps = StackScreenProps<
   ProtectedStackParamsList,

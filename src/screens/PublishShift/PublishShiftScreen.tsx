@@ -1,11 +1,13 @@
 import React from 'react';
 import { StackScreenProps } from '@react-navigation/stack';
+
+import { PublishShiftScreenComponent } from '@/components/publishShift/PublishShiftScreenComponent';
+
 import {
   ProtectedStackParamsList,
   ProtectedStackRoutes,
 } from '@/router/ProtectedStack';
 import { TabRoutes } from '@/router/TabsNavigator';
-import { PublishShiftScreenComponent } from '@/components/publishShift/PublishShiftScreenComponent';
 
 type PublishShiftScreenProps = StackScreenProps<
   ProtectedStackParamsList,

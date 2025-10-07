@@ -1,5 +1,13 @@
 import React, { useState } from 'react';
 import { StyleSheet, View } from 'react-native';
+
+import Col from '@/components/atoms/Col';
+import Row from '@/components/atoms/Row';
+import CustomTextInput from '@/components/common/CustomTextInput';
+import { DropDownInput } from '@/components/common/DropDownInput';
+import { FullscreenPickerModal } from '@/components/publishShift/FullscreenPickerModal';
+import StyledText from '@/components/StyledText';
+
 import {
   BLACK,
   BLUE_FADED,
@@ -10,13 +18,8 @@ import {
 } from '@/styles/colors';
 import { typographyStyles } from '@/styles/livoFonts';
 import { SPACE_VALUES } from '@/styles/spacing';
-import StyledText from '@/components/StyledText';
-import CustomTextInput from '@/components/common/CustomTextInput';
-import Row from '@/components/atoms/Row';
+
 import { DropDownPickerModal } from './DropDownPickerModal';
-import Col from '@/components/atoms/Col';
-import { FullscreenPickerModal } from '@/components/publishShift/FullscreenPickerModal';
-import { DropDownInput } from '@/components/common/DropDownInput';
 
 interface SelectAndTextInputProps {
   value: string | undefined;
@@ -62,7 +65,9 @@ export const SelectAndTextInput: React.FC<SelectAndTextInputProps> = ({
               disabled={disabled}
               placeholder={label}
               selectedLabel={selectedLabel}
-              navigateToOptions={() => !disabled && setIsUnitPickerVisible(true)}
+              navigateToOptions={() =>
+                !disabled && setIsUnitPickerVisible(true)
+              }
               iconName={iconName}
             />
           </View>

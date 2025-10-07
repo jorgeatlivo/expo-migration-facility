@@ -1,4 +1,4 @@
-import {ShiftTimeInDayEnum} from '@/types';
+import { ShiftTimeInDayEnum } from '@/types';
 
 export const shiftTimeInDayLabels = {
   [ShiftTimeInDayEnum.DAY_SHIFT]: {

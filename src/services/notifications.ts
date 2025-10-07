@@ -1,15 +1,19 @@
+import { Alert } from 'react-native';
+
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import messaging, {
   FirebaseMessagingTypes,
 } from '@react-native-firebase/messaging';
 import i18next from 'i18next';
-import { Alert } from 'react-native';
+
 import { newNotificationToggleAction } from '@/store/actions/shiftActions';
 import store from '@/store/configureStore';
+
 import { navigate } from '@/utils/navigation';
+
+import { ProtectedStackRoutes } from '@/router/ProtectedStack';
 import api from './api';
 import { retrieveUserSession } from './authentication';
-import { ProtectedStackRoutes } from '@/router/ProtectedStack';
 
 let FCM_TOKEN_STORAGE_KEY = 'FCMToken';
 

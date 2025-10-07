@@ -1,7 +1,4 @@
-import { useHeaderHeight } from '@react-navigation/elements';
-import { StackScreenProps } from '@react-navigation/stack';
 import React, { useCallback, useState } from 'react';
-import { useTranslation } from 'react-i18next';
 import {
   Alert,
   Keyboard,
@@ -11,29 +8,36 @@ import {
   TouchableWithoutFeedback,
   View,
 } from 'react-native';
+import { useTranslation } from 'react-i18next';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
 import { useDispatch, useSelector } from 'react-redux';
-import LivoTwoColorLogo from '@/assets/icons/LivoTwoColorLogo';
-import { handleLinkPress } from '@/common/utils';
-import ActionButton from '@/components/buttons/ActionButton';
-import CustomTextInput from '@/components/common/CustomTextInput';
-import { LoadingScreen } from '@/components/common/LoadingScreen';
-import StyledText from '@/components/StyledText';
+import { useHeaderHeight } from '@react-navigation/elements';
+import { StackScreenProps } from '@react-navigation/stack';
+
 import { ApiApplicationError, setApiToken } from '@/services/api';
 import { signInRequest, storeUserSession } from '@/services/authentication';
 import { signInAction } from '@/store/actions/authenticationActions';
 import { loadUserId } from '@/store/actions/configurationActions';
+
+import Col from '@/components/atoms/Col';
+import ActionButton from '@/components/buttons/ActionButton';
+import CustomTextInput from '@/components/common/CustomTextInput';
+import { LoadingScreen } from '@/components/common/LoadingScreen';
+import StyledText from '@/components/StyledText';
+
 import { ACTION_BLUE, BLUE_FADED, WHITE } from '@/styles/colors';
-import { LayoutTextEnum, fontSize, fontWeight } from '@/styles/fonts';
+import { fontSize, fontWeight, LayoutTextEnum } from '@/styles/fonts';
 import { typographyStyles } from '@/styles/livoFonts';
 import { SPACE_VALUES } from '@/styles/spacing';
-import { RootState } from '@/types';
 import { decodeJWT } from '@/utils/utils';
+
+import LivoTwoColorLogo from '@/assets/icons/LivoTwoColorLogo';
+import { handleLinkPress } from '@/common/utils';
+import { RootState } from '@/types';
 import {
   AuthenticationStackParamslist,
   AuthStackRoutes,
 } from './AuthenticationStack';
-import Col from '@/components/atoms/Col';
 
 type SignInScreenProps = StackScreenProps<
   AuthenticationStackParamslist,
@@ -76,14 +80,14 @@ export const SignInScreen: React.FC<SignInScreenProps> = ({ navigation }) => {
     setIsLoading(true);
     signInRequest({ userName: email, password })
       .then(async (userToken) => {
-        if (userToken!!.mfaEnabled) {
+        if (userToken!.mfaEnabled) {
           navigation.navigate(AuthStackRoutes.VerifyMFA, {
             email,
             password,
           });
         } else {
-          await setSignInConfiguration(email, userToken!!.userToken);
-          dispatch(signInAction(userToken!!.userToken));
+          await setSignInConfiguration(email, userToken!.userToken);
+          dispatch(signInAction(userToken!.userToken));
         }
 
         setIsLoading(false);

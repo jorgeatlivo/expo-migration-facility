@@ -1,22 +1,26 @@
 import React from 'react';
-import {useTranslation} from 'react-i18next';
-import {StyleSheet, View} from 'react-native';
-import {ScrollView} from 'react-native-gesture-handler';
-import {ClaimRequest, ProfessionalProfile} from '@/services/shifts';
-import {SPACE_VALUES} from '@/styles/spacing';
-import {FacilityStaffProfile, ShiftModalityEnum} from '@/types';
+import { StyleSheet, View } from 'react-native';
+import { useTranslation } from 'react-i18next';
+import { ScrollView } from 'react-native-gesture-handler';
+import { NavigationProp } from '@react-navigation/native';
+
+import { ClaimRequest, ProfessionalProfile } from '@/services/shifts';
+
 import SectionHeader from '@/components/common/SectionHeader';
+
+import { SPACE_VALUES } from '@/styles/spacing';
+
+import { ProtectedStackRoutes } from '@/router/ProtectedStack';
+import { FacilityStaffProfile, ShiftModalityEnum } from '@/types';
 import CancellationRequestCard from './CancellationRequestCard';
 import CompensationOptionCard from './CompensationOptionCard';
-import {CVSummaryCard} from './CVSummaryCard';
+import { CVSummaryCard } from './CVSummaryCard';
 import FavoriteProfessionalCard from './FavoriteProfessionalCard';
 import ProfileHeader from './ProfileHeader';
 import ProfileInformation from './ProfileInformation';
 import ReviewsCard from './ReviewsCard';
 import SlotReasonCard from './SlotReasonCard';
-import {TotalShiftsInFacilityCard} from './TotalShiftsInFacilityCard';
-import { NavigationProp } from '@react-navigation/native';
-import { ProtectedStackRoutes } from '@/router/ProtectedStack';
+import { TotalShiftsInFacilityCard } from './TotalShiftsInFacilityCard';
 
 export interface ProfileComponentProps {
   shiftId?: number;
@@ -45,18 +49,20 @@ export const ProfileComponent: React.FC<ProfileComponentProps> = ({
   note,
   source,
 }) => {
-  const {t} = useTranslation();
+  const { t } = useTranslation();
 
   return (
     <View
       style={{
         flex: 1,
         justifyContent: 'space-between',
-      }}>
+      }}
+    >
       <ScrollView
         contentContainerStyle={{
           flexGrow: 1,
-        }}>
+        }}
+      >
         <View style={styles.section}>
           <ProfileHeader
             modality={modality}
@@ -70,7 +76,7 @@ export const ProfileComponent: React.FC<ProfileComponentProps> = ({
         <SectionHeader
           icon="id-badge"
           title={t('professional_details_title')}
-          style={[styles.section, {marginTop: SPACE_VALUES.large}]}
+          style={[styles.section, { marginTop: SPACE_VALUES.large }]}
         />
 
         <ProfileInformation
@@ -89,9 +95,7 @@ export const ProfileComponent: React.FC<ProfileComponentProps> = ({
               style={[styles.section, styles.sectionHeader]}
             />
 
-            <CVSummaryCard
-              cvSummary={professionalProfile.cvSummary}
-            />
+            <CVSummaryCard cvSummary={professionalProfile.cvSummary} />
           </>
         )}
 
@@ -101,14 +105,11 @@ export const ProfileComponent: React.FC<ProfileComponentProps> = ({
           style={[styles.section, styles.sectionHeader]}
         />
 
-        {typeof professionalProfile.totalShiftsInFacility ===
-          'number' && (
+        {typeof professionalProfile.totalShiftsInFacility === 'number' && (
           <TotalShiftsInFacilityCard
-            totalShiftsInFacility={
-              professionalProfile.totalShiftsInFacility
-            }
+            totalShiftsInFacility={professionalProfile.totalShiftsInFacility}
             facilityName={facilityProfile.facility.name}
-            style={{marginBottom: SPACE_VALUES.medium}}
+            style={{ marginBottom: SPACE_VALUES.medium }}
           />
         )}
 

@@ -1,24 +1,29 @@
-import { createStackNavigator } from '@react-navigation/stack';
 import React from 'react';
-import TabNavigation, { TabsParamsList } from './TabsNavigator';
-import { Category, ClaimSummary, Shift } from '@/types';
-import { CustomHeaderBackIcon } from '@/components/common/CustomHeaderBackIcon';
 import { useTranslation } from 'react-i18next';
-import ShiftDetailsScreen from '@/screens/ShiftDetailsScreen';
-import { ProfessionalProfileScreen } from '@/screens/ProfileScreen/ProfessionalProfileScreen';
 import { NavigatorScreenParams } from '@react-navigation/native';
-import { ChangePassword } from '@/screens/Settings/ChangePassword';
-import FavoriteProfessionalsScreen from '@/screens/ProfileScreen/FavoriteProfessionalsScreen';
-import { LivoCVScreen } from '@/screens/Curriculum/LivoCVScreen';
-import PdfViewerScreen from '@/screens/ProfileScreen/PdfViewerScreen';
+import { createStackNavigator } from '@react-navigation/stack';
+
 import { ProfessionalReviewInfo, ShiftConfigDTO } from '@/services/shifts';
-import { ProfessionalReviewsScreen } from '@/components/ProfessionalReviewsScreen';
-import { EditShiftScreen } from '@/screens/ShiftDetails/EditShiftScreen';
-import { ViewProfessionalProfileScreen } from '@/screens/ProfileScreen/ViewProfessionalProfileScreen';
-import { SearchProfessionalsForShiftInvitationScreen } from '@/screens/PublishShift/SearchProfessionalsForInvitationScreen';
-import { ProfessionalOverviewDTO } from '@/types/professionals';
-import { PublishShiftScreen } from '@/screens/PublishShift/PublishShiftScreen';
+
 import { SelectCategoryScreen } from '@/screens/CalendarScreen/SelectCategoryScreen';
+import { LivoCVScreen } from '@/screens/Curriculum/LivoCVScreen';
+import FavoriteProfessionalsScreen from '@/screens/ProfileScreen/FavoriteProfessionalsScreen';
+import PdfViewerScreen from '@/screens/ProfileScreen/PdfViewerScreen';
+import { ProfessionalProfileScreen } from '@/screens/ProfileScreen/ProfessionalProfileScreen';
+import { ViewProfessionalProfileScreen } from '@/screens/ProfileScreen/ViewProfessionalProfileScreen';
+import { PublishShiftScreen } from '@/screens/PublishShift/PublishShiftScreen';
+import { SearchProfessionalsForShiftInvitationScreen } from '@/screens/PublishShift/SearchProfessionalsForInvitationScreen';
+import { ChangePassword } from '@/screens/Settings/ChangePassword';
+import { EditShiftScreen } from '@/screens/ShiftDetails/EditShiftScreen';
+import ShiftDetailsScreen from '@/screens/ShiftDetailsScreen';
+
+import { CustomHeaderBackIcon } from '@/components/common/CustomHeaderBackIcon';
+import { ProfessionalReviewsScreen } from '@/components/ProfessionalReviewsScreen';
+
+import { ProfessionalOverviewDTO } from '@/types/professionals';
+
+import { Category, ClaimSummary, Shift } from '@/types';
+import TabNavigation, { TabsParamsList } from './TabsNavigator';
 
 export enum ProtectedStackRoutes {
   Home = 'Home',
@@ -33,7 +38,7 @@ export enum ProtectedStackRoutes {
   PdfViewer = 'PdfViewer',
   LivoCV = 'LivoCV',
   ViewProfessionalProfile = 'ViewProfessionalProfile',
-  SearchProfessionalForShiftInvitation = 'SearchProfessionalForShiftInvitation'
+  SearchProfessionalForShiftInvitation = 'SearchProfessionalForShiftInvitation',
 }
 
 export type ProtectedStackParamsList = {
@@ -68,13 +73,13 @@ export type ProtectedStackParamsList = {
     professionalId: number;
     note?: string | null;
     source?: ProtectedStackRoutes;
-  },
+  };
   [ProtectedStackRoutes.SearchProfessionalForShiftInvitation]: {
-    shiftConfig: ShiftConfigDTO,
+    shiftConfig: ShiftConfigDTO;
     selectedProfessionalIds: number[];
     onSelectPro: (selectedPro?: ProfessionalOverviewDTO) => void;
     source?: ProtectedStackRoutes;
-  }
+  };
 };
 
 const Stack = createStackNavigator<ProtectedStackParamsList>();

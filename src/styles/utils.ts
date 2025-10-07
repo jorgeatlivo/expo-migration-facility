@@ -1,10 +1,11 @@
-import { ShiftModalityEnum } from '@/types';
 import {
   ACTION_BLUE,
   BACKGROUND_BLUE,
   GREEN_MINT,
   LIVO_SECONDARY_LIGHT,
 } from '@/styles/colors';
+
+import { ShiftModalityEnum } from '@/types';
 
 export const modalityTags: {
   [key in ShiftModalityEnum]: {

@@ -1,20 +1,24 @@
 import React, { useMemo, useState } from 'react';
-import { StyleSheet, ViewStyle, StyleProp } from 'react-native';
-import { FacilityProfessionalsDTO } from './types';
-import ProfessionalProfileCard from './ProfessionalProfileCard';
-import { ProfessionalProfile } from '@/services/shifts';
-import { SPACE_VALUES } from '@/styles/spacing';
-import { typographyStyles } from '@/styles/livoFonts';
-import { WHITE } from '@/styles/colors';
-import { ClaimSummary } from '@/types';
-import RemoveFavoriteProfessionalModal from '@/components/modals/RemoveFavoriteProfessional';
-import { AppDispatch } from '@/store/configureStore';
+import { StyleProp, StyleSheet, ViewStyle } from 'react-native';
 import { useDispatch } from 'react-redux';
-import { useModal } from '@/hooks/ModalContext';
+
 import { updateFavoriteProfessional } from '@/services/professionals';
+import { ProfessionalProfile } from '@/services/shifts';
 import { fetchClaimInfoAction } from '@/store/actions/claimActions';
+import { AppDispatch } from '@/store/configureStore';
+
 import ToggleSwitch from '@/components/common/ToggleSwitch';
+import RemoveFavoriteProfessionalModal from '@/components/modals/RemoveFavoriteProfessional';
+
+import { useModal } from '@/hooks/ModalContext';
+import { WHITE } from '@/styles/colors';
+import { typographyStyles } from '@/styles/livoFonts';
+import { SPACE_VALUES } from '@/styles/spacing';
+
+import { ClaimSummary } from '@/types';
+import ProfessionalProfileCard from './ProfessionalProfileCard';
 import { SearchProfessionals } from './SearchProfessionals';
+import { FacilityProfessionalsDTO } from './types';
 
 interface FavoriteProfessionalsProps extends FacilityProfessionalsDTO {
   isRefreshing: boolean;

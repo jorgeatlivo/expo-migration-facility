@@ -22,9 +22,9 @@ import {
   WHITE,
 } from '@/styles/colors';
 import { SPACE_VALUES } from '@/styles/spacing';
+import { interact } from '@/utils/frame';
 
 import LivoIcon from '@/assets/icons/LivoIcon';
-import { interact } from '@/utils/frame';
 
 interface DropDownInputProps {
   selectedLabel: any;
@@ -76,8 +76,8 @@ export const DropDownInput: React.FC<DropDownInputProps> = ({
                 color: disabled
                   ? BADGE_GRAY
                   : !selectedLabel
-                  ? BLUE_FADED
-                  : BLACK,
+                    ? BLUE_FADED
+                    : BLACK,
               },
             ]}
           >
@@ -108,8 +108,8 @@ export const DropDownInput: React.FC<DropDownInputProps> = ({
             borderColor: isError
               ? NOTIFICATION_RED
               : disabled
-              ? DARK_GRAY
-              : BORDER_GRAY,
+                ? DARK_GRAY
+                : BORDER_GRAY,
           },
         ]}
       >
@@ -155,6 +155,6 @@ const styles = StyleSheet.create({
     backgroundColor: WHITE,
   },
   icon: {
-    marginRight: SPACE_VALUES.small
-  }
+    marginRight: SPACE_VALUES.small,
+  },
 });

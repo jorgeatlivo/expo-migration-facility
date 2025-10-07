@@ -1,14 +1,18 @@
 import React, { useState } from 'react';
+import { StyleSheet, View } from 'react-native';
 import { useTranslation } from 'react-i18next';
-import { View, StyleSheet } from 'react-native';
 import { ScrollView } from 'react-native-gesture-handler';
+
 import { ClaimRequest, ShiftClaimStatus } from '@/services/shifts';
-import { SPACE_VALUES } from '@/styles/spacing';
+
+import { Typography } from '@/components/atoms/Typography';
 import { NotificationsBadge } from '@/components/common/NotificationsBadge';
+
+import { SPACE_VALUES } from '@/styles/spacing';
+import { sortBy } from '@/utils/utils';
+
 import { PendingProfessionalClaimItem } from './PendingProfessionalClaimItem';
 import { ProfessionalClaimRow } from './ProfessionalClaimRow';
-import { Typography } from '@/components/atoms/Typography';
-import { sortBy } from '@/utils/utils';
 
 interface MultiplePendingClaimsComponentProps {
   shiftId: number;

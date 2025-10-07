@@ -1,8 +1,10 @@
 import React from 'react';
-import {useTranslation} from 'react-i18next';
-import {ScrollView} from 'react-native-gesture-handler';
-import {ProfessionalDataField} from '@/services/shifts';
-import {InformationRow} from './InformationRow';
+import { useTranslation } from 'react-i18next';
+import { ScrollView } from 'react-native-gesture-handler';
+
+import { ProfessionalDataField } from '@/services/shifts';
+
+import { InformationRow } from './InformationRow';
 
 export interface InternalExperienceComponentProps {
   employeeNumber?: string | null;
@@ -13,15 +15,16 @@ export interface InternalExperienceComponentProps {
 
 export const InternalExperienceComponent: React.FC<
   InternalExperienceComponentProps
-> = ({employeeNumber, unit, contractType, datafields}) => {
-  const {t} = useTranslation();
+> = ({ employeeNumber, unit, contractType, datafields }) => {
+  const { t } = useTranslation();
 
   return (
     <ScrollView
       showsVerticalScrollIndicator={false}
       contentContainerStyle={{
         flexGrow: 1,
-      }}>
+      }}
+    >
       {employeeNumber ? (
         <InformationRow
           label={t('employee_number_label') + ':'}
@@ -44,7 +47,9 @@ export const InternalExperienceComponent: React.FC<
               label={datafield.label + ':'}
               value={datafield.displayText}
               style={
-                index === datafields.length - 1 ? {marginBottom: 0} : undefined
+                index === datafields.length - 1
+                  ? { marginBottom: 0 }
+                  : undefined
               }
             />
           ))

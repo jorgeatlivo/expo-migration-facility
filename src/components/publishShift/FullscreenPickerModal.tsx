@@ -1,10 +1,13 @@
 import React from 'react';
 import { StyleSheet, TouchableWithoutFeedback, View } from 'react-native';
 import DropDownPicker from 'react-native-dropdown-picker';
-import { GRAY, WHITE } from '@/styles/colors';
-import { SPACE_VALUES } from '@/styles/spacing';
+
 import { ModalPickerSelectItem } from '@/components/publishShift/ModalPickerSelectItem';
+
+import { GRAY, WHITE } from '@/styles/colors';
 import { typographyStyles } from '@/styles/livoFonts';
+import { SPACE_VALUES } from '@/styles/spacing';
+
 import LivoIcon from '@/assets/icons/LivoIcon';
 
 interface Props {

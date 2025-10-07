@@ -1,4 +1,10 @@
-import { RESTORE_TOKEN, SIGN_IN, SIGN_OUT, TOGGLE_SIGNING_IN, TOGGLE_SIGNING_UP } from '@/store/actions/actionTypes';
+import {
+  RESTORE_TOKEN,
+  SIGN_IN,
+  SIGN_OUT,
+  TOGGLE_SIGNING_IN,
+  TOGGLE_SIGNING_UP,
+} from '@/store/actions/actionTypes';
 
 const initialState = {
   token: null,
@@ -9,16 +15,15 @@ const initialState = {
 };
 
 export type AuthenticationAction =
-  | {type: 'SIGN_IN'; payload: string | null}
-  | {type: 'SIGN_OUT'}
-  | {type: 'RESTORE_TOKEN'; payload: string | null}
-  | {type: 'TOGGLE_SIGNING_UP'; payload: boolean}
-  | {type: 'TOGGLE_SIGNING_IN'; payload: boolean}
-
+  | { type: 'SIGN_IN'; payload: string | null }
+  | { type: 'SIGN_OUT' }
+  | { type: 'RESTORE_TOKEN'; payload: string | null }
+  | { type: 'TOGGLE_SIGNING_UP'; payload: boolean }
+  | { type: 'TOGGLE_SIGNING_IN'; payload: boolean };
 
 const authenticationReducer = (
   state = initialState,
-  action: AuthenticationAction,
+  action: AuthenticationAction
 ) => {
   switch (action.type) {
     case SIGN_IN:
@@ -32,12 +37,12 @@ const authenticationReducer = (
     case TOGGLE_SIGNING_IN:
       return {
         ...state,
-        isSigningIn: action.payload
+        isSigningIn: action.payload,
       };
     case TOGGLE_SIGNING_UP:
       return {
         ...state,
-        isSigningUp: action.payload
+        isSigningUp: action.payload,
       };
     case SIGN_OUT:
       return { ...state, token: null, isSigningOut: true, isLoading: false };

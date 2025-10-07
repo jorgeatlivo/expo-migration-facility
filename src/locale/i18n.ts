@@ -2,19 +2,21 @@ import i18n from 'i18next';
 import ICU from 'i18next-icu';
 import 'intl-messageformat';
 import 'intl-pluralrules';
-import {initReactI18next} from 'react-i18next';
+import { initReactI18next } from 'react-i18next';
+import * as Localize from 'react-native-localize';
+
+import AsyncStorage from '@react-native-async-storage/async-storage';
+import remoteConfig from '@react-native-firebase/remote-config';
+
+import { StorageKeys } from '@/services/storage/storage.keys';
+
+import ENV from '@/constants/env';
+
+import { lokalise } from './lokalise';
 import enTranslation from './translations/en.json';
 import esTranslation from './translations/es.json';
 import itTranslation from './translations/it.json';
 import plTranslation from './translations/pl.json';
-import {lokalise} from './lokalise';
-import AsyncStorage from '@react-native-async-storage/async-storage';
-import * as Localize from 'react-native-localize';
-
-import remoteConfig from '@react-native-firebase/remote-config';
-import ENV from '@/constants/env';
-import {StorageKeys} from "@/services/storage/storage.keys";
-
 
 const IS_DEV_ENV = ENV.IS_A_DEV_DISTRIBUTION ?? false;
 const DEFAULT_NS = 'translation';
@@ -25,20 +27,32 @@ export const reloadTranslations = async () => {
   try {
     const bundleInfo = await lokalise.checkForUpdates();
     if (bundleInfo.updateAvailable) {
-      console.log(`[i18n][Lokalise] New bundle available ${bundleInfo.version}, reload translations`);
-      const translations = await lokalise.loadTranslationsFromUrl(bundleInfo.url);
+      console.log(
+        `[i18n][Lokalise] New bundle available ${bundleInfo.version}, reload translations`
+      );
+      const translations = await lokalise.loadTranslationsFromUrl(
+        bundleInfo.url
+      );
       for (const lang in translations) {
-        i18n.addResourceBundle(lang, DEFAULT_NS, translations[lang][DEFAULT_NS], true, true);
+        i18n.addResourceBundle(
+          lang,
+          DEFAULT_NS,
+          translations[lang][DEFAULT_NS],
+          true,
+          true
+        );
       }
       i18n.changeLanguage(i18n.language); // refresh React components
     } else {
-      console.log(`[i18n][Lokalise] Current bundle ${bundleInfo.version} is up-to-date`);
+      console.log(
+        `[i18n][Lokalise] Current bundle ${bundleInfo.version} is up-to-date`
+      );
     }
   } catch (error: any) {
-    console.log("[i18n][Lokalise] Reload translations failed");
+    console.log('[i18n][Lokalise] Reload translations failed');
     console.error(error);
   }
-}
+};
 
 export const getSupportedLanguages = () => {
   let supportedLanguages = DEFAULT_SUPPORTED_LANGUAGES;
@@ -53,11 +67,11 @@ export const getSupportedLanguages = () => {
   }
 
   return supportedLanguages;
-}
+};
 
 export const isSupportedLanguage = (lang: string) => {
-  return getSupportedLanguages().find(lng => lang!.startsWith(lng));
-}
+  return getSupportedLanguages().find((lng) => lang!.startsWith(lng));
+};
 
 export async function initI18next() {
   if (i18n.isInitialized) {
@@ -65,11 +79,12 @@ export async function initI18next() {
   }
 
   let locale = await AsyncStorage.getItem(StorageKeys.LAST_PROFILE_LOCALE);
-  console.log('[i18n] Last profile locale: '+ locale);
+  console.log('[i18n] Last profile locale: ' + locale);
 
   if (!locale) {
     const locales = Localize.getLocales();
-    locale = locales && locales.length > 0 ? locales[0].languageTag : DEFAULT_LOCALE;
+    locale =
+      locales && locales.length > 0 ? locales[0].languageTag : DEFAULT_LOCALE;
     console.log('[i18n] Use device locale: ' + locale);
   }
 
@@ -81,7 +96,7 @@ export async function initI18next() {
     es: { translation: esTranslation },
     it: { translation: itTranslation },
     pl: { translation: plTranslation },
-  }
+  };
 
   if (IS_DEV_ENV) {
     resources.en = { translation: enTranslation };
@@ -100,9 +115,9 @@ export async function initI18next() {
         escapeValue: false,
       },
       i18nFormat: {
-        memoize: false
+        memoize: false,
       },
-      resources
+      resources,
     });
 
   await reloadTranslations();

@@ -1,11 +1,13 @@
-import {Dispatch} from 'redux';
-import {ClaimRequest, CVType} from '@/services/shifts';
+import { Dispatch } from 'redux';
+
+import { fetchClaimInfo } from '@/services/claims';
+import { ClaimRequest, CVType } from '@/services/shifts';
+
 import {
   CLAIM_INFO_LOADING,
   CLAIM_INFO_NOT_LOADING,
   LOAD_CLAIM_INFO,
 } from './actionTypes';
-import {fetchClaimInfo} from '@/services/claims';
 
 export const claimInfoLoadingAction = () => ({
   type: CLAIM_INFO_LOADING,
@@ -25,6 +27,6 @@ export const fetchClaimInfoAction =
     dispatch(claimInfoLoadingAction());
 
     return fetchClaimInfo(shiftId, shiftClaimId)
-      .then(response => dispatch(loadClaimInfoAction(response)))
+      .then((response) => dispatch(loadClaimInfoAction(response)))
       .catch(() => dispatch(claimInfoNotLoadingAction()));
   };

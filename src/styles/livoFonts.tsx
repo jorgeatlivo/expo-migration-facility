@@ -1,4 +1,5 @@
 import { ColorValue } from 'react-native';
+
 import { PRIMARY_BLUE } from './colors';
 
 export enum FontSizeEnum {

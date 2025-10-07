@@ -1,8 +1,10 @@
 import React from 'react';
 import { StyleSheet, TextInput, TextInputProps, View } from 'react-native';
+
+import StyledText from '@/components/StyledText';
+
 import { GRAY, WHITE } from '@/styles/colors';
 import { fontWeight } from '@/styles/fonts';
-import StyledText from '@/components/StyledText';
 
 interface LivoTextInputProps extends TextInputProps {
   style?: any;
@@ -10,31 +12,39 @@ interface LivoTextInputProps extends TextInputProps {
   inputFieldStyle?: any;
 }
 
-const LivoTextInput: React.FC<LivoTextInputProps> = ({ errorMessage, style, inputFieldStyle, ...props }) => {
+const LivoTextInput: React.FC<LivoTextInputProps> = ({
+  errorMessage,
+  style,
+  inputFieldStyle,
+  ...props
+}) => {
   const [isFocused, setIsFocused] = React.useState(false);
   return (
-    <View
-      style={style}>
+    <View style={style}>
       <TextInput
         {...props}
-        style={[styles.input, 
+        style={[
+          styles.input,
           isFocused ? styles.focus : {},
-          errorMessage ? styles.error : {}]}
+          errorMessage ? styles.error : {},
+        ]}
         placeholderTextColor={GRAY}
         onFocus={() => setIsFocused(true)}
         onBlur={() => setIsFocused(false)}
       />
-      {errorMessage ? <StyledText
-        style={{
-          fontFamily: fontWeight.regular,
-          fontSize: 12,
-          marginTop: 8,
-          color: '#FA3D3B',
-        }}>
-        {errorMessage}
-      </StyledText> : null}
+      {errorMessage ? (
+        <StyledText
+          style={{
+            fontFamily: fontWeight.regular,
+            fontSize: 12,
+            marginTop: 8,
+            color: '#FA3D3B',
+          }}
+        >
+          {errorMessage}
+        </StyledText>
+      ) : null}
     </View>
-
   );
 };
 
@@ -57,5 +67,5 @@ const styles = StyleSheet.create({
   error: {
     borderWidth: 2,
     borderColor: '#FA3D3B',
-  }
+  },
 });

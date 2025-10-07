@@ -1,30 +1,32 @@
 import React, { useLayoutEffect } from 'react';
+import { ActivityIndicator, Alert, StyleSheet, View } from 'react-native';
+import { useDispatch, useSelector } from 'react-redux';
 import { NavigationContainer } from '@react-navigation/native';
+
+import { configureUnauthorizedApi, setApiToken } from '@/services/api';
 import {
   fetchLivoContact,
   retrieveUserSession,
 } from '@/services/authentication';
-import { ActivityIndicator, Alert, View , StyleSheet } from 'react-native';
-import { GRAY, WHITE } from '@/styles/colors';
-import { configureUnauthorizedApi, setApiToken } from '@/services/api';
-import { useDispatch, useSelector } from 'react-redux';
-import {
-  loadLivoContactAction,
-  loadUserId,
-} from '@/store/actions/configurationActions';
-import { LivoContact, RootState } from '@/types';
-import { setTopLevelNavigator } from '@/utils/navigation';
-import { decodeJWT } from '@/utils/utils';
-import { ModalProvider, setModalProviderRef } from '@/hooks/ModalContext';
-import { AuthenticationStack } from '@/screens/Authentication/AuthenticationStack';
 import {
   restoreTokenAction,
   signOutAction,
 } from '@/store/actions/authenticationActions';
+import {
+  loadLivoContactAction,
+  loadUserId,
+} from '@/store/actions/configurationActions';
 
-import { ProtectedStack } from './ProtectedStack';
+import { AuthenticationStack } from '@/screens/Authentication/AuthenticationStack';
 
+import { ModalProvider, setModalProviderRef } from '@/hooks/ModalContext';
 import { useEffectOnce } from '@/hooks/useEffectOnce';
+import { GRAY, WHITE } from '@/styles/colors';
+import { setTopLevelNavigator } from '@/utils/navigation';
+import { decodeJWT } from '@/utils/utils';
+
+import { LivoContact, RootState } from '@/types';
+import { ProtectedStack } from './ProtectedStack';
 
 export type RootStackParamList = {
   SignIn: undefined;

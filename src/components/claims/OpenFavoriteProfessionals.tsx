@@ -1,7 +1,9 @@
-import { NavigationProp } from '@react-navigation/native';
 import React from 'react';
 import { useTranslation } from 'react-i18next';
+import { NavigationProp } from '@react-navigation/native';
+
 import TouchableRow from '@/components/common/TouchableRow';
+
 import { ProtectedStackRoutes } from '@/router/ProtectedStack';
 
 interface OpenFavoriteProfessionalsProps {

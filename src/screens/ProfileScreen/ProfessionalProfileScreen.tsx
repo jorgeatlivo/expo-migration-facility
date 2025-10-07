@@ -1,4 +1,3 @@
-import { StackScreenProps } from '@react-navigation/stack';
 import React, { useEffect } from 'react';
 import {
   Alert,
@@ -7,19 +6,11 @@ import {
   StyleSheet,
   View,
 } from 'react-native';
-
 import { useTranslation } from 'react-i18next';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
 import { useDispatch, useSelector } from 'react-redux';
-import CommonButton from '@/components/buttons/CommonButton';
-import { LoadingScreen } from '@/components/common/LoadingScreen';
-import { CancelClaimModal } from '@/components/modals/CancelClaimModal';
-import { ProfileComponent } from '@/components/profile/ProfileComponent';
-import { useModal } from '@/hooks/ModalContext';
-import {
-  ACCEPT_CANCEL_CLAIM_MODAL,
-  CANCEL_ACCEPTED_CLAIM_MODAL,
-} from '@/hooks/modalTypes';
+import { StackScreenProps } from '@react-navigation/stack';
+
 import { ApiApplicationError } from '@/services/api';
 import {
   shiftCancelApprovedClaim,
@@ -33,13 +24,25 @@ import {
 } from '@/store/actions/claimActions';
 import { fetchShiftInfoDataAction } from '@/store/actions/shiftActions';
 import { AppDispatch } from '@/store/configureStore';
+
+import CommonButton from '@/components/buttons/CommonButton';
+import { LoadingScreen } from '@/components/common/LoadingScreen';
+import { CancelClaimModal } from '@/components/modals/CancelClaimModal';
+import { ProfileComponent } from '@/components/profile/ProfileComponent';
+
+import { useModal } from '@/hooks/ModalContext';
+import {
+  ACCEPT_CANCEL_CLAIM_MODAL,
+  CANCEL_ACCEPTED_CLAIM_MODAL,
+} from '@/hooks/modalTypes';
 import { CORAL, LIGHT_GRAY, WHITE } from '@/styles/colors';
-import { RootState, ShiftModalityEnum } from '@/types';
+import { SPACE_VALUES } from '@/styles/spacing';
+
 import {
   ProtectedStackParamsList,
   ProtectedStackRoutes,
 } from '@/router/ProtectedStack';
-import { SPACE_VALUES } from '@/styles/spacing';
+import { RootState, ShiftModalityEnum } from '@/types';
 
 type ProfessionalProfileScreenProps = StackScreenProps<
   ProtectedStackParamsList,

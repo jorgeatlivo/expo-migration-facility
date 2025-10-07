@@ -1,22 +1,26 @@
 import React, { PropsWithChildren, useMemo } from 'react';
-import { useTranslation } from 'react-i18next';
 import { StyleSheet, View } from 'react-native';
-import { typographyStyles } from '@/styles/livoFonts';
-import { SPACE_VALUES } from '@/styles/spacing';
-import { Category, Shift, UserFeatureEnum } from '@/types';
-import { formattedSchedule } from '@/utils/utils';
-import StyledText from '@/components/StyledText';
+import { useTranslation } from 'react-i18next';
+
+import { IconHeartHandshake } from 'tabler-icons-react-native';
+
+import Col from '@/components/atoms/Col';
+import Row from '@/components/atoms/Row';
+import { Typography } from '@/components/atoms/Typography';
 import { shiftTimeInDayLabels } from '@/components/claimReviews/Separators';
 import { TagComponent } from '@/components/profile/TagComponent';
+import StyledText from '@/components/StyledText';
+
+import { useFetchFacility } from '@/hooks/useFetchFacility';
+import { ACTION_BLACK, BADGE_GRAY, PURPLE_FADED, WHITE } from '@/styles/colors';
+import { typographyStyles } from '@/styles/livoFonts';
+import { SPACE_VALUES } from '@/styles/spacing';
+import { formattedSchedule } from '@/utils/utils';
+
+import { formatDate } from '@/common/utils';
+import { Category, Shift, UserFeatureEnum } from '@/types';
 import { CategoryTag } from './CategoryTag';
 import { ShiftInfoRow } from './ShiftInfoRow';
-import { Typography } from '@/components/atoms/Typography';
-import { IconHeartHandshake } from 'tabler-icons-react-native';
-import { ACTION_BLACK, BADGE_GRAY, PURPLE_FADED, WHITE } from '@/styles/colors';
-import Row from '@/components/atoms/Row';
-import Col from '@/components/atoms/Col';
-import { useFetchFacility } from '@/hooks/useFetchFacility';
-import { formatDate } from '@/common/utils';
 
 interface ShiftInfoProps {
   shift: Shift;
@@ -157,15 +161,19 @@ export const ShiftInfo: React.FC<ShiftInfoProps> = ({ shift }) => {
         </View>
       )}
 
-      {!!shift.compensationOptions && shift.compensationOptions.length > 0 && shift.internalVisible && (
-        <ShiftInfoRow
-          label={shift.compensationOptions.map(compensation => compensation.displayText).join(', ')}
-          icon={'money'}
-          style={{
-            alignItems: 'flex-start'
-          }}
-        />
-      )}
+      {!!shift.compensationOptions &&
+        shift.compensationOptions.length > 0 &&
+        shift.internalVisible && (
+          <ShiftInfoRow
+            label={shift.compensationOptions
+              .map((compensation) => compensation.displayText)
+              .join(', ')}
+            icon={'money'}
+            style={{
+              alignItems: 'flex-start',
+            }}
+          />
+        )}
 
       {shift.onboardingShiftsRequired && (
         <ShiftInfoRow

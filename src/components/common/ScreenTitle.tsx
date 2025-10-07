@@ -1,6 +1,8 @@
-import React, {ReactNode} from 'react';
-import {StyleSheet, View} from 'react-native';
+import React, { ReactNode } from 'react';
+import { StyleSheet, View } from 'react-native';
+
 import StyledText from '@/components/StyledText';
+
 import { typographyStyles } from '@/styles/livoFonts';
 import { SPACE_VALUES } from '@/styles/spacing';
 
@@ -15,13 +17,13 @@ const ScreenTitle: React.FC<ScreenTitleProps> = ({
   title,
   children,
   style,
-  textStyle
+  textStyle,
 }) => {
   return (
-    <View style={{...styles.container, ...style}}>
-      <StyledText
-        style={{...typographyStyles.heading.medium, ...textStyle}}
-        >{title}</StyledText>
+    <View style={{ ...styles.container, ...style }}>
+      <StyledText style={{ ...typographyStyles.heading.medium, ...textStyle }}>
+        {title}
+      </StyledText>
       {children}
     </View>
   );

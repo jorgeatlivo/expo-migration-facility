@@ -1,16 +1,16 @@
 import React, { useEffect, useState } from 'react';
-import { useTranslation } from 'react-i18next';
 import { Alert, View } from 'react-native';
-import {
-  SpecializationDTO,
-  fetchShiftCancelReasons,
-} from '@/services/shifts';
-import { typographyStyles } from '@/styles/livoFonts';
+import { useTranslation } from 'react-i18next';
+
+import { fetchShiftCancelReasons, SpecializationDTO } from '@/services/shifts';
+
 import CancelButton from '@/components/buttons/CancelButton';
 import LivoTextInput from '@/components/common/LivoTextInput';
 import SingleSelect from '@/components/common/SingleSelect';
 import { BottomModal } from '@/components/modals/BottomModal';
 import StyledText from '@/components/StyledText';
+
+import { typographyStyles } from '@/styles/livoFonts';
 
 //Deprecated
 interface DecreaseCapacityModalProps

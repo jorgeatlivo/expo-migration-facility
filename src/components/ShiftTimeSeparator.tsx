@@ -1,15 +1,19 @@
 import React from 'react';
-import { TouchableOpacity, StyleSheet } from 'react-native';
-import StyledText from './StyledText';
+import { StyleSheet, TouchableOpacity } from 'react-native';
+import { useTranslation } from 'react-i18next';
+
+import moment from 'moment';
+
+import Row from '@/components/atoms/Row';
+
+import { ACTION_BLUE } from '@/styles/colors';
 import { typographyStyles } from '@/styles/livoFonts';
 import { SPACE_VALUES } from '@/styles/spacing';
+
 import LivoIcon from '@/assets/icons/LivoIcon';
-import moment from 'moment';
 import { ShiftTimeInDayEnum } from '@/types';
 import { shiftTimeInDayLabels } from './claimReviews/Separators';
-import { useTranslation } from 'react-i18next';
-import { ACTION_BLUE } from '@/styles/colors';
-import Row from '@/components/atoms/Row';
+import StyledText from './StyledText';
 
 interface ShiftTimeSeparatorProps {
   date: string;

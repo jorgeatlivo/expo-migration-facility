@@ -1,7 +1,4 @@
-import { useHeaderHeight } from '@react-navigation/elements';
-import { StackScreenProps } from '@react-navigation/stack';
 import React, { useState } from 'react';
-import { useTranslation } from 'react-i18next';
 import {
   Alert,
   Keyboard,
@@ -10,13 +7,20 @@ import {
   TouchableWithoutFeedback,
   View,
 } from 'react-native';
+import { useTranslation } from 'react-i18next';
+import { useHeaderHeight } from '@react-navigation/elements';
+import { StackScreenProps } from '@react-navigation/stack';
+
+import { resetPasswordRequest } from '@/services/authentication';
+
 import ActionButton from '@/components/buttons/ActionButton';
 import CustomTextInput from '@/components/common/CustomTextInput';
 import { LoadingScreen } from '@/components/common/LoadingScreen';
 import StyledText from '@/components/StyledText';
-import { resetPasswordRequest } from '@/services/authentication';
+
 import { WHITE } from '@/styles/colors';
-import { LayoutTextEnum, fontSize, fontWeight } from '@/styles/fonts';
+import { fontSize, fontWeight, LayoutTextEnum } from '@/styles/fonts';
+
 import {
   AuthenticationStackParamslist,
   AuthStackRoutes,

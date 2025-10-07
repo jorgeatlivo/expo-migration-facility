@@ -1,7 +1,9 @@
 import React from 'react';
 import { View } from 'react-native';
-import { SPACE_VALUES } from '@/styles/spacing';
+
 import SelectTags from '@/components/common/CustomSelectTags';
+
+import { SPACE_VALUES } from '@/styles/spacing';
 
 interface CapacitySelectorComponentProps {
   capacity: string;
@@ -18,14 +20,17 @@ export const CapacitySelectorComponent: React.FC<
     { label: '3', id: '3' },
     { label: '4', id: '4' },
     { label: '5', id: '5' },
-  ].reduce((acc, item) => {
-    if (+item.id < minimumCapacity) {
-      acc.push({ ...item, isDisabled: true });
-    } else {
-      acc.push(item);
-    }
-    return acc;
-  }, [] as { label: string; id: string; isDisabled?: boolean }[]);
+  ].reduce(
+    (acc, item) => {
+      if (+item.id < minimumCapacity) {
+        acc.push({ ...item, isDisabled: true });
+      } else {
+        acc.push(item);
+      }
+      return acc;
+    },
+    [] as { label: string; id: string; isDisabled?: boolean }[]
+  );
 
   return (
     <View

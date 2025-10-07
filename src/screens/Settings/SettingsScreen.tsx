@@ -1,7 +1,4 @@
-import { StackScreenProps } from '@react-navigation/stack';
-import moment from 'moment';
 import React, { PropsWithChildren } from 'react';
-import { useTranslation } from 'react-i18next';
 import {
   Alert,
   Linking,
@@ -10,32 +7,40 @@ import {
   TouchableOpacity,
   View,
 } from 'react-native';
+import { useTranslation } from 'react-i18next';
 import { RefreshControl, ScrollView } from 'react-native-gesture-handler';
 import { useDispatch, useSelector } from 'react-redux';
-import LivoIcon from '@/assets/icons/LivoIcon';
-import { handleLinkPress } from '@/common/utils';
-import Row from '@/components/atoms/Row';
-import Col from '@/components/atoms/Col';
-import StyledText from '@/components/StyledText';
-import NoResultsAvailable from '@/components/NoResultsAvailable';
-import { LoadingScreen } from '@/components/common/LoadingScreen';
-import { TagComponent } from '@/components/profile/TagComponent';
+import { CompositeScreenProps } from '@react-navigation/native';
+import { StackScreenProps } from '@react-navigation/stack';
+
+import moment from 'moment';
+
 import { removeUserSession, signOutRequest } from '@/services/authentication';
 import { removeFCMToken } from '@/services/notifications';
 import { signOutAction } from '@/store/actions/authenticationActions';
+
+import Col from '@/components/atoms/Col';
+import Row from '@/components/atoms/Row';
+import { LoadingScreen } from '@/components/common/LoadingScreen';
+import NoResultsAvailable from '@/components/NoResultsAvailable';
+import { TagComponent } from '@/components/profile/TagComponent';
+import StyledText from '@/components/StyledText';
+
+import { useFetchFacility } from '@/hooks/useFetchFacility';
 import { BADGE_GRAY, CORAL, DARK_BLUE, GRAY } from '@/styles/colors';
 import { commonStyles } from '@/styles/commonStyles';
 import { LayoutTextEnum } from '@/styles/fonts';
 import { typographyStyles } from '@/styles/livoFonts';
 import { SPACE_VALUES } from '@/styles/spacing';
-import { RootState, UserFeatureEnum } from '@/types';
+
+import LivoIcon from '@/assets/icons/LivoIcon';
+import { handleLinkPress } from '@/common/utils';
 import {
   ProtectedStackParamsList,
   ProtectedStackRoutes,
 } from '@/router/ProtectedStack';
 import { TabRoutes, TabsParamsList } from '@/router/TabsNavigator';
-import { CompositeScreenProps } from '@react-navigation/native';
-import { useFetchFacility } from '@/hooks/useFetchFacility';
+import { RootState, UserFeatureEnum } from '@/types';
 
 type SettingsModalProps = CompositeScreenProps<
   StackScreenProps<TabsParamsList, TabRoutes.Settings>,
@@ -62,7 +67,7 @@ export const SettingsScreen: React.FC<SettingsModalProps> = ({
     try {
       const phoneNumber = '34936075629';
       const url =
-        livoContact!!.whatsappLink || `whatsapp://send?phone=${phoneNumber}`;
+        livoContact!.whatsappLink || `whatsapp://send?phone=${phoneNumber}`;
       const supported = await Linking.canOpenURL(url);
 
       if (supported) {
@@ -100,7 +105,7 @@ export const SettingsScreen: React.FC<SettingsModalProps> = ({
               <LivoIcon name="user" size={24} color={DARK_BLUE} />
             </View>
             <StyledText type={LayoutTextEnum.headerSmall}>
-              {facilityProfile!!.firstName} {facilityProfile!!.lastName}
+              {facilityProfile!.firstName} {facilityProfile!.lastName}
             </StyledText>
           </DetailRow>
           <DetailRow>
@@ -108,14 +113,14 @@ export const SettingsScreen: React.FC<SettingsModalProps> = ({
               <LivoIcon name="mail" size={24} color={DARK_BLUE} />
             </View>
             <StyledText type={LayoutTextEnum.headerSmall}>
-              {facilityProfile!!.email}
+              {facilityProfile!.email}
             </StyledText>
           </DetailRow>
         </Col>
-        {facilityProfile!!.lastTimeSignIn ? (
+        {facilityProfile!.lastTimeSignIn ? (
           <StyledText style={styles.lastLogin}>
             {`${t('last_login_label')}: `}
-            {moment(facilityProfile!!.lastTimeSignIn).format(
+            {moment(facilityProfile!.lastTimeSignIn).format(
               'DD/MM/YYYY - HH:mm[h]'
             )}
           </StyledText>
@@ -129,7 +134,7 @@ export const SettingsScreen: React.FC<SettingsModalProps> = ({
               <LivoIcon name="internal-hospital" size={24} color={DARK_BLUE} />
             </View>
             <StyledText type={LayoutTextEnum.headerSmall}>
-              {facilityProfile!!.facility.name}
+              {facilityProfile!.facility.name}
             </StyledText>
           </DetailRow>
           {facilityProfile.units && facilityProfile.units.length > 0 && (
@@ -153,9 +158,7 @@ export const SettingsScreen: React.FC<SettingsModalProps> = ({
             </View>
             <TouchableOpacity
               style={styles.safeArea}
-              onPress={() =>
-                handleLinkPress(facilityProfile!!.facility.mapLink)
-              }
+              onPress={() => handleLinkPress(facilityProfile!.facility.mapLink)}
             >
               <StyledText
                 numberOfLines={2}
@@ -163,7 +166,7 @@ export const SettingsScreen: React.FC<SettingsModalProps> = ({
                 type={LayoutTextEnum.link}
                 style={styles.shiftInfoText}
               >
-                {facilityProfile!!.facility.address}
+                {facilityProfile!.facility.address}
               </StyledText>
               {facilityProfile?.facility.addressCountry &&
                 facilityProfile?.facility.addressCity && (

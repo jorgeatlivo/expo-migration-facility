@@ -1,11 +1,15 @@
 import React from 'react';
-import {useTranslation} from 'react-i18next';
-import {TouchableOpacity, View} from 'react-native';
-import LivoIcon from '@/assets/icons/LivoIcon';
-import {SlotReason} from '@/services/shifts';
-import {typographyStyles} from '@/styles/livoFonts';
-import {SPACE_VALUES} from '@/styles/spacing';
+import { TouchableOpacity, View } from 'react-native';
+import { useTranslation } from 'react-i18next';
+
+import { SlotReason } from '@/services/shifts';
+
 import StyledText from '@/components/StyledText';
+
+import { typographyStyles } from '@/styles/livoFonts';
+import { SPACE_VALUES } from '@/styles/spacing';
+
+import LivoIcon from '@/assets/icons/LivoIcon';
 
 interface SlotReasonComponentProps {
   reason: SlotReason | null;
@@ -20,39 +24,44 @@ export const SlotReasonComponent: React.FC<SlotReasonComponentProps> = ({
   style,
   onPress,
 }) => {
-  const {t} = useTranslation();
+  const { t } = useTranslation();
 
   return (
     <TouchableOpacity
       onPress={onPress}
       style={{
         ...style,
-      }}>
+      }}
+    >
       <StyledText
         style={{
           ...typographyStyles.body.small,
-        }}>
+        }}
+      >
         {professionalName}
       </StyledText>
-      <View style={{flexDirection: 'row', alignItems: 'flex-start'}}>
+      <View style={{ flexDirection: 'row', alignItems: 'flex-start' }}>
         <View
           style={{
             justifyContent: 'center',
             alignItems: 'center',
             marginRight: SPACE_VALUES.tiny,
-          }}>
+          }}
+        >
           <LivoIcon name="replace" size={24} color="#ACBBCB" />
         </View>
         <View
           style={{
             flex: 1,
-          }}>
+          }}
+        >
           {reason ? (
             <View style={{}}>
               <StyledText
                 style={{
                   ...typographyStyles.subtitle.regular,
-                }}>
+                }}
+              >
                 {reason.displayText}
               </StyledText>
               <StyledText
@@ -61,7 +70,8 @@ export const SlotReasonComponent: React.FC<SlotReasonComponentProps> = ({
                   color: '#707A91',
                 }}
                 numberOfLines={1}
-                ellipsizeMode="tail">
+                ellipsizeMode="tail"
+              >
                 {reason.comment || ' '}
               </StyledText>
             </View>
@@ -71,14 +81,16 @@ export const SlotReasonComponent: React.FC<SlotReasonComponentProps> = ({
                 style={{
                   ...typographyStyles.subtitle.regular,
                   color: '#ACBBCB',
-                }}>
+                }}
+              >
                 {t('shift_detail_empty_slot_reason')}
               </StyledText>
               <StyledText
                 style={{
                   ...typographyStyles.info.caption,
                   color: '#ACBBCB',
-                }}>
+                }}
+              >
                 {' '}
               </StyledText>
             </View>

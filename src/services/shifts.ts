@@ -1,15 +1,17 @@
+import useSWR from 'swr';
+
+import { IconDTO } from '@/types/widgets';
+
 import { formatDateToYYYYMMDD, mapDayShift, mapShift } from '@/common/utils';
 import {
+  Category,
   DayShift,
   Shift,
   ShiftModalityEnum,
-  Category,
-  ValueDisplayPair,
   ShiftSummaryData,
+  ValueDisplayPair,
 } from '@/types';
-import useSWR from 'swr';
 import api, { handleApiError } from './api';
-import { IconDTO } from '@/types/widgets';
 
 type FetchShiftParams = {
   fromDate?: string;
@@ -72,7 +74,7 @@ export function useConfiguration(category?: string) {
         (res) =>
           ({
             ...res.data,
-          } as PublishShiftConfigurationDTO)
+          }) as PublishShiftConfigurationDTO
       )
       .catch(handleApiError);
 
@@ -394,7 +396,7 @@ export type ProfessionalDataField = {
     {
       value: string;
       displayText: string;
-    }
+    },
   ];
   displayText: string;
 };

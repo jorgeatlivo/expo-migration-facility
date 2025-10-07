@@ -1,5 +1,6 @@
 import React from 'react';
 import { View } from 'react-native';
+
 import LivoIcon from '@/assets/icons/LivoIcon';
 
 interface CapacityComponentProps {
@@ -27,7 +28,12 @@ export const CapacityComponent: React.FC<CapacityComponentProps> = ({
       )}
       {Array.from({ length: pendingInvitationClaims }, (_, i) => i + 1).map(
         (pendingInvitationClaim, idx) => (
-          <LivoIcon key={idx} name="pending-invitation" color="#EFB300" size={20} />
+          <LivoIcon
+            key={idx}
+            name="pending-invitation"
+            color="#EFB300"
+            size={20}
+          />
         )
       )}
       {Array.from({ length: emptyClaims }, (_, i) => i + 1).map(

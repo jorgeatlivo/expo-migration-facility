@@ -1,8 +1,10 @@
 import React, { useState } from 'react';
-import { View, Text, TouchableOpacity, StyleSheet } from 'react-native';
+import { StyleSheet, Text, TouchableOpacity, View } from 'react-native';
+
+import Row from '@/components/atoms/Row';
+
 import { BACKGROUND_BLUE, WHITE } from '@/styles/colors';
 import { typographyStyles } from '@/styles/livoFonts';
-import Row from '@/components/atoms/Row';
 
 export interface TagType {
   id: string;

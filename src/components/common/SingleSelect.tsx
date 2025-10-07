@@ -1,16 +1,19 @@
 import React from 'react';
 import {
-  TouchableOpacityProps,
   StyleProp,
-  ViewStyle,
+  StyleSheet,
   TextStyle,
   TouchableOpacity,
-  StyleSheet,
+  TouchableOpacityProps,
+  ViewStyle,
 } from 'react-native';
-import StyledText from '@/components/StyledText';
-import { typographyStyles } from '@/styles/livoFonts';
-import { ACTION_BLUE, SLATE_GRAY } from '@/styles/colors';
+
 import Row from '@/components/atoms/Row';
+import StyledText from '@/components/StyledText';
+
+import { ACTION_BLUE, SLATE_GRAY } from '@/styles/colors';
+import { typographyStyles } from '@/styles/livoFonts';
+
 import LivoIcon from '@/assets/icons/LivoIcon';
 
 interface CustomCheckBoxProps extends TouchableOpacityProps {

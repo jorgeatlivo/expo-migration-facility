@@ -1,34 +1,39 @@
+import React, { useCallback, useEffect } from 'react';
+import { AppState } from 'react-native';
+import { useTranslation } from 'react-i18next';
+import { useSafeAreaInsets } from 'react-native-safe-area-context';
+import { useDispatch, useSelector } from 'react-redux';
 import {
   BottomTabNavigationOptions,
   createBottomTabNavigator,
 } from '@react-navigation/bottom-tabs';
-import React, { useCallback, useEffect } from 'react';
-import { GRAY, PRIMARY_BLUE } from '@/styles/colors';
-import { AppState } from 'react-native';
-import { useDispatch, useSelector } from 'react-redux';
+
+import analytics from '@react-native-firebase/analytics';
+import remoteConfig from '@react-native-firebase/remote-config';
+
+import AnalyticsService from '@/services/analytics/analytics.service';
 import {
   setAppState,
   setLastActiveTime,
 } from '@/store/actions/configurationActions';
-import remoteConfig from '@react-native-firebase/remote-config';
-import analytics from '@react-native-firebase/analytics';
-import { LoadingScreen } from '@/components/common/LoadingScreen';
-import { RootState } from '@/types';
 import { fetchFacilityProfileAction } from '@/store/actions/profileActions';
 import { AppDispatch } from '@/store/configureStore';
-import LivoIcon from '@/assets/icons/LivoIcon';
+
+import { CalendarScreen } from '@/screens/CalendarScreen/CalendarScreen';
 import { ProfessionalAgendaStack } from '@/screens/ProfessionalAgenda/ProfessionalAgendaStack';
-import { LivoTabBar } from '@/components/layout/LivoTabBar';
+import { SettingsScreen } from '@/screens/Settings/SettingsScreen';
+import { ShiftsListScreen } from '@/screens/ShiftListScreen/ShiftsListScreen';
+
 import { EmptyScreen } from '@/components/common/EmptyScreen';
-import { useSafeAreaInsets } from 'react-native-safe-area-context';
+import { LoadingScreen } from '@/components/common/LoadingScreen';
+import { LivoTabBar } from '@/components/layout/LivoTabBar';
 
 import ENV from '@/constants/env';
-import { ShiftsListScreen } from '@/screens/ShiftListScreen/ShiftsListScreen';
-import { CalendarScreen } from '@/screens/CalendarScreen/CalendarScreen';
-import { useTranslation } from 'react-i18next';
 import { useEffectOnce } from '@/hooks/useEffectOnce';
-import { SettingsScreen } from '@/screens/Settings/SettingsScreen';
-import AnalyticsService from '@/services/analytics/analytics.service';
+import { GRAY, PRIMARY_BLUE } from '@/styles/colors';
+
+import LivoIcon from '@/assets/icons/LivoIcon';
+import { RootState } from '@/types';
 
 export enum TabRoutes {
   ShiftsList = 'shift-listing',
@@ -152,7 +157,7 @@ export const TabNavigation = () => {
           // If you use realtime updates, the SDK fetches the new config for you.
           // However, you must activate the new config so it is in effect
           remoteConfig().activate();
-          
+
           if (event?.updatedKeys.includes('facility_app_posthog_api_key')) {
             AnalyticsService.initPostHogFromRemoteConfig();
           }

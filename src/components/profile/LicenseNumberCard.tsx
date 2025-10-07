@@ -1,8 +1,10 @@
 import React from 'react';
-import {useTranslation} from 'react-i18next';
-import {StyleSheet, View} from 'react-native';
-import {commonStyles} from '@/styles/commonStyles';
-import {InformationRow} from './InformationRow';
+import { StyleSheet, View } from 'react-native';
+import { useTranslation } from 'react-i18next';
+
+import { commonStyles } from '@/styles/commonStyles';
+
+import { InformationRow } from './InformationRow';
 
 interface LicenseNumberCardProps {
   licenseNumber: string;
@@ -13,7 +15,7 @@ export function LicenseNumberCard({
   licenseNumber,
   style,
 }: LicenseNumberCardProps) {
-  const {t} = useTranslation();
+  const { t } = useTranslation();
 
   return (
     <View style={[commonStyles.cardContainer, style]}>

@@ -1,19 +1,22 @@
 import React, { useEffect, useState } from 'react';
-import { AuthProvider } from '@/router/AuthenticationProvider';
-import { initialiseNotifications } from '@/services/notifications';
+import { StyleSheet, View } from 'react-native';
+import { SafeAreaProvider } from 'react-native-safe-area-context';
+import { Provider } from 'react-redux';
 
 import crashlytics from '@react-native-firebase/crashlytics';
-import { initI18next, reloadTranslations } from '@/locale/i18n';
-import { LoadingScreen } from '@/components/common/LoadingScreen';
-import { StyleSheet, View } from 'react-native';
-import { WHITE } from '@/styles/colors';
 import remoteConfig from '@react-native-firebase/remote-config';
-import QueryProvider from '@/providers/QueryProvider';
-import ENV from '@/constants/env';
-import { Provider } from 'react-redux';
-import store from '@/store/configureStore';
-import {SafeAreaProvider} from "react-native-safe-area-context";
 
+import QueryProvider from '@/providers/QueryProvider';
+import { initialiseNotifications } from '@/services/notifications';
+import store from '@/store/configureStore';
+
+import { LoadingScreen } from '@/components/common/LoadingScreen';
+
+import ENV from '@/constants/env';
+import { WHITE } from '@/styles/colors';
+
+import { initI18next, reloadTranslations } from '@/locale/i18n';
+import { AuthProvider } from '@/router/AuthenticationProvider';
 
 const App = () => {
   const [isI18nextReady, setIsI18nextReady] = useState(false);

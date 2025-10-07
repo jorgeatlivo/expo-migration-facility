@@ -1,23 +1,26 @@
 import React, { useMemo } from 'react';
-import { Shift, UserFeatureEnum, ShiftModalityEnum } from '@/types';
-import { SPACE_VALUES } from '@/styles/spacing';
-import { CapacityComponent } from './CapacityComponent';
-import { ShiftCardTag } from './ShiftCardTag';
+import { StyleSheet, View } from 'react-native';
+
+import Col from '@/components/atoms/Col';
+import Row from '@/components/atoms/Row';
+import { TouchableWrapper } from '@/components/buttons/TouchableWrapper';
 import { shiftTimeInDayLabels } from '@/components/claimReviews/Separators';
 import { TagComponent } from '@/components/profile/TagComponent';
-import { ScheduleComponent } from './ScheduleComponent';
-import Row from '@/components/atoms/Row';
-import Col from '@/components/atoms/Col';
-import { useFetchFacility } from '@/hooks/useFetchFacility';
-import { CategoryTag } from '@/components/shiftDetails/CategoryTag';
-import { ModalityTag } from './ModalityTag';
 import StyledText from '@/components/StyledText';
-import { typographyStyles } from '@/styles/livoFonts';
+import { CategoryTag } from '@/components/shiftDetails/CategoryTag';
+
+import { useFetchFacility } from '@/hooks/useFetchFacility';
 import { WHITE } from '@/styles/colors';
-import { View, StyleSheet } from 'react-native';
+import { typographyStyles } from '@/styles/livoFonts';
+import { SPACE_VALUES } from '@/styles/spacing';
+
 import LivoIcon from '@/assets/icons/LivoIcon';
-import { TouchableWrapper } from '@/components/buttons/TouchableWrapper';
 import { formatDate } from '@/common/utils';
+import { Shift, ShiftModalityEnum, UserFeatureEnum } from '@/types';
+import { CapacityComponent } from './CapacityComponent';
+import { ModalityTag } from './ModalityTag';
+import { ScheduleComponent } from './ScheduleComponent';
+import { ShiftCardTag } from './ShiftCardTag';
 
 interface ShiftCardProps {
   shift: Shift;
@@ -40,7 +43,7 @@ export const ShiftCard: React.FC<ShiftCardProps> = ({
   function getShiftTitle(unit: string, professionalField?: string): string {
     return !!unit && !!professionalField
       ? `${unit} · ${professionalField}`
-      : professionalField ?? unit;
+      : (professionalField ?? unit);
   }
 
   const { livoPoolOnboarded, livoInternalOnboarded } = facilityProfile || {};

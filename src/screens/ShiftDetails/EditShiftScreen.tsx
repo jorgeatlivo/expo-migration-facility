@@ -1,17 +1,15 @@
-import { StackScreenProps } from '@react-navigation/stack';
-import moment from 'moment';
 import React, { useEffect, useState } from 'react';
-import { useTranslation } from 'react-i18next';
 import { Alert, View } from 'react-native';
+import { useTranslation } from 'react-i18next';
 import { useDispatch, useSelector } from 'react-redux';
-import { LoadingScreen } from '@/components/common/LoadingScreen';
-import { CancelShiftModalContent } from '@/components/modals/CancelShiftModalContent';
-import { useModal } from '@/hooks/ModalContext';
-import { CANCEL_SHIFT_MODAL } from '@/hooks/modalTypes';
+import { StackScreenProps } from '@react-navigation/stack';
+
+import moment from 'moment';
+
 import { ApiApplicationError } from '@/services/api';
 import {
-  ShiftUpdateRequest,
   cancelShiftRequest,
+  ShiftUpdateRequest,
   updateShiftRequest,
   useConfiguration,
 } from '@/services/shifts';
@@ -21,18 +19,24 @@ import {
   toggleNewShiftAvailableAction,
 } from '@/store/actions/shiftActions';
 import { AppDispatch } from '@/store/configureStore';
+
+import { LoadingScreen } from '@/components/common/LoadingScreen';
+import { CancelShiftModalContent } from '@/components/modals/CancelShiftModalContent';
+import {
+  PublishShiftComponent,
+  PublishShiftConfig,
+} from '@/components/publishShift/PublishShiftComponent';
+
+import { useModal } from '@/hooks/ModalContext';
+import { CANCEL_SHIFT_MODAL } from '@/hooks/modalTypes';
 import { WHITE } from '@/styles/colors';
-import { RootState, ShiftTimeInDayEnum } from '@/types';
 import { getStartAndEndTimeFromDate } from '@/utils/utils';
 
 import {
   ProtectedStackParamsList,
   ProtectedStackRoutes,
 } from '@/router/ProtectedStack';
-import {
-  PublishShiftComponent,
-  PublishShiftConfig,
-} from '@/components/publishShift/PublishShiftComponent';
+import { RootState, ShiftTimeInDayEnum } from '@/types';
 
 type EditShiftScreenProps = StackScreenProps<
   ProtectedStackParamsList,
@@ -50,7 +54,9 @@ export const EditShiftScreen: React.FC<EditShiftScreenProps> = ({
     (state: RootState) => state.profileData.facilityProfile
   );
 
-  const { isLoading, configuration } = useConfiguration(shiftInfo.category.code);
+  const { isLoading, configuration } = useConfiguration(
+    shiftInfo.category.code
+  );
   const dispatch = useDispatch<AppDispatch>();
   const { configureBottomModal, hideModal } = useModal();
 

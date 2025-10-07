@@ -1,7 +1,9 @@
 import React from 'react';
-import { IconDTO } from '@/types/widgets';
 import { StyleProp, View, ViewStyle } from 'react-native';
+
+import { IconDTO } from '@/types/widgets';
 import { resolveIconSize } from '@/utils/utils';
+
 import LivoIcon from '@/assets/icons/LivoIcon';
 
 interface SDIconProps extends IconDTO {

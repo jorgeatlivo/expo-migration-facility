@@ -1,12 +1,15 @@
 import React from 'react';
 import { StyleProp, StyleSheet, View, ViewStyle } from 'react-native';
-import { ProfessionalProfile } from '@/services/shifts';
-import FavoriteProfessional from './FavoriteProfessional';
-import { SPACE_VALUES } from '@/styles/spacing';
-import { WHITE } from '@/styles/colors';
-import { ShiftModalityEnum } from '@/types';
 import { NavigationProp } from '@react-navigation/native';
+
+import { ProfessionalProfile } from '@/services/shifts';
+
+import { WHITE } from '@/styles/colors';
+import { SPACE_VALUES } from '@/styles/spacing';
+
 import { ProtectedStackRoutes } from '@/router/ProtectedStack';
+import { ShiftModalityEnum } from '@/types';
+import FavoriteProfessional from './FavoriteProfessional';
 
 interface FavoriteProfessionalCardProps {
   shiftId?: number;

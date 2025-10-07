@@ -1,4 +1,5 @@
 import { Platform, StyleSheet } from 'react-native';
+
 import { BLACK, WHITE } from './colors';
 import { SPACE_VALUES } from './spacing';
 

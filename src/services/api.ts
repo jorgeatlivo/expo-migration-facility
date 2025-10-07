@@ -1,15 +1,17 @@
-import axios, {AxiosError} from 'axios';
+import DeviceInfo from 'react-native-device-info';
+
+import axios, { AxiosError } from 'axios';
 import i18next from 'i18next';
 
-import DeviceInfo from 'react-native-device-info';
-import {configureErrorModal} from '@/hooks/ModalContext';
+import ENV from '@/constants/env';
+import { configureErrorModal } from '@/hooks/ModalContext';
 import {
   NETWORK_ERROR_MODAL,
   SERVER_ERROR_MODAL,
   SERVER_TIMEOUT_MODAL,
 } from '@/hooks/modalTypes';
+
 import i18n from '@/locale/i18n';
-import ENV from '@/constants/env';
 
 const api = axios.create({
   baseURL: ENV.API_BASE_URL,
@@ -35,16 +37,16 @@ export function removeApiToken() {
 type InterceptorEjectionCallback = () => void;
 
 if (__DEV__) {
-  const isLogVerbose = ENV .LOG_VERBOSE === 'true';
+  const isLogVerbose = ENV.LOG_VERBOSE === 'true';
 
-  api.interceptors.request.use(config => {
+  api.interceptors.request.use((config) => {
     const locale = i18next.language ?? 'es';
     config.headers.set('X-Locale', locale);
 
     console.log(
       `API Request: ${config.method?.toUpperCase()} ${config.baseURL}${
         config.url
-      }`,
+      }`
     );
 
     if (isLogVerbose) {
@@ -54,13 +56,13 @@ if (__DEV__) {
     return config;
   });
 
-  api.interceptors.response.use(response => {
+  api.interceptors.response.use((response) => {
     console.log(
       `API Response: [${
         response.status
       }] ${response.config.method?.toUpperCase()} ${response.config.baseURL}${
         response.config.url
-      }`,
+      }`
     );
 
     if (isLogVerbose) {
@@ -72,7 +74,7 @@ if (__DEV__) {
 }
 
 export function configureUnauthorizedApi(
-  logoutDispatch: () => void,
+  logoutDispatch: () => void
 ): InterceptorEjectionCallback {
   console.log('Unauthorized Api Interceptor Configured');
   let onFulfilled = (response: any) => response;
@@ -82,11 +84,11 @@ export function configureUnauthorizedApi(
       (error.response.status === 401 || error.response.status === 403)
     ) {
       console.log(
-        `Response with ${error.response.status} status, dispatching logout action`,
+        `Response with ${error.response.status} status, dispatching logout action`
       );
       logoutDispatch();
       error.response.data = {
-        errorMessage: i18n.t('login_session_expired_error_message')
+        errorMessage: i18n.t('login_session_expired_error_message'),
       };
     }
 
@@ -105,26 +107,28 @@ export function handleApiError(error: AxiosError): never | void {
     if (message) {
       throw new ApiApplicationError(message);
     } else {
-      throw new ApiApplicationError(i18n.t('common_connecting_to_server_error_message'));
+      throw new ApiApplicationError(
+        i18n.t('common_connecting_to_server_error_message')
+      );
     }
     // @ts-ignore
   } else if (error.message === 'Network Error') {
     configureErrorModal(
       i18next.t('common_no_internet_connection_title'),
       i18next.t('common_no_internet_connection_subtitle'),
-      NETWORK_ERROR_MODAL,
+      NETWORK_ERROR_MODAL
     );
   } else if (error.request) {
     configureErrorModal(
       i18next.t('common_server_timeout_title'),
       i18next.t('common_server_timeout_subtitle'),
-      SERVER_TIMEOUT_MODAL,
+      SERVER_TIMEOUT_MODAL
     );
   } else {
     configureErrorModal(
       i18next.t('common_server_error_title'),
       i18next.t('common_server_error_subtitle'),
-      SERVER_ERROR_MODAL,
+      SERVER_ERROR_MODAL
     );
   }
 }

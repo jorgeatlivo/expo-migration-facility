@@ -1,9 +1,12 @@
 import React from 'react';
 import { StyleProp, StyleSheet, View, ViewStyle } from 'react-native';
+
+import StyledText from '@/components/StyledText';
+
 import { SPACE_VALUES } from '@/styles/spacing';
 import { TextDTO } from '@/types/widgets';
-import StyledText from '@/components/StyledText';
 import { resolveTypographyStyles } from '@/utils/utils';
+
 import { SDIcon } from './SDIcon';
 
 interface SDTextProps extends TextDTO {

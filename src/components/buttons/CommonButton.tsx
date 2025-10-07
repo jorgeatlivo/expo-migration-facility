@@ -1,26 +1,29 @@
 import React from 'react';
 import {
-  StyleSheet,
-  TouchableOpacityProps,
-  StyleProp,
-  ViewStyle,
-  TextStyle,
-  TextProps,
-  View,
   ActivityIndicator,
+  StyleProp,
+  StyleSheet,
+  TextProps,
+  TextStyle,
+  TouchableOpacityProps,
+  View,
+  ViewStyle,
 } from 'react-native';
+
+import Row from '@/components/atoms/Row';
+import { TouchableWrapper } from '@/components/buttons/TouchableWrapper';
 import StyledText from '@/components/StyledText';
-import { typographyStyles } from '@/styles/livoFonts';
+
 import {
   BADGE_GRAY,
   DARK_GRAY,
   DIVIDER_GRAY,
   PRIMARY_BLUE,
 } from '@/styles/colors';
+import { typographyStyles } from '@/styles/livoFonts';
 import { SPACE_VALUES } from '@/styles/spacing';
-import Row from '@/components/atoms/Row';
+
 import LivoIcon from '@/assets/icons/LivoIcon';
-import { TouchableWrapper } from '@/components/buttons/TouchableWrapper';
 
 export type ButtonWithUndoOptionProps =
   | {

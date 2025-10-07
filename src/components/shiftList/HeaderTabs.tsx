@@ -1,10 +1,12 @@
+import React from 'react';
 import { StyleSheet, TouchableOpacity } from 'react-native';
+
+import Row from '@/components/atoms/Row';
 import StyledText from '@/components/StyledText';
+
+import { BLUE_FADED, SLATE_GRAY } from '@/styles/colors';
 import { typographyStyles } from '@/styles/livoFonts';
 import { SPACE_VALUES } from '@/styles/spacing';
-import Row from '@/components/atoms/Row';
-import { BLUE_FADED, SLATE_GRAY } from '@/styles/colors';
-import React from 'react';
 
 interface HeaderTabsProps {
   tabs: string[];

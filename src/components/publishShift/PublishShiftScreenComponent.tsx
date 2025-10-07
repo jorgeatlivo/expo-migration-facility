@@ -1,27 +1,32 @@
+import React, { useState } from 'react';
+import { Alert, StyleSheet, View } from 'react-native';
+import { useTranslation } from 'react-i18next';
+import { useDispatch, useSelector } from 'react-redux';
+
+import moment from 'moment';
+
 import { ApiApplicationError } from '@/services/api';
 import {
-  useConfiguration,
-  publishShift,
   OnboardingShiftsConfig,
+  publishShift,
+  useConfiguration,
 } from '@/services/shifts';
 import {
   setDaySelectedAction,
   toggleNewShiftAvailableAction,
 } from '@/store/actions/shiftActions';
-import { WHITE } from '@/styles/colors';
-import { Category, RootState } from '@/types';
-import moment from 'moment';
-import React, { useState } from 'react';
-import { useTranslation } from 'react-i18next';
-import { Alert, View, StyleSheet } from 'react-native';
-import { useSelector, useDispatch } from 'react-redux';
+
 import { LoadingScreen } from '@/components/common/LoadingScreen';
+
+import { WHITE } from '@/styles/colors';
 import { buildShiftDateTime } from '@/utils/utils';
+
+import { ProtectedStackRoutes } from '@/router/ProtectedStack';
+import { Category, RootState } from '@/types';
 import {
   PublishShiftComponent,
   PublishShiftConfig,
 } from './PublishShiftComponent';
-import { ProtectedStackRoutes } from '@/router/ProtectedStack';
 
 interface PublishShiftComponentProps {
   goBack: (selectedDay?: string) => void;

@@ -1,15 +1,22 @@
-import { StackScreenProps } from '@react-navigation/stack';
 import React, { useCallback, useEffect, useMemo, useState } from 'react';
-import { useTranslation } from 'react-i18next';
 import { RefreshControl, ScrollView, StyleSheet, View } from 'react-native';
-import { TouchableOpacity } from 'react-native-gesture-handler';
+import { useTranslation } from 'react-i18next';
+import { TouchableOpacity } from 'react-native';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
 import { useDispatch, useSelector } from 'react-redux';
+import { StackScreenProps } from '@react-navigation/stack';
+
 import { IconPencil } from 'tabler-icons-react-native';
-import { formatDate } from '@/common/utils';
+
+import { ClaimRequest, ShiftClaimStatus } from '@/services/shifts';
+import { fetchShiftInfoDataAction } from '@/store/actions/shiftActions';
+import { AppDispatch } from '@/store/configureStore';
+
+import Row from '@/components/atoms/Row';
 import NoClaimsPlaceholder from '@/components/claims/NoClaimsPlaceholder';
 import { LoadingScreen } from '@/components/common/LoadingScreen';
 import { TagComponent } from '@/components/profile/TagComponent';
+import StyledText from '@/components/StyledText';
 import { ConfirmedProfessionalsComponent } from '@/components/shiftDetails/claims/ConfirmedProfessionals';
 import { MultiplePendingClaimsComponent } from '@/components/shiftDetails/claims/MultiplePendingClaimsComponent';
 import { PendingProfessionalClaimItem } from '@/components/shiftDetails/claims/PendingProfessionalClaimItem';
@@ -17,10 +24,8 @@ import { DetailsComponent } from '@/components/shiftDetails/DetailsComponent';
 import { ExternalShiftIdComponent } from '@/components/shiftDetails/ExternalShiftIdComponent';
 import { ShiftInfo } from '@/components/shiftDetails/ShiftInfo';
 import { ModalityTag } from '@/components/shiftList/ModalityTag';
-import StyledText from '@/components/StyledText';
-import { ClaimRequest, ShiftClaimStatus } from '@/services/shifts';
-import { fetchShiftInfoDataAction } from '@/store/actions/shiftActions';
-import { AppDispatch } from '@/store/configureStore';
+
+import { useFetchFacility } from '@/hooks/useFetchFacility';
 import {
   ACTION_BLUE,
   BADGE_GRAY,
@@ -32,14 +37,14 @@ import {
 } from '@/styles/colors';
 import { typographyStyles } from '@/styles/livoFonts';
 import { BORDER, SPACE_VALUES } from '@/styles/spacing';
-import { RootState, ShiftModalityEnum, UserFeatureEnum } from '@/types';
+import { professionalProfileToOverviewDTO } from '@/types/professionals';
+
+import { formatDate } from '@/common/utils';
 import {
   ProtectedStackParamsList,
   ProtectedStackRoutes,
 } from '@/router/ProtectedStack';
-import Row from '@/components/atoms/Row';
-import { useFetchFacility } from '@/hooks/useFetchFacility';
-import { professionalProfileToOverviewDTO } from '@/types/professionals';
+import { RootState, ShiftModalityEnum, UserFeatureEnum } from '@/types';
 
 type ShiftDetailsScreen = StackScreenProps<
   ProtectedStackParamsList,

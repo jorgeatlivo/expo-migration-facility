@@ -1,8 +1,14 @@
-import { NavigationContainerRef, CommonActions } from '@react-navigation/native';
+import {
+  CommonActions,
+  NavigationContainerRef,
+} from '@react-navigation/native';
 
-let _navigator: NavigationContainerRef<ReactNavigation.RootParamList> | null = null;
+let _navigator: NavigationContainerRef<ReactNavigation.RootParamList> | null =
+  null;
 
-export function setTopLevelNavigator(navigatorRef:  NavigationContainerRef<ReactNavigation.RootParamList>| null) {
+export function setTopLevelNavigator(
+  navigatorRef: NavigationContainerRef<ReactNavigation.RootParamList> | null
+) {
   _navigator = navigatorRef;
 }
 

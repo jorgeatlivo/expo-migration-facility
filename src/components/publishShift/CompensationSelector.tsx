@@ -1,11 +1,15 @@
 import React from 'react';
-import { CompensationSelectionOption } from "@/services/shifts"
 import { StyleSheet, TouchableOpacity, View } from 'react-native';
-import LivoIcon from '@/assets/icons/LivoIcon';
+
+import { CompensationSelectionOption } from '@/services/shifts';
+
+import StyledText from '@/components/StyledText';
+
+import { ACTION_BLUE, BORDER_GRAY } from '@/styles/colors';
 import { typographyStyles } from '@/styles/livoFonts';
 import { SPACE_VALUES } from '@/styles/spacing';
-import { ACTION_BLUE, BORDER_GRAY } from '@/styles/colors';
-import StyledText from '@/components/StyledText';
+
+import LivoIcon from '@/assets/icons/LivoIcon';
 
 interface CompensationSelectorProps {
   options: CompensationSelectionOption[];
@@ -16,11 +20,11 @@ interface CompensationSelectorProps {
 export function CompensationSelector(props: CompensationSelectorProps) {
   const toggleValue = (changedValue: string) => {
     if (props.selectedValues.includes(changedValue)) {
-      props.onChange(props.selectedValues.filter(v => v !== changedValue))
+      props.onChange(props.selectedValues.filter((v) => v !== changedValue));
     } else {
       props.onChange([...props.selectedValues, changedValue]);
     }
-  }
+  };
 
   return (
     <View style={styles.container}>
@@ -60,7 +64,7 @@ const styles = StyleSheet.create({
     borderWidth: 1,
     padding: 12,
     borderRadius: 8,
-    marginBottom: SPACE_VALUES.large
+    marginBottom: SPACE_VALUES.large,
   },
   optionContainer: {
     flexDirection: 'row',

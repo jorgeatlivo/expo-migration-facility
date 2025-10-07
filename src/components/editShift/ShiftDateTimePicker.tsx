@@ -1,10 +1,11 @@
-import React, { useState} from 'react';
+import React, { useState } from 'react';
+import { Button, Platform, View } from 'react-native';
+
 import DateTimePicker, {
   DateTimePickerEvent,
 } from '@react-native-community/datetimepicker';
-import {Button, Platform, View} from 'react-native';
-import i18n from '@/locale/i18n';
 
+import i18n from '@/locale/i18n';
 
 interface ShiftDateTimePickerProps {
   placeholder: string;
@@ -15,7 +16,14 @@ interface ShiftDateTimePickerProps {
   iconName?: string;
 }
 
-export const ShiftDateTimePicker = ({placeholder, onSelectedDateHandler, minimumDate, value, mode, iconName}: ShiftDateTimePickerProps) => {
+export const ShiftDateTimePicker = ({
+  placeholder,
+  onSelectedDateHandler,
+  minimumDate,
+  value,
+  mode,
+  iconName,
+}: ShiftDateTimePickerProps) => {
   const [show, setShow] = useState(false);
 
   const onChange = (_: DateTimePickerEvent, selectedDate?: Date) => {
@@ -26,23 +34,23 @@ export const ShiftDateTimePicker = ({placeholder, onSelectedDateHandler, minimum
   };
 
   return (
-      <View style={{ alignSelf: 'center' }}>
-        {Platform.OS === 'android' && (
-            <Button title={value.toDateString()} onPress={() => setShow(true)} />
-        )}
+    <View style={{ alignSelf: 'center' }}>
+      {Platform.OS === 'android' && (
+        <Button title={value.toDateString()} onPress={() => setShow(true)} />
+      )}
 
-        {show && (
-            <DateTimePicker
-                value={value}
-                mode={mode}
-                display={Platform.OS === 'ios' ? 'inline' : 'default'}
-                onChange={onChange}
-                minimumDate={minimumDate}
-                locale={i18n.language}
-                style={{ alignSelf: 'center' }}
-                placeholderText={placeholder}
-            />
-        )}
-      </View>
+      {show && (
+        <DateTimePicker
+          value={value}
+          mode={mode}
+          display={Platform.OS === 'ios' ? 'inline' : 'default'}
+          onChange={onChange}
+          minimumDate={minimumDate}
+          locale={i18n.language}
+          style={{ alignSelf: 'center' }}
+          placeholderText={placeholder}
+        />
+      )}
+    </View>
   );
 };

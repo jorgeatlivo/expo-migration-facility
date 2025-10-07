@@ -1,12 +1,16 @@
 import React from 'react';
-import { useTranslation } from 'react-i18next';
 import { StyleSheet, TouchableOpacity, View } from 'react-native';
-import LivoIcon from '@/assets/icons/LivoIcon';
+import { useTranslation } from 'react-i18next';
+
 import { CVType, ProfessionalProfile } from '@/services/shifts';
+
+import StyledText from '@/components/StyledText';
+
 import { BADGE_GRAY } from '@/styles/colors';
 import { commonStyles } from '@/styles/commonStyles';
 import { typographyStyles } from '@/styles/livoFonts';
-import StyledText from '@/components/StyledText';
+
+import LivoIcon from '@/assets/icons/LivoIcon';
 import { DownloadCVButton } from './DownloadCVButton';
 
 interface ProfileExperienceCardProps {
@@ -24,12 +28,12 @@ export function ProfileExperienceCard({
 }: ProfileExperienceCardProps) {
   const { t } = useTranslation();
 
-  const hasLivoCV = (
-    professionalProfile.availableCVTypes || []
-  ).includes(CVType.LIVO_CV);
-  const hasCVPdf = (
-    professionalProfile.availableCVTypes || []
-  ).includes(CVType.PDF_UPLOAD);
+  const hasLivoCV = (professionalProfile.availableCVTypes || []).includes(
+    CVType.LIVO_CV
+  );
+  const hasCVPdf = (professionalProfile.availableCVTypes || []).includes(
+    CVType.PDF_UPLOAD
+  );
 
   const component = (
     <View style={[commonStyles.cardContainer, style]}>

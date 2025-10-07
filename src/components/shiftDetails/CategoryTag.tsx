@@ -1,10 +1,13 @@
 import React from 'react';
 import { View } from 'react-native';
-import { SPACE_VALUES } from '@/styles/spacing';
+
 import StyledText from '@/components/StyledText';
-import { typographyStyles } from '@/styles/livoFonts';
-import { Category } from '@/types';
+
 import { CAPTION_GRAY } from '@/styles/colors';
+import { typographyStyles } from '@/styles/livoFonts';
+import { SPACE_VALUES } from '@/styles/spacing';
+
+import { Category } from '@/types';
 
 interface CategoryTagProps {
   category: Category;

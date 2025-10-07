@@ -1,8 +1,11 @@
-import { StyleSheet, View } from 'react-native';
 import React from 'react';
-import CustomCheckBox from '@/components/common/CustomCheckBox';
-import { IconSquare, IconSquareCheckFilled } from 'tabler-icons-react-native';
+import { StyleSheet, View } from 'react-native';
 import { useTranslation } from 'react-i18next';
+
+import { IconSquare, IconSquareCheckFilled } from 'tabler-icons-react-native';
+
+import CustomCheckBox from '@/components/common/CustomCheckBox';
+
 import { SPACE_VALUES } from '@/styles/spacing';
 
 const OnboardingShiftRequiredCheckbox = ({

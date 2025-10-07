@@ -1,19 +1,25 @@
-import { StackScreenProps } from '@react-navigation/stack';
-import moment from 'moment';
 import React, { useCallback, useEffect, useMemo, useState } from 'react';
-import { useTranslation } from 'react-i18next';
 import { Alert, StyleSheet, TouchableOpacity, View } from 'react-native';
+import { useTranslation } from 'react-i18next';
 import { RefreshControl, ScrollView } from 'react-native-gesture-handler';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
 import { useDispatch, useSelector } from 'react-redux';
-import { LoadingScreen } from '@/components/common/LoadingScreen';
-import ScreenTitle from '@/components/common/ScreenTitle';
-import StyledText from '@/components/StyledText';
-import { timeConfiguration } from '@/locale/timeConfiguration';
+import { CompositeScreenProps } from '@react-navigation/native';
+import { StackScreenProps } from '@react-navigation/stack';
+
+import moment from 'moment';
+
 import { ApiApplicationError } from '@/services/api';
 import { fetchShifts } from '@/services/shifts';
 import { setDaySelectedAction } from '@/store/actions/shiftActions';
 import { AppDispatch } from '@/store/configureStore';
+
+import Row from '@/components/atoms/Row';
+import { LoadingScreen } from '@/components/common/LoadingScreen';
+import ScreenTitle from '@/components/common/ScreenTitle';
+import StyledText from '@/components/StyledText';
+
+import { useEffectOnce } from '@/hooks/useEffectOnce';
 import {
   BADGE_GRAY,
   BLACK,
@@ -23,20 +29,19 @@ import {
   WHITE,
 } from '@/styles/colors';
 import { commonStyles, shadowStyle } from '@/styles/commonStyles';
-import { LayoutTextEnum, fontWeight } from '@/styles/fonts';
-import { DayShift, RootState, Shift } from '@/types';
-import { CalendarModal } from './CalendarModal';
-import { CalendarShiftList } from './CalendarShiftList';
+import { fontWeight, LayoutTextEnum } from '@/styles/fonts';
+import { SPACE_VALUES } from '@/styles/spacing';
+
+import LivoIcon from '@/assets/icons/LivoIcon';
+import { timeConfiguration } from '@/locale/timeConfiguration';
 import {
   ProtectedStackParamsList,
   ProtectedStackRoutes,
 } from '@/router/ProtectedStack';
-import { useEffectOnce } from '@/hooks/useEffectOnce';
-import { CompositeScreenProps } from '@react-navigation/native';
 import { TabRoutes, TabsParamsList } from '@/router/TabsNavigator';
-import LivoIcon from '@/assets/icons/LivoIcon';
-import { SPACE_VALUES } from '@/styles/spacing';
-import Row from '@/components/atoms/Row';
+import { DayShift, RootState, Shift } from '@/types';
+import { CalendarModal } from './CalendarModal';
+import { CalendarShiftList } from './CalendarShiftList';
 
 interface DayShiftFormatted {
   weekDay: number;
@@ -221,14 +226,14 @@ export const CalendarScreen: React.FC<CalendarScreenProps> = ({
                     ? PURPLE
                     : DARK_BLUE
                   : hasShifts
-                  ? WHITE
-                  : 'transparent',
+                    ? WHITE
+                    : 'transparent',
                 borderWidth: isToday || isHoliday ? 1 : 0,
                 borderColor: isToday
                   ? DARK_BLUE
                   : isHoliday
-                  ? PURPLE
-                  : 'transparent',
+                    ? PURPLE
+                    : 'transparent',
               },
             ]}
           >

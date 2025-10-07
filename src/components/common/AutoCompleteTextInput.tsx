@@ -1,8 +1,10 @@
 import React, { useState } from 'react';
-import { View, TouchableOpacity, FlatList, Text, Keyboard } from 'react-native';
-import { SPACE_VALUES } from '@/styles/spacing';
-import CustomTextInput from './CustomTextInput';
+import { FlatList, Keyboard, Text, TouchableOpacity, View } from 'react-native';
+
 import { typographyStyles } from '@/styles/livoFonts';
+import { SPACE_VALUES } from '@/styles/spacing';
+
+import CustomTextInput from './CustomTextInput';
 
 interface AutoCompleteTextInputProps<T> {
   parentOption: T;

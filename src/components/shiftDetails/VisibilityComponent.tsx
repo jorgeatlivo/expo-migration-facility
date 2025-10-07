@@ -1,13 +1,16 @@
 import React from 'react';
-import { useTranslation } from 'react-i18next';
 import { TouchableOpacity, View } from 'react-native';
-import LivoIcon from '@/assets/icons/LivoIcon';
+import { useTranslation } from 'react-i18next';
+
+import Row from '@/components/atoms/Row';
+import StyledText from '@/components/StyledText';
+
 import { typographyStyles } from '@/styles/livoFonts';
 import { SPACE_VALUES } from '@/styles/spacing';
 import { modalityTags } from '@/styles/utils';
+
+import LivoIcon from '@/assets/icons/LivoIcon';
 import { ShiftModalityEnum } from '@/types';
-import StyledText from '@/components/StyledText';
-import Row from '@/components/atoms/Row';
 
 interface VisibilityComponentProps {
   isExternalVisible: boolean;

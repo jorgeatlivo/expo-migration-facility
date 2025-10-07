@@ -1,9 +1,12 @@
-import { useQuery, useQueryClient } from '@tanstack/react-query';
-import {
-  fetchShiftFillRateProbabilities,
-  FillRatePredictionParams,
-} from '@/services/shifts';
 import { useEffect, useRef } from 'react';
+
+import { useQuery, useQueryClient } from '@tanstack/react-query';
+
+import {
+  FillRatePredictionParams,
+  fetchShiftFillRateProbabilities,
+} from '@/services/shifts';
+
 import { useDebouncedValue } from '@/hooks/useDebouncedValue';
 
 export const FETCH_FILL_RATE_PREDICTION = 'FETCH_FILL_RATE_PREDICTION';

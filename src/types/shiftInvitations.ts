@@ -1,4 +1,5 @@
-import {  ShiftConfigDTO } from '@/services/shifts';
+import { ShiftConfigDTO } from '@/services/shifts';
+
 import { ProfessionalOverviewDTO } from './professionals';
 
 export interface SearchProForShiftInvitationRequest {

@@ -1,10 +1,13 @@
 import React from 'react';
 import { StyleProp, StyleSheet, View, ViewStyle } from 'react-native';
+
 import { ProfessionalProfile } from '@/services/shifts';
-import { SPACE_VALUES } from '@/styles/spacing';
-import { InternalExperienceComponent } from './InternalExperienceComponent';
-import { ShiftModalityEnum } from '@/types';
+
 import { WHITE } from '@/styles/colors';
+import { SPACE_VALUES } from '@/styles/spacing';
+
+import { ShiftModalityEnum } from '@/types';
+import { InternalExperienceComponent } from './InternalExperienceComponent';
 import { LicenseNumberCard } from './LicenseNumberCard';
 import { ProfileExperienceCard } from './ProfileExperienceCard';
 
@@ -26,9 +29,7 @@ export default function ProfileInformation({
   return modality === ShiftModalityEnum.INTERNAL ? (
     <View style={[styles.cardStyle, style]}>
       <InternalExperienceComponent
-        employeeNumber={
-          professionalProfile.internal?.employeeNumber
-        }
+        employeeNumber={professionalProfile.internal?.employeeNumber}
         contractType={professionalProfile.internal?.contractType}
         unit={professionalProfile.internal?.unit}
         datafields={professionalProfile.internal?.dataFields}

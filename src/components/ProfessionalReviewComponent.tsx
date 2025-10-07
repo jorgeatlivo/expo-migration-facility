@@ -1,10 +1,14 @@
 import React from 'react';
-import {useTranslation} from 'react-i18next';
-import {StyleSheet, View} from 'react-native';
+import { StyleSheet, View } from 'react-native';
+import { useTranslation } from 'react-i18next';
+
 import Icon from 'react-native-vector-icons/FontAwesome'; // Adjust this import based on your icon library
-import {ProfessionalReview, ReviewFeedback} from '@/services/shifts';
-import {LIGHT_GRAY, YELLOW} from '@/styles/colors';
-import {LayoutTextEnum, fontSize, fontWeight} from '@/styles/fonts';
+
+import { ProfessionalReview, ReviewFeedback } from '@/services/shifts';
+
+import { LIGHT_GRAY, YELLOW } from '@/styles/colors';
+import { fontSize, fontWeight, LayoutTextEnum } from '@/styles/fonts';
+
 import StyledText from './StyledText';
 
 export const ProfessionalReviewComponent = ({
@@ -12,13 +16,14 @@ export const ProfessionalReviewComponent = ({
 }: {
   review: ProfessionalReview;
 }) => {
-  const {t} = useTranslation();
+  const { t } = useTranslation();
 
   const reviewInfo = (reviewFeedback: ReviewFeedback) => (
     <>
       <StyledText
         type={LayoutTextEnum.headerSmall}
-        style={styles.reviewComponentGeneralRating}>
+        style={styles.reviewComponentGeneralRating}
+      >
         <Icon name="star" size={15} color={YELLOW} />
         &nbsp;
         {reviewFeedback.generalRating.toFixed(1)}{' '}
@@ -35,13 +40,15 @@ export const ProfessionalReviewComponent = ({
         </StyledText>
         <StyledText
           type={LayoutTextEnum.subHeader}
-          style={styles.monthYearText}>
+          style={styles.monthYearText}
+        >
           {review.month} {review.year}
         </StyledText>
       </View>
       <StyledText
         type={LayoutTextEnum.subHeader}
-        style={styles.specializationSubHeader}>
+        style={styles.specializationSubHeader}
+      >
         {review.specialization?.displayText ??
           review.specialization.translations.es}
       </StyledText>

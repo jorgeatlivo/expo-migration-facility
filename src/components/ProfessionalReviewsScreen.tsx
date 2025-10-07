@@ -1,17 +1,19 @@
-import { StackScreenProps } from '@react-navigation/stack';
 import React from 'react';
-import { useTranslation } from 'react-i18next';
 import { SafeAreaView, StyleSheet, View } from 'react-native';
+import { useTranslation } from 'react-i18next';
 import { FlatList } from 'react-native-gesture-handler';
+import { StackScreenProps } from '@react-navigation/stack';
+
 import { WHITE, YELLOW } from '@/styles/colors';
-import { LayoutTextEnum, fontSize } from '@/styles/fonts';
-import { ProfessionalReviewComponent } from './ProfessionalReviewComponent';
-import StyledText from './StyledText';
+import { fontSize, LayoutTextEnum } from '@/styles/fonts';
+
+import LivoIcon from '@/assets/icons/LivoIcon';
 import {
   ProtectedStackParamsList,
   ProtectedStackRoutes,
 } from '@/router/ProtectedStack';
-import LivoIcon from '@/assets/icons/LivoIcon';
+import { ProfessionalReviewComponent } from './ProfessionalReviewComponent';
+import StyledText from './StyledText';
 
 type ProfessionalReviewsScreenProps = StackScreenProps<
   ProtectedStackParamsList,

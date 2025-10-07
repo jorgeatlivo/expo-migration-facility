@@ -1,10 +1,13 @@
 import React from 'react';
-import { Category } from '@/types';
-import { CategoryTag } from '@/components/shiftDetails/CategoryTag';
-import { SPACE_VALUES } from '@/styles/spacing';
 import { ScrollView, TouchableOpacity } from 'react-native';
-import LivoIcon from '@/assets/icons/LivoIcon';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
+
+import { CategoryTag } from '@/components/shiftDetails/CategoryTag';
+
+import { SPACE_VALUES } from '@/styles/spacing';
+
+import LivoIcon from '@/assets/icons/LivoIcon';
+import { Category } from '@/types';
 
 interface SelectCategoryComponentProps {
   onPressCategory: (category: Category) => void;

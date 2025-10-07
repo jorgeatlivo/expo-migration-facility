@@ -1,11 +1,13 @@
 import React from 'react';
 import {
-  TouchableOpacityProps,
   StyleProp,
-  ViewStyle,
   TextStyle,
+  TouchableOpacityProps,
+  ViewStyle,
 } from 'react-native';
+
 import { LIGHT_GRAY, NOTIFICATION_RED, PRIMARY_BLUE } from '@/styles/colors';
+
 import CommonButton from './CommonButton';
 
 interface ActionButtonProps extends TouchableOpacityProps {

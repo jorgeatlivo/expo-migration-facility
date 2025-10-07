@@ -1,19 +1,23 @@
 import React from 'react';
-import {useTranslation} from 'react-i18next';
-import {StyleSheet, View} from 'react-native';
-import {ClaimRequest} from '@/services/shifts';
-import {PRIMARY_BLUE, WHITE} from '@/styles/colors';
-import {commonStyles} from '@/styles/commonStyles';
-import {LayoutTextEnum} from '@/styles/fonts';
+import { StyleSheet, View } from 'react-native';
+import { useTranslation } from 'react-i18next';
+
+import { ClaimRequest } from '@/services/shifts';
+
 import StyledText from '@/components/StyledText';
-import {ProfileImage} from './ProfileImage';
+
+import { PRIMARY_BLUE, WHITE } from '@/styles/colors';
+import { commonStyles } from '@/styles/commonStyles';
+import { LayoutTextEnum } from '@/styles/fonts';
+
+import { ProfileImage } from './ProfileImage';
 
 interface ClaimRequestProps {
   request: ClaimRequest;
 }
 
-export const ClaimRequestRow: React.FC<ClaimRequestProps> = ({request}) => {
-  const {t} = useTranslation();
+export const ClaimRequestRow: React.FC<ClaimRequestProps> = ({ request }) => {
+  const { t } = useTranslation();
 
   return (
     <View style={styles.card}>
@@ -24,7 +28,8 @@ export const ClaimRequestRow: React.FC<ClaimRequestProps> = ({request}) => {
         />
         <StyledText
           type={LayoutTextEnum.subHeader}
-          style={styles.textCardStyle}>
+          style={styles.textCardStyle}
+        >
           {request.professionalProfile.firstName}{' '}
           {request.professionalProfile.lastName}{' '}
         </StyledText>

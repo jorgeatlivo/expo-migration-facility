@@ -1,11 +1,14 @@
 import React from 'react';
-import {useTranslation} from 'react-i18next';
-import {StyleSheet, TouchableOpacity, View} from 'react-native';
+import { StyleSheet, TouchableOpacity, View } from 'react-native';
+import { useTranslation } from 'react-i18next';
 import Modal from 'react-native-modal';
+
 import Icon from 'react-native-vector-icons/FontAwesome';
-import {BLACK, CORAL} from '@/styles/colors';
-import {LayoutTextEnum} from '@/styles/fonts';
+
 import StyledText from '@/components/StyledText';
+
+import { BLACK, CORAL } from '@/styles/colors';
+import { LayoutTextEnum } from '@/styles/fonts';
 
 interface CancelEditModalProps {
   visible: boolean;
@@ -20,7 +23,7 @@ export const CancelEditModal: React.FC<CancelEditModalProps> = ({
   visible,
   onDismiss,
 }) => {
-  const {t} = useTranslation();
+  const { t } = useTranslation();
 
   const handleCancelShift = () => {
     onDismiss();
@@ -42,7 +45,8 @@ export const CancelEditModal: React.FC<CancelEditModalProps> = ({
       backdropTransitionOutTiming={300}
       style={styles.modalContainer}
       onSwipeComplete={onDismiss} // Handle swipe down to dismiss
-      swipeDirection="down">
+      swipeDirection="down"
+    >
       <View style={styles.modalContent}>
         {/* Dismissible indicator */}
         <View style={styles.dismissibleIndicator} />
@@ -61,7 +65,8 @@ export const CancelEditModal: React.FC<CancelEditModalProps> = ({
           <Icon name="trash" size={20} color={CORAL} style={styles.iconStyle} />
           <StyledText
             type={LayoutTextEnum.headerSmall}
-            style={styles.cancelText}>
+            style={styles.cancelText}
+          >
             {t('shift_list_cancel_shift_label')}
           </StyledText>
         </TouchableOpacity>

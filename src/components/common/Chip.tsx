@@ -1,8 +1,10 @@
-import { Typography } from '@/components/atoms/Typography';
 import React from 'react';
 import { Animated, StyleSheet } from 'react-native';
-import { SPACE_VALUES } from '@/styles/spacing';
+
+import { Typography } from '@/components/atoms/Typography';
+
 import { WHITE } from '@/styles/colors';
+import { SPACE_VALUES } from '@/styles/spacing';
 
 interface Props {
   label: string;

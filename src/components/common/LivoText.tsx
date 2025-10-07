@@ -1,12 +1,12 @@
-import React, {ReactNode} from 'react';
-import {StyleProp, Text, TextProps, TextStyle} from 'react-native';
+import React, { ReactNode } from 'react';
+import { StyleProp, Text, TextProps, TextStyle } from 'react-native';
 
 interface LivoTextProps extends TextProps {
   children: ReactNode;
   style?: StyleProp<TextStyle>;
 }
 
-const LivoText = ({children, style, ...props}: LivoTextProps) => {
+const LivoText = ({ children, style, ...props }: LivoTextProps) => {
   return (
     <Text {...props} style={[styles.text, style]}>
       {children}
@@ -14,7 +14,7 @@ const LivoText = ({children, style, ...props}: LivoTextProps) => {
   );
 };
 
-const styles: {text: TextStyle} = {
+const styles: { text: TextStyle } = {
   text: {
     fontFamily: 'Roboto-Regular',
   },

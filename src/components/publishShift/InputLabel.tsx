@@ -1,11 +1,13 @@
-import Row from '@/components/atoms/Row';
-import StyledText from '@/components/StyledText';
 import React from 'react';
 import { StyleSheet } from 'react-native';
-import { SPACE_VALUES } from '@/styles/spacing';
-import { typographyStyles } from '@/styles/livoFonts';
-import { BLUE_FADED } from '@/styles/colors';
 import { useTranslation } from 'react-i18next';
+
+import Row from '@/components/atoms/Row';
+import StyledText from '@/components/StyledText';
+
+import { BLUE_FADED } from '@/styles/colors';
+import { typographyStyles } from '@/styles/livoFonts';
+import { SPACE_VALUES } from '@/styles/spacing';
 
 interface Props {
   label: string;

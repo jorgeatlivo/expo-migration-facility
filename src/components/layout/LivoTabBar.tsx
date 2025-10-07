@@ -1,14 +1,17 @@
 import React, { useState } from 'react';
-import { View, TouchableOpacity } from 'react-native';
-import { TabRoutes } from '@/router/TabsNavigator';
-import { SPACE_VALUES } from '@/styles/spacing';
-import { ACTION_BLUE, DIVIDER_GRAY, WHITE } from '@/styles/colors';
+import { TouchableOpacity, View } from 'react-native';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
-import { BottomTabBarProps } from '@react-navigation/bottom-tabs';
-import LivoIcon from '@/assets/icons/LivoIcon';
-import { fetchProfessionalAgendaThunk } from '@/store/actions/professionalAgendaActions';
 import { useDispatch } from 'react-redux';
+import { BottomTabBarProps } from '@react-navigation/bottom-tabs';
+
+import { fetchProfessionalAgendaThunk } from '@/store/actions/professionalAgendaActions';
 import { AppDispatch } from '@/store/configureStore';
+
+import { ACTION_BLUE, DIVIDER_GRAY, WHITE } from '@/styles/colors';
+import { SPACE_VALUES } from '@/styles/spacing';
+
+import LivoIcon from '@/assets/icons/LivoIcon';
+import { TabRoutes } from '@/router/TabsNavigator';
 
 interface LivoTabBarProps extends BottomTabBarProps {}
 

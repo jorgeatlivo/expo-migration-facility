@@ -1,4 +1,4 @@
-import React, {createContext, useState} from 'react';
+import React, { createContext, useState } from 'react';
 
 type PublishShiftContext = {
   details: string;
@@ -7,22 +7,21 @@ type PublishShiftContext = {
 
 const PublishShiftContext = createContext<PublishShiftContext>({
   details: '',
-  setDetails: () => {}
+  setDetails: () => {},
 });
 
-export const PublishShiftContextProvider: React.FC<{children: React.ReactNode}> = ({
-  children,
-}: {
+export const PublishShiftContextProvider: React.FC<{
   children: React.ReactNode;
-}) => {
+}> = ({ children }: { children: React.ReactNode }) => {
   const [details, setdetails] = useState('');
 
   return (
     <PublishShiftContext.Provider
       value={{
-       details,
+        details,
         setDetails: setdetails,
-      }}>
+      }}
+    >
       {children}
     </PublishShiftContext.Provider>
   );

@@ -1,17 +1,21 @@
 import React from 'react';
-import { useTranslation } from 'react-i18next';
 import { View } from 'react-native';
+import { useTranslation } from 'react-i18next';
+
 import { ClaimRequest } from '@/services/shifts';
+
+import { ProfileImage } from '@/components/claimReviews/ProfileImage';
+import CustomTextInput from '@/components/common/CustomTextInput';
+import { Divider } from '@/components/common/Divider';
+import StyledText from '@/components/StyledText';
+
 import { CORAL } from '@/styles/colors';
 import { typographyStyles } from '@/styles/livoFonts';
 import { SPACE_VALUES } from '@/styles/spacing';
+
 import { Shift } from '@/types';
-import { ProfileImage } from '@/components/claimReviews/ProfileImage';
-import CustomTextInput from '@/components/common/CustomTextInput';
-import StyledText from '@/components/StyledText';
 import { ConfirmationModal } from './ConfirmationModal';
 import { ShiftSummary } from './ShiftSummary';
-import {Divider} from "@/components/common/Divider";
 
 type CancelClaimModalProps = {
   shift: Shift;

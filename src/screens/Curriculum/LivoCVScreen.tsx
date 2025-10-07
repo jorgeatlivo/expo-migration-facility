@@ -1,18 +1,22 @@
 import React, { useLayoutEffect, useState } from 'react';
-import { View, ScrollView, StyleSheet } from 'react-native';
-import { StackScreenProps } from '@react-navigation/stack';
-import { LoadingScreen } from '@/components/common/LoadingScreen';
-import { ScreenStyles } from '@/styles/common/screen';
-import { LivoCVDetailsDTO } from '@/types/curriculum';
-import { fetchLivoCVDetails } from '@/services/professionals';
-import { QualificationSection } from '@/components/widgets/Curriculum/QualificationSection';
-import { SPACE_VALUES } from '@/styles/spacing';
+import { ScrollView, StyleSheet, View } from 'react-native';
 import { useTranslation } from 'react-i18next';
+import { StackScreenProps } from '@react-navigation/stack';
+
+import { fetchLivoCVDetails } from '@/services/professionals';
+
+import { LoadingScreen } from '@/components/common/LoadingScreen';
+import { QualificationSection } from '@/components/widgets/Curriculum/QualificationSection';
+
+import { useEffectOnce } from '@/hooks/useEffectOnce';
+import { ScreenStyles } from '@/styles/common/screen';
+import { SPACE_VALUES } from '@/styles/spacing';
+import { LivoCVDetailsDTO } from '@/types/curriculum';
+
 import {
   ProtectedStackParamsList,
   ProtectedStackRoutes,
 } from '@/router/ProtectedStack';
-import { useEffectOnce } from '@/hooks/useEffectOnce';
 
 type LivoCVScreenProps = StackScreenProps<
   ProtectedStackParamsList,

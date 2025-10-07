@@ -1,8 +1,9 @@
 import React, { useState } from 'react';
-import { TouchableOpacity, StyleSheet } from 'react-native';
-import { SPACE_VALUES } from '@/styles/spacing';
+import { StyleSheet, TouchableOpacity } from 'react-native';
+
+import Row from '@/components/atoms/Row';
 import StyledText from '@/components/StyledText';
-import { FontWeightEnum, typographyStyles } from '@/styles/livoFonts';
+
 import {
   ACTION_BLUE,
   BADGE_GRAY,
@@ -11,7 +12,8 @@ import {
   DIVIDER_GRAY,
   WHITE,
 } from '@/styles/colors';
-import Row from '@/components/atoms/Row';
+import { FontWeightEnum, typographyStyles } from '@/styles/livoFonts';
+import { SPACE_VALUES } from '@/styles/spacing';
 
 interface TagType {
   id: string;

@@ -1,12 +1,15 @@
 import React, { useState } from 'react';
+import { StyleSheet, View } from 'react-native';
 import { useTranslation } from 'react-i18next';
-import { View, StyleSheet } from 'react-native';
 
-import Toggle from "@/common/Toggle";
 import { ClaimRequest } from '@/services/shifts';
+
+import StyledText from '@/components/StyledText';
+
 import { typographyStyles } from '@/styles/livoFonts';
 import { SPACE_VALUES } from '@/styles/spacing';
-import StyledText from '@/components/StyledText';
+
+import Toggle from '@/common/Toggle';
 import { ProfessionalClaimRow } from './ProfessionalClaimRow';
 import { SlotReasons } from './SlotReasonList';
 

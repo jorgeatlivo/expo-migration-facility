@@ -1,7 +1,9 @@
-import { createStackNavigator } from '@react-navigation/stack';
 import React from 'react';
 import { useTranslation } from 'react-i18next';
+import { createStackNavigator } from '@react-navigation/stack';
+
 import { CustomHeaderBackIcon } from '@/components/common/CustomHeaderBackIcon';
+
 import { ProfessionalAgendaList } from './ProfessionalAgenda';
 import { ProfessionalAgendaDetailViewComponent } from './ProfessionalAgendaDetailView';
 

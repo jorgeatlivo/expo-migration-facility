@@ -1,21 +1,24 @@
-import i18next from 'i18next';
 import React, {
-  ReactNode,
   createContext,
   forwardRef,
+  ReactNode,
   useContext,
   useEffect,
   useImperativeHandle,
   useState,
 } from 'react';
 import Modal, { ModalProps, PresentationStyle } from 'react-native-modal';
+
+import i18next from 'i18next';
 import {
   IconCloudOff,
   IconMoodSad,
   IconWifiOff,
 } from 'tabler-icons-react-native';
+
 import { BottomModalContainer } from '@/components/modals/BottomModalContainer';
 import { BottomModalContent } from '@/components/modals/BottomModalContent';
+
 import {
   NETWORK_ERROR_MODAL,
   SERVER_ERROR_MODAL,

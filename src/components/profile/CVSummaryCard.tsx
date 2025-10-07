@@ -1,18 +1,22 @@
 import React from 'react';
-import {commonStyles} from '@/styles/commonStyles';
-import {View} from 'react-native';
+import { View } from 'react-native';
+
 import StyledText from '@/components/StyledText';
-import {typographyStyles} from '@/styles/livoFonts';
-import {BADGE_GRAY} from '@/styles/colors';
+
+import { BADGE_GRAY } from '@/styles/colors';
+import { commonStyles } from '@/styles/commonStyles';
+import { typographyStyles } from '@/styles/livoFonts';
 
 interface CVSummaryCardProps {
   cvSummary: string;
 }
 
-export function CVSummaryCard({cvSummary}: CVSummaryCardProps) {
+export function CVSummaryCard({ cvSummary }: CVSummaryCardProps) {
   return (
     <View style={commonStyles.cardContainer}>
-      <StyledText style={{...typographyStyles.body.regular, color: BADGE_GRAY}}>
+      <StyledText
+        style={{ ...typographyStyles.body.regular, color: BADGE_GRAY }}
+      >
         {cvSummary}
       </StyledText>
     </View>

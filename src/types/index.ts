@@ -1,11 +1,12 @@
 import { ClaimRequest, SpecializationDTO } from '@/services/shifts';
+
 import { ProfessionalAgendaState } from './professionalAgenda';
 import { ProfessionalOverviewDTO } from './professionals';
 
 export enum ShiftTimeStatusEnum {
-  'PAST' = 'PAST',
-  'ONGOING' = 'ONGOING',
-  'UPCOMING' = 'UPCOMING',
+  PAST = 'PAST',
+  ONGOING = 'ONGOING',
+  UPCOMING = 'UPCOMING',
 }
 
 export enum CategoryCode {
@@ -254,8 +255,8 @@ export type LivoContact = {
 };
 
 export enum ShiftModalityEnum {
-  'INTERNAL' = 'INTERNAL',
-  'EXTERNAL' = 'EXTERNAL',
+  INTERNAL = 'INTERNAL',
+  EXTERNAL = 'EXTERNAL',
 }
 
 export enum ShiftTimeInDayEnum {

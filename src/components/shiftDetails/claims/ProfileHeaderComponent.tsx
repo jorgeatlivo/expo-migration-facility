@@ -1,17 +1,20 @@
 import React from 'react';
-import { TouchableOpacity, View, StyleSheet } from 'react-native';
+import { StyleSheet, TouchableOpacity, View } from 'react-native';
+import { useTranslation } from 'react-i18next';
+
 import { ClaimRequest } from '@/services/shifts';
-import StyledText from '@/components/StyledText';
-import { ReviewRow } from '@/components/profile/ReviewRow';
-import { FirstShifterTag } from '@/components/profile/FirstShifterTag';
-import { typographyStyles } from '@/styles/livoFonts';
+
+import { Typography } from '@/components/atoms/Typography';
 import { SquareProfilePicture } from '@/components/claimReviews/SquareProfileImage';
 import FavoriteTag from '@/components/profile/FavoriteTag';
+import { FirstShifterTag } from '@/components/profile/FirstShifterTag';
+import { ReviewRow } from '@/components/profile/ReviewRow';
+import StyledText from '@/components/StyledText';
+
 import { commonStyles } from '@/styles/commonStyles';
-import { Typography } from '@/components/atoms/Typography';
+import { typographyStyles } from '@/styles/livoFonts';
 import { markdown } from '@/utils/markdown';
-import { formattedDayMonth, formatTime } from '@/utils/utils';
-import { useTranslation } from 'react-i18next';
+import { formatTime, formattedDayMonth } from '@/utils/utils';
 
 export interface ProfileHeaderProps {
   claimRequest: ClaimRequest;

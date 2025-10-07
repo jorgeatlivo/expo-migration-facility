@@ -50,5 +50,5 @@ export enum AnalyticEvents {
    * @description Event when toggle off "Favorite professional" when assign candidate in shift publishing form.
    * @param {number} professionalId - Professional ID who was toggled off "Favorite professional"
    */
-  SHIFT_DETAILS_TOGGLE_OFF_FAVORITE_PROFESSIONAL = 'shift_details_toggle_off_favorite_professional'
+  SHIFT_DETAILS_TOGGLE_OFF_FAVORITE_PROFESSIONAL = 'shift_details_toggle_off_favorite_professional',
 }

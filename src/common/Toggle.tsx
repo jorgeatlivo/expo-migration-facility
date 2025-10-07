@@ -1,8 +1,10 @@
 import React, { useEffect, useRef, useState } from 'react';
-import { View, TouchableOpacity, Animated, StyleSheet } from 'react-native';
-import { SPACE_VALUES } from '@/styles/spacing';
-import { typographyStyles } from '@/styles/livoFonts';
+import { Animated, StyleSheet, TouchableOpacity, View } from 'react-native';
+
 import StyledText from '@/components/StyledText';
+
+import { typographyStyles } from '@/styles/livoFonts';
+import { SPACE_VALUES } from '@/styles/spacing';
 
 interface ToggleProps {
   option1: { label: string; value: string };

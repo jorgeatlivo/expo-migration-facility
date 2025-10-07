@@ -1,6 +1,7 @@
 import React, { useEffect, useMemo, useRef, useState } from 'react';
-import StyledText from './StyledText';
 import { TextProps } from 'react-native';
+
+import StyledText from './StyledText';
 
 export interface CountdownProps extends TextProps {
   date: Date; // future date
@@ -34,7 +35,9 @@ const Countdown: React.FC<CountdownProps> = ({ date, ...props }) => {
   const m = Math.floor((s % 3600) / 60);
   const sec = s % 60;
 
-  return <StyledText {...props}>{`${pad(h)}h ${pad(m)}m ${pad(sec)}s`}</StyledText>;
+  return (
+    <StyledText {...props}>{`${pad(h)}h ${pad(m)}m ${pad(sec)}s`}</StyledText>
+  );
 };
 
 export default Countdown;

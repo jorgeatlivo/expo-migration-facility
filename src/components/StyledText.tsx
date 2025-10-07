@@ -1,5 +1,6 @@
 import React, { ReactNode } from 'react';
-import { Text, TextStyle, StyleProp, TextProps } from 'react-native';
+import { StyleProp, Text, TextProps, TextStyle } from 'react-native';
+
 import { LayoutTextEnum, layoutTextStyles } from '@/styles/fonts';
 
 export interface StyledTextProps extends TextProps {

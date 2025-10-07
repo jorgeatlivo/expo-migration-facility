@@ -1,13 +1,17 @@
 import { View } from 'react-native';
-import { ShiftCard } from '@/components/shiftList/ShiftCard';
-import { RootState, Shift, ShiftTimeInDayEnum } from '@/types';
-import { shiftTimeInDayLabels } from '@/components/claimReviews/Separators';
-import { SPACE_VALUES } from '@/styles/spacing';
-import { ShiftTimeSeparator } from '@/components/ShiftTimeSeparator';
 import { useSelector } from 'react-redux';
-import { CalendarListEmptyState } from './CalendarListEmptyState';
+
 import moment from 'moment';
+
 import Col from '@/components/atoms/Col';
+import { shiftTimeInDayLabels } from '@/components/claimReviews/Separators';
+import { ShiftTimeSeparator } from '@/components/ShiftTimeSeparator';
+import { ShiftCard } from '@/components/shiftList/ShiftCard';
+
+import { SPACE_VALUES } from '@/styles/spacing';
+
+import { RootState, Shift, ShiftTimeInDayEnum } from '@/types';
+import { CalendarListEmptyState } from './CalendarListEmptyState';
 
 interface CalendarShiftListProps {
   shifts: Shift[];

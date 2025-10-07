@@ -1,14 +1,16 @@
 import React from 'react';
-import { View, StyleSheet, Linking, Alert } from 'react-native';
+import { Alert, Linking, StyleSheet, View } from 'react-native';
+import { TouchableOpacity } from 'react-native';
 import Pdf from 'react-native-pdf';
 import { StackScreenProps } from '@react-navigation/stack';
-import { TouchableOpacity } from 'react-native-gesture-handler';
+
 import { DARK_BLUE } from '@/styles/colors';
+
+import LivoIcon from '@/assets/icons/LivoIcon';
 import {
   ProtectedStackParamsList,
   ProtectedStackRoutes,
 } from '@/router/ProtectedStack';
-import LivoIcon from '@/assets/icons/LivoIcon';
 
 type PdfViewerScreenProps = StackScreenProps<
   ProtectedStackParamsList,

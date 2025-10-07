@@ -1,8 +1,11 @@
-import { searchProfessionalsForShiftInvitation } from '@/services/shiftInvitations';
-import { ShiftConfigDTO } from '@/services/shifts';
+import { useMemo } from 'react';
+
 import { useInfiniteQuery } from '@tanstack/react-query';
 import { useDebounce } from 'use-debounce';
-import { useMemo } from 'react';
+
+import { searchProfessionalsForShiftInvitation } from '@/services/shiftInvitations';
+import { ShiftConfigDTO } from '@/services/shifts';
+
 import { SearchProForShiftInvitationResponse } from '@/types/shiftInvitations';
 
 const QUERY_KEY = 'SEARCH_PROFESSIONALS_FOR_SHIFT_INVITATION';

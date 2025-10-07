@@ -1,14 +1,16 @@
 import React, { useMemo } from 'react';
 import { StyleSheet, View } from 'react-native';
-import { typographyStyles } from '@/styles/livoFonts';
-import { SectionStyles } from '@/styles/common/sections';
-import { QualificationDataDTO, QualificationDTO } from '@/types/curriculum';
-import StyledText from '@/components/StyledText';
+
 import { Divider } from '@/components/common/Divider';
 import { InfoRow } from '@/components/InfoRow';
-import { SPACE_VALUES } from '@/styles/spacing';
-import { resolveIconSize } from '@/utils/utils';
+import StyledText from '@/components/StyledText';
+
 import { ACTION_BLACK } from '@/styles/colors';
+import { SectionStyles } from '@/styles/common/sections';
+import { typographyStyles } from '@/styles/livoFonts';
+import { SPACE_VALUES } from '@/styles/spacing';
+import { QualificationDataDTO, QualificationDTO } from '@/types/curriculum';
+import { resolveIconSize } from '@/utils/utils';
 
 interface QualificationSectionProps {
   qualification: QualificationDTO;

@@ -1,7 +1,9 @@
 import React from 'react';
-import { View, StyleSheet } from 'react-native';
-import { IconStarFilled } from 'tabler-icons-react-native';
+import { StyleSheet, View } from 'react-native';
 import { useTranslation } from 'react-i18next';
+
+import { IconStarFilled } from 'tabler-icons-react-native';
+
 import { Typography } from '@/components/atoms/Typography';
 
 interface ReviewRowProps {

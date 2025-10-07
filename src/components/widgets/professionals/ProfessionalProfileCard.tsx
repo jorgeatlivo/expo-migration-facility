@@ -1,5 +1,4 @@
 import React from 'react';
-import { useTranslation } from 'react-i18next';
 import {
   StyleProp,
   StyleSheet,
@@ -7,7 +6,14 @@ import {
   View,
   ViewStyle,
 } from 'react-native';
+import { useTranslation } from 'react-i18next';
+import { useSelector } from 'react-redux';
+
+import { SquareProfilePicture } from '@/components/claimReviews/SquareProfileImage';
+import FavoriteTag from '@/components/profile/FavoriteTag';
+import StyledText from '@/components/StyledText';
 import { CategoryTag } from '@/components/shiftDetails/CategoryTag';
+
 import {
   ACTION_BLACK,
   ACTION_BLUE,
@@ -16,14 +22,11 @@ import {
 } from '@/styles/colors';
 import { typographyStyles } from '@/styles/livoFonts';
 import { SPACE_VALUES } from '@/styles/spacing';
-import { Category, RootState, ShiftModalityEnum } from '@/types';
-import { SquareProfilePicture } from '@/components/claimReviews/SquareProfileImage';
-import StyledText from '@/components/StyledText';
-import FavoriteTag from '@/components/profile/FavoriteTag';
-import { useSelector } from 'react-redux';
-import LivoIcon from '@/assets/icons/LivoIcon';
 import { ProfessionalOverviewDTO } from '@/types/professionals';
 import { splitName } from '@/utils/utils';
+
+import LivoIcon from '@/assets/icons/LivoIcon';
+import { Category, RootState, ShiftModalityEnum } from '@/types';
 
 interface ProfessionalProfileCardProps {
   firstName: string;

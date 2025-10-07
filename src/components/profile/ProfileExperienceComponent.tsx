@@ -1,12 +1,16 @@
 import React from 'react';
-import { useTranslation } from 'react-i18next';
 import { StyleSheet, TouchableOpacity, View } from 'react-native';
+import { useTranslation } from 'react-i18next';
+
 import { ClaimRequest, CVType } from '@/services/shifts';
+
+import StyledText from '@/components/StyledText';
+
 import { ACTION_BLUE } from '@/styles/colors';
 import { commonStyles } from '@/styles/commonStyles';
 import { typographyStyles } from '@/styles/livoFonts';
 import { SPACE_VALUES } from '@/styles/spacing';
-import StyledText from '@/components/StyledText';
+
 import { DownloadCVButton } from './DownloadCVButton';
 import { InformationRow } from './InformationRow';
 

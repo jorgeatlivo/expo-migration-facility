@@ -1,20 +1,24 @@
-import { StackScreenProps } from '@react-navigation/stack';
 import React, { useEffect } from 'react';
-import { useTranslation } from 'react-i18next';
 import { RefreshControl, TouchableOpacity, View } from 'react-native';
+import { useTranslation } from 'react-i18next';
 import { ScrollView } from 'react-native-gesture-handler';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
 import { useDispatch, useSelector } from 'react-redux';
+import { StackScreenProps } from '@react-navigation/stack';
+
+import { fetchProfessionalAgendaThunk } from '@/store/actions/professionalAgendaActions';
+import { AppDispatch } from '@/store/configureStore';
+
 import { EmptyScreen } from '@/components/common/EmptyScreen';
 import { LoadingScreen } from '@/components/common/LoadingScreen';
 import { ProfessionalAgendaHeader } from '@/components/professionalAgenda/header';
 import { ProfessionalImage } from '@/components/professionalAgenda/ProfessionalImage';
 import StyledText from '@/components/StyledText';
-import { fetchProfessionalAgendaThunk } from '@/store/actions/professionalAgendaActions';
-import { AppDispatch } from '@/store/configureStore';
+
 import { LIGHT_GRAY, WHITE } from '@/styles/colors';
 import { typographyStyles } from '@/styles/livoFonts';
 import { SPACE_VALUES } from '@/styles/spacing';
+
 import { RootState, ShiftTimeInDayEnum } from '@/types';
 import {
   ProfessionalAgendaStackParamList,
@@ -66,8 +70,8 @@ export const ProfessionalAgendaList: React.FC<ProfessionalAgendaList> = ({
           professionalAgendaList.professionalAgenda?.previous
             ? () =>
                 loadPage(
-                  professionalAgendaList.professionalAgenda!!.previous!!.date,
-                  professionalAgendaList.professionalAgenda!!.previous!!
+                  professionalAgendaList.professionalAgenda!.previous!.date,
+                  professionalAgendaList.professionalAgenda!.previous!
                     .shiftTimeInDay
                 )
             : undefined
@@ -76,8 +80,8 @@ export const ProfessionalAgendaList: React.FC<ProfessionalAgendaList> = ({
           professionalAgendaList.professionalAgenda?.next
             ? () =>
                 loadPage(
-                  professionalAgendaList.professionalAgenda!!.next!!.date,
-                  professionalAgendaList.professionalAgenda!!.next!!
+                  professionalAgendaList.professionalAgenda!.next!.date,
+                  professionalAgendaList.professionalAgenda!.next!
                     .shiftTimeInDay
                 )
             : undefined

@@ -1,10 +1,14 @@
 import React from 'react';
-import { createStackNavigator } from '@react-navigation/stack';
-import { CustomHeaderBackIcon } from '@/components/common/CustomHeaderBackIcon';
-import { BLACK } from '@/styles/colors';
 import { useSelector } from 'react-redux';
-import { RootState } from '@/types';
+import { createStackNavigator } from '@react-navigation/stack';
+
 import { VerifyMFAScreen } from '@/screens/VerifyMFAScreen';
+
+import { CustomHeaderBackIcon } from '@/components/common/CustomHeaderBackIcon';
+
+import { BLACK } from '@/styles/colors';
+
+import { RootState } from '@/types';
 import { ForgotPasswordScreen } from './ForgotPassword';
 import { SignInScreen } from './SignIn';
 

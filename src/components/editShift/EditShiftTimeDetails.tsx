@@ -1,10 +1,14 @@
-import moment from 'moment';
 import React, { useState } from 'react';
-import { useTranslation } from 'react-i18next';
 import { StyleSheet, View } from 'react-native';
+import { useTranslation } from 'react-i18next';
+
+import moment from 'moment';
+
 import { ShiftTimeConfigDTO } from '@/services/shifts';
+
 import { typographyStyles } from '@/styles/livoFonts';
 import { SPACE_VALUES } from '@/styles/spacing';
+
 import { ShiftDateTimePicker } from './ShiftDateTimePicker';
 import { ShiftScheduleSelector } from './ShiftScheduleSelector';
 

@@ -1,18 +1,20 @@
-import React, {useState} from 'react';
+import React, { useState } from 'react';
 import {
-  View,
+  Platform,
+  StyleProp,
   StyleSheet,
   TextInput,
   TouchableOpacity,
-  Platform,
-  StyleProp,
+  View,
   ViewStyle,
 } from 'react-native';
+import { useTranslation } from 'react-i18next';
+
+import { ACTION_BLACK, BADGE_GRAY, LIGHT_GRAY } from '@/styles/colors';
+import { typographyStyles } from '@/styles/livoFonts';
+import { SPACE_VALUES } from '@/styles/spacing';
+
 import LivoIcon from '@/assets/icons/LivoIcon';
-import {SPACE_VALUES} from '@/styles/spacing';
-import {typographyStyles} from '@/styles/livoFonts';
-import {ACTION_BLACK, BADGE_GRAY, LIGHT_GRAY} from '@/styles/colors';
-import {useTranslation} from 'react-i18next';
 
 interface SearchBarProps {
   value: string;
@@ -28,7 +30,7 @@ export default function SearchBar({
   style,
 }: SearchBarProps) {
   const [isFocused, setIsFocused] = React.useState(false);
-  const {t} = useTranslation();
+  const { t } = useTranslation();
 
   const handleClearText = () => {
     onChangeText('');

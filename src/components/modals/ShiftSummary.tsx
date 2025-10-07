@@ -1,16 +1,19 @@
-import {View} from 'react-native';
 import React from 'react';
-import {typographyStyles} from '@/styles/livoFonts';
-import {DateComponent} from '@/components/shiftDetails/DateComponent';
-import {Shift} from '@/types';
+import { View } from 'react-native';
+
 import StyledText from '@/components/StyledText';
+import { DateComponent } from '@/components/shiftDetails/DateComponent';
+
+import { typographyStyles } from '@/styles/livoFonts';
+
+import { Shift } from '@/types';
 
 interface ShiftSummaryProps {
   shift: Shift;
   isAprox?: boolean;
 }
 
-export const ShiftSummary: React.FC<ShiftSummaryProps> = ({shift}) => {
+export const ShiftSummary: React.FC<ShiftSummaryProps> = ({ shift }) => {
   return (
     <View style={{}}>
       <View
@@ -19,15 +22,18 @@ export const ShiftSummary: React.FC<ShiftSummaryProps> = ({shift}) => {
           justifyContent: 'space-between',
           alignItems: 'flex-start',
           marginBottom: 4,
-        }}>
+        }}
+      >
         <View
           style={{
             flexShrink: 1,
-          }}>
+          }}
+        >
           <StyledText
             style={{
               ...typographyStyles.heading.medium,
-            }}>
+            }}
+          >
             {shift.specialization?.displayText ??
               shift.specialization.translations.es}
           </StyledText>
@@ -36,7 +42,8 @@ export const ShiftSummary: React.FC<ShiftSummaryProps> = ({shift}) => {
               style={{
                 ...typographyStyles.heading.small,
                 color: '#8C95A7',
-              }}>
+              }}
+            >
               {shift.unit}
             </StyledText>
           ) : null}

@@ -1,13 +1,16 @@
 import React from 'react';
 import { StyleSheet } from 'react-native';
+import { useTranslation } from 'react-i18next';
+
+import Row from '@/components/atoms/Row';
 import StyledText from '@/components/StyledText';
-import { SPACE_VALUES } from '@/styles/spacing';
+
 import { typographyStyles } from '@/styles/livoFonts';
+import { SPACE_VALUES } from '@/styles/spacing';
+import { modalityTags } from '@/styles/utils';
+
 import LivoIcon from '@/assets/icons/LivoIcon';
 import { ShiftModalityEnum } from '@/types';
-import { modalityTags } from '@/styles/utils';
-import { useTranslation } from 'react-i18next';
-import Row from '@/components/atoms/Row';
 
 interface ModalityTagProps {
   modality: ShiftModalityEnum;

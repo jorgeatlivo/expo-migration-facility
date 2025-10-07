@@ -1,23 +1,33 @@
-import React, {useState} from 'react';
-import {useTranslation} from 'react-i18next';
-import {Alert, StyleProp, StyleSheet, View, ViewStyle} from 'react-native';
-import {TouchableOpacity} from 'react-native-gesture-handler';
-import {useDispatch} from 'react-redux';
-import LivoIcon from '@/assets/icons/LivoIcon';
-import {useModal} from '@/hooks/ModalContext';
-import {ApiApplicationError} from '@/services/api';
+import React, { useState } from 'react';
 import {
-  shiftClaimUpdateReason,
+  Alert,
+  StyleProp,
+  StyleSheet,
+  TouchableOpacity,
+  View,
+  ViewStyle,
+} from 'react-native';
+import { useTranslation } from 'react-i18next';
+import { useDispatch } from 'react-redux';
+
+import { ApiApplicationError } from '@/services/api';
+import {
   SlotReason,
   SlotReasonOption,
+  shiftClaimUpdateReason,
 } from '@/services/shifts';
-import {fetchShiftInfoDataAction} from '@/store/actions/shiftActions';
-import {AppDispatch} from '@/store/configureStore';
-import {ACTION_BLUE, BADGE_GRAY, WHITE} from '@/styles/colors';
-import {typographyStyles} from '@/styles/livoFonts';
-import {SPACE_VALUES} from '@/styles/spacing';
+import { fetchShiftInfoDataAction } from '@/store/actions/shiftActions';
+import { AppDispatch } from '@/store/configureStore';
+
 import SelectAttributeModal from '@/components/common/SelectOptionWithDescriptionModal';
 import StyledText from '@/components/StyledText';
+
+import { useModal } from '@/hooks/ModalContext';
+import { ACTION_BLUE, BADGE_GRAY, WHITE } from '@/styles/colors';
+import { typographyStyles } from '@/styles/livoFonts';
+import { SPACE_VALUES } from '@/styles/spacing';
+
+import LivoIcon from '@/assets/icons/LivoIcon';
 
 interface SlotReasonCardProps {
   slotReason: SlotReason;
@@ -36,8 +46,8 @@ export default function SlotReasonCard({
   claimRequestId,
   style,
 }: SlotReasonCardProps) {
-  const {hideModal, configureBottomModal} = useModal();
-  const {t} = useTranslation();
+  const { hideModal, configureBottomModal } = useModal();
+  const { t } = useTranslation();
 
   const [reason, setReason] = useState({
     displayText: slotReason.displayText,
@@ -53,22 +63,22 @@ export default function SlotReasonCard({
   const dispatch = useDispatch<AppDispatch>();
   const handleUpdateClaimReason = async (
     reason: SlotReasonOption,
-    comment: string,
+    comment: string
   ) => {
     await shiftClaimUpdateReason(
       facilityShiftId,
       claimRequestId,
       reason.value,
-      comment,
+      comment
     )
       .then(() => {
         Alert.alert(
           t('shift_list_claim_reason_updated_title'),
           t('shift_list_claim_reason_updated_message'),
-          [{text: t('shift_list_accept_claim_button')}],
+          [{ text: t('shift_list_accept_claim_button') }]
         );
       })
-      .catch(error => {
+      .catch((error) => {
         const errorMessage =
           error instanceof ApiApplicationError
             ? error.message
@@ -91,7 +101,7 @@ export default function SlotReasonCard({
           buttonText={t('shift_list_accept_button')}
           showDescription={slotReasonCommentDisplayed}
           updateValues={updateReason}
-          optionToString={reason => (reason as SlotReason).displayText}
+          optionToString={(reason) => (reason as SlotReason).displayText}
           onDismiss={hideModal}
           onButtonPress={handleUpdateClaimReason}
         />
@@ -101,7 +111,7 @@ export default function SlotReasonCard({
         'relationship-modal',
         false,
         false,
-        'pageSheet',
+        'pageSheet'
       );
     }
   }
@@ -117,7 +127,8 @@ export default function SlotReasonCard({
                   ...styles.textBox,
                   color: BADGE_GRAY,
                 }
-          }>
+          }
+        >
           {reason.displayText
             ? reason.displayText
             : t('shift_list_no_reason_placeholder')}
@@ -133,7 +144,8 @@ export default function SlotReasonCard({
               ...styles.textBox,
               marginTop: SPACE_VALUES.small,
               maxHeight: 80,
-            }}>
+            }}
+          >
             {reasonComment}
           </StyledText>
         </TouchableOpacity>

@@ -1,6 +1,4 @@
-import { StackScreenProps } from '@react-navigation/stack';
 import React from 'react';
-import { useTranslation } from 'react-i18next';
 import {
   Alert,
   Keyboard,
@@ -11,12 +9,16 @@ import {
   TouchableWithoutFeedback,
   View,
 } from 'react-native';
+import { useTranslation } from 'react-i18next';
+import { StackScreenProps } from '@react-navigation/stack';
+
+import { resetPasswordRequest } from '@/services/authentication';
+
 import ActionButton from '@/components/buttons/ActionButton';
 import CustomTextInput from '@/components/common/CustomTextInput';
 import LivoText from '@/components/common/LivoText';
 import StyledText from '@/components/StyledText';
-import { RootStackParamList } from '@/router/AuthenticationProvider';
-import { resetPasswordRequest } from '@/services/authentication';
+
 import {
   GRAY,
   LIVO_PRIMARY_DARK,
@@ -25,6 +27,8 @@ import {
 } from '@/styles/colors';
 import { typographyStyles } from '@/styles/livoFonts';
 import { SPACE_VALUES } from '@/styles/spacing';
+
+import { RootStackParamList } from '@/router/AuthenticationProvider';
 import { AuthStackRoutes } from './Authentication/AuthenticationStack';
 
 type ForgotPasswordScreenProps = StackScreenProps<

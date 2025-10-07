@@ -1,12 +1,13 @@
-import {combineReducers} from 'redux';
-import shiftData from './reducers/shiftsReducer';
+import { combineReducers } from 'redux';
+
+import { configureStore } from '@reduxjs/toolkit';
+
+import authData from './reducers/authenticationReducer';
 import claimData from './reducers/claimsReducer';
 import configurationData from './reducers/configurationReducer';
-import profileData from './reducers/profileReducer';
 import professionalAgendaData from './reducers/professionalAgendaReducer';
-import authData from './reducers/authenticationReducer';
-import {configureStore} from '@reduxjs/toolkit';
-
+import profileData from './reducers/profileReducer';
+import shiftData from './reducers/shiftsReducer';
 
 const rootReducer = combineReducers({
   shiftData,
@@ -14,17 +15,14 @@ const rootReducer = combineReducers({
   configurationData,
   profileData,
   professionalAgendaData,
-  authData
+  authData,
 });
 
 const store = configureStore({
   reducer: rootReducer,
-  middleware: getDefaultMiddleware =>
-    getDefaultMiddleware()
+  middleware: (getDefaultMiddleware) => getDefaultMiddleware(),
 });
 
-export type AppDispatch = typeof store.dispatch
-
-
+export type AppDispatch = typeof store.dispatch;
 
 export default store;

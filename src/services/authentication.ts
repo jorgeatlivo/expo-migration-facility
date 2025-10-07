@@ -1,13 +1,14 @@
-import { syncFCMToken } from './notifications';
-import api, { handleApiError, removeApiToken } from './api';
 import { Alert } from 'react-native';
-import { FacilityStaffProfile, LivoContact } from '@/types';
-import i18n, { isSupportedLanguage } from '@/locale/i18n';
+
 import AsyncStorage from '@react-native-async-storage/async-storage';
-import {StorageKeys} from "@/services/storage/storage.keys";
-import {StorageService} from "@/services/storage/storage.service";
 
+import { StorageKeys } from '@/services/storage/storage.keys';
+import { StorageService } from '@/services/storage/storage.service';
 
+import i18n, { isSupportedLanguage } from '@/locale/i18n';
+import { FacilityStaffProfile, LivoContact } from '@/types';
+import api, { handleApiError, removeApiToken } from './api';
+import { syncFCMToken } from './notifications';
 
 export interface SignInRequestData {
   userName: string;
@@ -71,7 +72,7 @@ export const storeUserSession = async (userToken: string, email: string) => {
 
 export const retrieveUserSession = async () => {
   try {
-    return await StorageService.get(StorageKeys.USER_TOKEN_KEY) as string;
+    return (await StorageService.get(StorageKeys.USER_TOKEN_KEY)) as string;
   } catch (error) {}
 };
 

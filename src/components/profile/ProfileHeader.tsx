@@ -1,8 +1,10 @@
 import React from 'react';
+import { TouchableOpacity } from 'react-native';
+
 import { ProfessionalProfile } from '@/services/shifts';
-import { ProfileHeaderComponent } from './ProfileHeaderComponent';
+
 import { FacilityStaffProfile, ShiftModalityEnum } from '@/types';
-import { TouchableOpacity } from 'react-native-gesture-handler';
+import { ProfileHeaderComponent } from './ProfileHeaderComponent';
 
 type ProfileHeaderProps = {
   modality: ShiftModalityEnum | null;

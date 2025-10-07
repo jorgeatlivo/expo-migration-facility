@@ -5,8 +5,7 @@
  */
 
 import React from 'react';
-import { Linking, StyleProp, StyleSheet, Text } from 'react-native';
-import { TextStyle } from 'react-native';
+import { Linking, StyleProp, StyleSheet, Text, TextStyle } from 'react-native';
 import { useLinkTo } from '@react-navigation/native';
 
 import { Logger } from '@/services/logger.service';
@@ -196,13 +195,16 @@ export const parseLink = (
       }
 
       const attributes =
-        match[3]?.split(' ').reduce((acc, attr) => {
-          const [key, value] = attr.split('=');
-          if (key && value) {
-            acc[key] = value.replace(/['"]+/g, '');
-          }
-          return acc;
-        }, {} as Record<string, string>) || {};
+        match[3]?.split(' ').reduce(
+          (acc, attr) => {
+            const [key, value] = attr.split('=');
+            if (key && value) {
+              acc[key] = value.replace(/['"]+/g, '');
+            }
+            return acc;
+          },
+          {} as Record<string, string>
+        ) || {};
 
       segments.push(
         <MarkdownLink

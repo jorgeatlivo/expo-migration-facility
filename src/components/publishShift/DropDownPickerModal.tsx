@@ -6,10 +6,12 @@ import {
   View,
 } from 'react-native';
 import DropDownPicker from 'react-native-dropdown-picker';
-import { GRAY, WHITE } from '@/styles/colors';
-import { SPACE_VALUES } from '@/styles/spacing';
-import { typographyStyles } from '@/styles/livoFonts';
+
 import { ModalPickerSelectItem } from '@/components/publishShift/ModalPickerSelectItem';
+
+import { GRAY, WHITE } from '@/styles/colors';
+import { typographyStyles } from '@/styles/livoFonts';
+import { SPACE_VALUES } from '@/styles/spacing';
 
 interface DropDownPickerModalProps {
   items: { label: string; value: string }[];

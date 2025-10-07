@@ -1,20 +1,25 @@
 import React from 'react';
-import { View, StyleSheet, Pressable } from 'react-native';
-import { SquareProfilePicture } from '@/components/claimReviews/SquareProfileImage';
-import { SPACE_VALUES } from '@/styles/spacing';
-import { FirstShifterTag } from '@/components/profile/FirstShifterTag';
-import { ShiftModalityEnum } from '@/types';
-import LivoIcon from '@/assets/icons/LivoIcon';
-import { IconChevronRight } from 'tabler-icons-react-native';
-import { ClaimRequest, ShiftClaimStatus } from '@/services/shifts';
-import { TagComponent } from '@/components/profile/TagComponent';
-import { Typography } from '@/components/atoms/Typography';
+import { Pressable, StyleSheet, View } from 'react-native';
 import { useTranslation } from 'react-i18next';
-import { markdown } from '@/utils/markdown';
-import { formattedDayMonth, formatTime } from '@/utils/utils';
-import { ReviewRow } from '@/components/profile/ReviewRow';
-import FavoriteTag from '@/components/profile/FavoriteTag';
+
+import { IconChevronRight } from 'tabler-icons-react-native';
+
+import { ClaimRequest, ShiftClaimStatus } from '@/services/shifts';
+
+import { Typography } from '@/components/atoms/Typography';
 import Countdown from '@/components/Countdown';
+import { SquareProfilePicture } from '@/components/claimReviews/SquareProfileImage';
+import FavoriteTag from '@/components/profile/FavoriteTag';
+import { FirstShifterTag } from '@/components/profile/FirstShifterTag';
+import { ReviewRow } from '@/components/profile/ReviewRow';
+import { TagComponent } from '@/components/profile/TagComponent';
+
+import { SPACE_VALUES } from '@/styles/spacing';
+import { markdown } from '@/utils/markdown';
+import { formatTime, formattedDayMonth } from '@/utils/utils';
+
+import LivoIcon from '@/assets/icons/LivoIcon';
+import { ShiftModalityEnum } from '@/types';
 
 interface ProfessionalClaimRowProps {
   request: ClaimRequest;

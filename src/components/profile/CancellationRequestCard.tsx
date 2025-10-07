@@ -1,31 +1,34 @@
-import { ClaimRequest } from "../../services/shifts";
-import { StyleSheet, View } from "react-native";
-import { SPACE_VALUES } from "../../styles/spacing";
-import StyledText from "../StyledText";
-import { typographyStyles } from "../../styles/livoFonts";
-import React from "react";
-import { WHITE } from "../../styles/colors";
+import React from 'react';
+import { StyleSheet, View } from 'react-native';
+
+import { ClaimRequest } from '@/services/shifts';
+
+import StyledText from '@/components/StyledText';
+
+import { WHITE } from '@/styles/colors';
+import { typographyStyles } from '@/styles/livoFonts';
+import { SPACE_VALUES } from '@/styles/spacing';
 
 type CancellationRequestCardProps = {
   claimRequest: ClaimRequest;
-}
+};
 
 export default function CancellationRequestCard({
-  claimRequest
+  claimRequest,
 }: CancellationRequestCardProps) {
-  return claimRequest.cancellationRequest && (
-    <View
-      style={{ ...styles.cardStyle, marginBottom: SPACE_VALUES.medium }}
-    >
-      <StyledText
-        style={{
-          ...typographyStyles.body.regular,
-        }}
-      >
-        {claimRequest.cancellationRequest.reason}
-      </StyledText>
-    </View>
-  )
+  return (
+    claimRequest.cancellationRequest && (
+      <View style={{ ...styles.cardStyle, marginBottom: SPACE_VALUES.medium }}>
+        <StyledText
+          style={{
+            ...typographyStyles.body.regular,
+          }}
+        >
+          {claimRequest.cancellationRequest.reason}
+        </StyledText>
+      </View>
+    )
+  );
 }
 
 const styles = StyleSheet.create({
@@ -33,5 +36,5 @@ const styles = StyleSheet.create({
     padding: SPACE_VALUES.large,
     borderRadius: SPACE_VALUES.small,
     backgroundColor: WHITE,
-  }
+  },
 });

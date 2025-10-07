@@ -1,11 +1,13 @@
 import React from 'react';
 import {
-  TouchableOpacityProps,
   StyleProp,
-  ViewStyle,
   TextStyle,
+  TouchableOpacityProps,
+  ViewStyle,
 } from 'react-native';
+
 import { CORAL, WHITE } from '@/styles/colors';
+
 import CommonButton, { ButtonWithUndoOptionProps } from './CommonButton';
 
 type CancelButtonProps = ButtonWithUndoOptionProps &

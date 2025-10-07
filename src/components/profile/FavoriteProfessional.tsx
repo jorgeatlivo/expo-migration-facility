@@ -1,6 +1,4 @@
-import { NavigationProp } from '@react-navigation/native';
 import React, { useState } from 'react';
-import { useTranslation } from 'react-i18next';
 import {
   StyleProp,
   StyleSheet,
@@ -9,16 +7,22 @@ import {
   View,
   ViewStyle,
 } from 'react-native';
-import { useModal } from '@/hooks/ModalContext';
+import { useTranslation } from 'react-i18next';
+import { NavigationProp } from '@react-navigation/native';
+
+import AnalyticsService from '@/services/analytics/analytics.service';
+import { AnalyticEvents } from '@/services/analytics/events';
 import { updateFavoriteProfessional } from '@/services/professionals';
+
+import ToggleSwitch from '@/components/common/ToggleSwitch';
+import RemoveFavoriteProfessionalModal from '@/components/modals/RemoveFavoriteProfessional';
+
+import { useModal } from '@/hooks/ModalContext';
 import { ACTION_BLUE } from '@/styles/colors';
 import { typographyStyles } from '@/styles/livoFonts';
 import { SPACE_VALUES } from '@/styles/spacing';
-import ToggleSwitch from '@/components/common/ToggleSwitch';
-import RemoveFavoriteProfessionalModal from '@/components/modals/RemoveFavoriteProfessional';
+
 import { ProtectedStackRoutes } from '@/router/ProtectedStack';
-import AnalyticsService from '@/services/analytics/analytics.service';
-import { AnalyticEvents } from '@/services/analytics/events';
 
 interface FavoriteProfessionalProps {
   professionalId: number;

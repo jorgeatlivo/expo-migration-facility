@@ -1,18 +1,20 @@
 import React from 'react';
 import {
   StyleProp,
-  ViewStyle,
+  StyleSheet,
   TextStyle,
   View,
-  StyleSheet,
+  ViewStyle,
 } from 'react-native';
-import LivoIcon from '@/assets/icons/LivoIcon';
+
 import { BADGE_GRAY } from '@/styles/colors';
 import { typographyStyles } from '@/styles/livoFonts';
 import { SPACE_VALUES } from '@/styles/spacing';
 import { TextDTO } from '@/types/widgets';
-import StyledText from './StyledText';
+
+import LivoIcon from '@/assets/icons/LivoIcon';
 import { SDText } from './common/SDText';
+import StyledText from './StyledText';
 
 interface InfoRowProps {
   title?: string;

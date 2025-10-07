@@ -1,8 +1,9 @@
 import PostHog from 'posthog-react-native';
 
-import { Logger } from '@/services/logger.service';
-import { IAnalyticsAdapter } from './analytics.adapter';
 import { AnalyticEvents } from '@/services/analytics/events';
+import { Logger } from '@/services/logger.service';
+
+import { IAnalyticsAdapter } from './analytics.adapter';
 
 class PostHogAnalyticsAdapter implements IAnalyticsAdapter {
   private posthog: PostHog;

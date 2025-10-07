@@ -1,13 +1,17 @@
-import { StackScreenProps } from '@react-navigation/stack';
 import React, { useCallback, useEffect, useState } from 'react';
-import { useTranslation } from 'react-i18next';
 import { Alert, SafeAreaView, StyleSheet, View } from 'react-native';
-import { LoadingScreen } from '@/components/common/LoadingScreen';
-import { FavoriteProfessionals } from '@/components/widgets/professionals/FavoriteProfessionals';
+import { useTranslation } from 'react-i18next';
+import { StackScreenProps } from '@react-navigation/stack';
+
 import { ApiApplicationError } from '@/services/api';
 import { fetchFacilityProfessionals } from '@/services/professionals';
 import { ProfessionalProfile } from '@/services/shifts';
+
+import { LoadingScreen } from '@/components/common/LoadingScreen';
+import { FavoriteProfessionals } from '@/components/widgets/professionals/FavoriteProfessionals';
+
 import { WHITE } from '@/styles/colors';
+
 import {
   ProtectedStackParamsList,
   ProtectedStackRoutes,

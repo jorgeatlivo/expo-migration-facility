@@ -1,6 +1,7 @@
 import { StyleSheet } from 'react-native';
-import { SPACE_VALUES } from '@/styles/spacing';
+
 import { BORDER_GRAY, WHITE } from '@/styles/colors';
+import { SPACE_VALUES } from '@/styles/spacing';
 
 export const ScreenStyles = StyleSheet.create({
   screen: {
@@ -27,5 +28,5 @@ export const ScreenStyles = StyleSheet.create({
   },
   actionButton: {
     margin: SPACE_VALUES.large,
-  }
+  },
 });

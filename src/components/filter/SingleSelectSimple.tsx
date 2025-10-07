@@ -1,17 +1,20 @@
 import React from 'react';
 import {
-  StyleSheet,
-  TouchableOpacityProps,
   StyleProp,
-  ViewStyle,
+  StyleSheet,
   TouchableOpacity,
+  TouchableOpacityProps,
+  ViewStyle,
 } from 'react-native';
+
 import StyledText from '@/components/StyledText';
-import { typographyStyles } from '@/styles/livoFonts';
-import LivoIcon from '@/assets/icons/LivoIcon';
+
 import { ACTION_BLUE, BLUE_FADED } from '@/styles/colors';
 import { fontSize, fontWeight } from '@/styles/fonts';
+import { typographyStyles } from '@/styles/livoFonts';
 import { SPACE_VALUES } from '@/styles/spacing';
+
+import LivoIcon from '@/assets/icons/LivoIcon';
 
 interface SingleSelectSimpleProps extends TouchableOpacityProps {
   option: string;

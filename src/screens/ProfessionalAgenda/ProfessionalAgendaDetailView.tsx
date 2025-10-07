@@ -1,18 +1,22 @@
-import { StackScreenProps } from '@react-navigation/stack';
 import React, { useEffect, useState } from 'react';
-import { useTranslation } from 'react-i18next';
 import { Alert, Linking, RefreshControl, View } from 'react-native';
+import { useTranslation } from 'react-i18next';
 import { ScrollView, TouchableOpacity } from 'react-native-gesture-handler';
+import { StackScreenProps } from '@react-navigation/stack';
+
+import { ApiApplicationError } from '@/services/api';
+import { fetchProfessionalAgendaDetailView } from '@/services/professionalAgenda';
+
 import { IconButton } from '@/components/buttons/IconButton';
 import { Divider } from '@/components/common/Divider';
 import { ProfessionalImage } from '@/components/professionalAgenda/ProfessionalImage';
 import StyledText from '@/components/StyledText';
-import { ApiApplicationError } from '@/services/api';
-import { fetchProfessionalAgendaDetailView } from '@/services/professionalAgenda';
+
 import { WHITE } from '@/styles/colors';
 import { typographyStyles } from '@/styles/livoFonts';
 import { SPACE_VALUES } from '@/styles/spacing';
 import { ProfessionalAgendaDetailView } from '@/types/professionalAgenda';
+
 import {
   ProfessionalAgendaStackParamList,
   ProfessionalAgendaStackRoutes,

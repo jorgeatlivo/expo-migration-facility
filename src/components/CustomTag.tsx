@@ -1,5 +1,6 @@
 import React from 'react';
-import {View, StyleSheet, TouchableOpacityProps, Text} from 'react-native';
+import { StyleSheet, Text, TouchableOpacityProps, View } from 'react-native';
+
 import Icon from 'react-native-vector-icons/Ionicons';
 
 interface CustomTagProps extends TouchableOpacityProps {
@@ -22,7 +23,8 @@ const CustomTag: React.FC<CustomTagProps> = ({
         backgroundColor: backgroundColor,
         width: tagSize,
         height: tagSize,
-      }}>
+      }}
+    >
       <Text>
         <Icon name={iconName} size={tagSize / 2} color={iconColor} />
       </Text>

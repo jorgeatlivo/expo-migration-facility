@@ -1,20 +1,23 @@
-import { Typography } from '@/components/atoms/Typography';
 import React from 'react';
-import { CommonBannerDto, PredictionBandsCounter } from '@/services/shifts';
-
-import Row from '@/components/atoms/Row';
-import { SPACE_VALUES } from '@/styles/spacing';
-import Col from '@/components/atoms/Col';
-import LivoIcon from '@/assets/icons/LivoIcon';
-import { markdown } from '@/utils/markdown';
 import { StyleSheet } from 'react-native';
-import { Chip } from '@/components/common/Chip';
+import { useTranslation } from 'react-i18next';
 import Animated, {
   LinearTransition,
   SlideInUp,
   SlideOutUp,
 } from 'react-native-reanimated';
-import { useTranslation } from 'react-i18next';
+
+import { CommonBannerDto, PredictionBandsCounter } from '@/services/shifts';
+
+import Col from '@/components/atoms/Col';
+import Row from '@/components/atoms/Row';
+import { Typography } from '@/components/atoms/Typography';
+import { Chip } from '@/components/common/Chip';
+
+import { SPACE_VALUES } from '@/styles/spacing';
+import { markdown } from '@/utils/markdown';
+
+import LivoIcon from '@/assets/icons/LivoIcon';
 
 type Props = {
   bands: PredictionBandsCounter;

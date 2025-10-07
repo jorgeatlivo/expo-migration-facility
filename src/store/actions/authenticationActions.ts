@@ -1,4 +1,10 @@
-import {RESTORE_TOKEN, SIGN_IN, SIGN_OUT, TOGGLE_SIGNING_IN, TOGGLE_SIGNING_UP} from './actionTypes';
+import {
+  RESTORE_TOKEN,
+  SIGN_IN,
+  SIGN_OUT,
+  TOGGLE_SIGNING_IN,
+  TOGGLE_SIGNING_UP,
+} from './actionTypes';
 
 export const signInAction = (token: string | null) => ({
   type: SIGN_IN,

@@ -1,9 +1,12 @@
-import { SPACE_VALUES } from '@/styles/spacing';
 import React, { useMemo } from 'react';
 import { StyleSheet, TouchableOpacity, View } from 'react-native';
-import { renderProfessionalProfileCardByOverviewDTO } from '@/components/widgets/professionals/ProfessionalProfileCard';
+
+import AnalyticsService from '@/services/analytics/analytics.service';
+import { AnalyticEvents } from '@/services/analytics/events';
+
 import StyledText from '@/components/StyledText';
-import LivoIcon from '@/assets/icons/LivoIcon';
+import { renderProfessionalProfileCardByOverviewDTO } from '@/components/widgets/professionals/ProfessionalProfileCard';
+
 import {
   ACTION_BLACK,
   ACTION_BLUE,
@@ -12,9 +15,10 @@ import {
   BLUE_FADED,
 } from '@/styles/colors';
 import { typographyStyles } from '@/styles/livoFonts';
+import { SPACE_VALUES } from '@/styles/spacing';
 import { ProfessionalOverviewDTO } from '@/types/professionals';
-import AnalyticsService from '@/services/analytics/analytics.service';
-import { AnalyticEvents } from '@/services/analytics/events';
+
+import LivoIcon from '@/assets/icons/LivoIcon';
 import { ProtectedStackRoutes } from '@/router/ProtectedStack';
 
 interface ProfessionalsSelectorComponentProps {
