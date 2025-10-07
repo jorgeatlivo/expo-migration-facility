@@ -1,0 +1,226 @@
+{
+  "project_info": {
+    "project_number": "89135036749",
+    "project_id": "livo-385512",
+    "storage_bucket": "livo-385512.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:89135036749:android:f13921b903d9be4ef81f04",
+        "android_client_info": {
+          "package_name": "com.getlivo.facilityapp"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "89135036749-5c2sonb359sg432ck8oh70a79o5imjia.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyB7HDx8YSoag0qT3kfwVI1fkiaMe4Htg7w"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "89135036749-5c2sonb359sg432ck8oh70a79o5imjia.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "89135036749-2d8fo1hpjjhhvd291c6e673tom9b1j3s.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.getlivo.facilityapp"
+              }
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:89135036749:android:bed1fda65bdfa498f81f04",
+        "android_client_info": {
+          "package_name": "com.getlivo.facilityapp.dev"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "89135036749-5c2sonb359sg432ck8oh70a79o5imjia.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyB7HDx8YSoag0qT3kfwVI1fkiaMe4Htg7w"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "89135036749-5c2sonb359sg432ck8oh70a79o5imjia.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "89135036749-2d8fo1hpjjhhvd291c6e673tom9b1j3s.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.getlivo.facilityapp"
+              }
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:89135036749:android:6fc5e6367cdd5c4bf81f04",
+        "android_client_info": {
+          "package_name": "com.getlivo.professionalapp"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "89135036749-5c2sonb359sg432ck8oh70a79o5imjia.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyB7HDx8YSoag0qT3kfwVI1fkiaMe4Htg7w"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "89135036749-5c2sonb359sg432ck8oh70a79o5imjia.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "89135036749-2d8fo1hpjjhhvd291c6e673tom9b1j3s.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.getlivo.facilityapp"
+              }
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:89135036749:android:7564563dcdeab5ddf81f04",
+        "android_client_info": {
+          "package_name": "com.getlivo.professionalapp.internal.dev"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "89135036749-5c2sonb359sg432ck8oh70a79o5imjia.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyB7HDx8YSoag0qT3kfwVI1fkiaMe4Htg7w"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "89135036749-5c2sonb359sg432ck8oh70a79o5imjia.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "89135036749-2d8fo1hpjjhhvd291c6e673tom9b1j3s.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.getlivo.facilityapp"
+              }
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:89135036749:android:6f04a17be0a383acf81f04",
+        "android_client_info": {
+          "package_name": "com.getlivo.professionalapp.internal"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "89135036749-5c2sonb359sg432ck8oh70a79o5imjia.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyB7HDx8YSoag0qT3kfwVI1fkiaMe4Htg7w"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "89135036749-5c2sonb359sg432ck8oh70a79o5imjia.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "89135036749-2d8fo1hpjjhhvd291c6e673tom9b1j3s.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.getlivo.facilityapp"
+              }
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:89135036749:android:38416cbb1ef3ff49f81f04",
+        "android_client_info": {
+          "package_name": "com.getlivo.professionalapp.internal.dev"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "89135036749-5c2sonb359sg432ck8oh70a79o5imjia.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyB7HDx8YSoag0qT3kfwVI1fkiaMe4Htg7w"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "89135036749-5c2sonb359sg432ck8oh70a79o5imjia.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "89135036749-2d8fo1hpjjhhvd291c6e673tom9b1j3s.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.getlivo.facilityapp"
+              }
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
