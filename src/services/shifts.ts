@@ -250,10 +250,11 @@ export async function fetchShiftClaimRejectReasons() {
 
 export async function fetchShiftFillRateProbabilities(
   params: FillRatePredictionParams
-) {
+): Promise<ShiftFillRateResponse> {
   const uri = '/facility/shifts/predict-shift-fill-rate';
+
   return api
-    .post<ShiftFillRateResponse>(uri, params)
+    .post(uri, params)
     .then((res) => res.data)
     .catch(handleApiError);
 }

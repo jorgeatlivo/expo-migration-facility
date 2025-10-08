@@ -52,12 +52,12 @@ export default {
       googleServicesFile: './firebase/google-services.json',
       adaptiveIcon: {
         foregroundImage: './assets/store/android.png',
-        backgroundColor: '#EFF7E7',
+        backgroundColor: '#114454',
       },
       icon: './assets/store/app-icon-1024.png',
       resources: {
         colors: {
-          iconBackground: '#ffffff',
+          iconBackground: '#114454',
         },
       },
       edgeToEdgeEnabled: true,

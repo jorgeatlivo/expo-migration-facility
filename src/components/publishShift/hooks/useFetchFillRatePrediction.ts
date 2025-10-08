@@ -1,11 +1,13 @@
 import { useEffect, useLayoutEffect, useState } from 'react';
 
+import { keepPreviousData } from '@tanstack/query-core';
 import { useQuery, useQueryClient } from '@tanstack/react-query';
 import { useDebounce } from 'use-debounce';
 
 import {
   FillRatePredictionParams,
   fetchShiftFillRateProbabilities,
+  ShiftFillRateResponse,
 } from '@/services/shifts';
 
 export const FETCH_FILL_RATE_PREDICTION = 'FETCH_FILL_RATE_PREDICTION';
@@ -17,7 +19,7 @@ export const useFetchFillRatePrediction = (
   const [debouncedParams] = useDebounce(params, 300);
   const [temporalId, setTemporalId] = useState<string | undefined>();
 
-  const queryData = useQuery({
+  const queryData = useQuery<ShiftFillRateResponse>({
     queryKey: [FETCH_FILL_RATE_PREDICTION, debouncedParams],
     queryFn: () =>
       fetchShiftFillRateProbabilities({
@@ -25,7 +27,7 @@ export const useFetchFillRatePrediction = (
         temporalId,
       }),
     enabled: !!params.unit && !!params.category,
-    keepPreviousData: true,
+    placeholderData: keepPreviousData,
     retry: false,
   });
 

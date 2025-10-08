@@ -14,7 +14,7 @@ import { AppDispatch } from '@/store/configureStore';
 
 import StyledText from '@/components/StyledText';
 
-import { BLACK, DARK_BLUE, GRAY, PRIMARY_BLUE, WHITE } from '@/styles/colors';
+import { ACTION_BLUE, BLACK, GRAY, PRIMARY_BLUE, WHITE } from '@/styles/colors';
 import { fontSize, fontWeight, LayoutTextEnum } from '@/styles/fonts';
 
 import { formatDateToYYYYMMDD } from '@/common/utils';
@@ -32,7 +32,6 @@ export const CalendarModal: React.FC<CalendarModalProps> = ({
   const { t } = useTranslation();
 
   const [shiftsSummary, setShiftsSummary] = useState<ShiftSummary[]>([]);
-  const [isLoading, setIsLoading] = useState(false);
   const { daySelected } = useSelector(
     (state: RootState) => state.shiftData.calendarData
   );
@@ -42,11 +41,9 @@ export const CalendarModal: React.FC<CalendarModalProps> = ({
     fetchShiftsSummary(initialDay, finalDay)
       .then((shiftsSummaryResponse) => {
         setShiftsSummary(shiftsSummaryResponse);
-        setIsLoading(false);
       })
       .catch((error) => {
         setShiftsSummary([]);
-        setIsLoading(false);
         setCalendarModalVisible(false);
         const errorMessage =
           error instanceof ApiApplicationError
@@ -61,8 +58,6 @@ export const CalendarModal: React.FC<CalendarModalProps> = ({
   finalDay.setDate(31);
 
   useEffect(() => {
-    setIsLoading(true);
-
     loadShiftSummary(
       formatDateToYYYYMMDD(initialDay),
       formatDateToYYYYMMDD(finalDay)
@@ -110,22 +105,22 @@ export const CalendarModal: React.FC<CalendarModalProps> = ({
           style={{
             alignItems: 'center',
             justifyContent: 'center',
-            borderRadius: 50,
+            borderRadius: 4,
             backgroundColor: isSelected
-              ? DARK_BLUE
+              ? ACTION_BLUE
               : hasShifts
                 ? WHITE
                 : 'transparent',
             width: 25,
             height: 25,
             borderWidth: isToday ? 1 : 0,
-            borderColor: isToday ? DARK_BLUE : 'transparent',
+            borderColor: isToday ? ACTION_BLUE : 'transparent',
           }}
         >
           <StyledText
             type={LayoutTextEnum.body}
             style={{
-              color: isSelected ? WHITE : hasShifts ? DARK_BLUE : BLACK,
+              color: isSelected ? WHITE : hasShifts ? ACTION_BLUE : BLACK,
               fontFamily: hasShifts ? fontWeight.bold : fontWeight.regular,
             }}
           >
@@ -180,8 +175,8 @@ export const CalendarModal: React.FC<CalendarModalProps> = ({
             <CalendarDayItem
               day={date?.day.toString() || ''}
               isToday={moment().format('YYYY-MM-DD') === date?.dateString}
-              hasShifts={summary?.date ? true : false}
-              hasAlert={summary?.hasAlert ? true : false}
+              hasShifts={!!summary?.date}
+              hasAlert={!!summary?.hasAlert}
               isSelected={
                 moment(daySelected).format('YYYY-MM-DD') === date?.dateString
               }

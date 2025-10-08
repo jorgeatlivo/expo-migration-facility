@@ -43,6 +43,7 @@ import {
 import { typographyStyles } from '@/styles/livoFonts';
 import { BORDER, SPACE_VALUES } from '@/styles/spacing';
 import { professionalProfileToOverviewDTO } from '@/types/professionals';
+import { isBeforeNow } from '@/utils/dateUtils';
 
 import { formatDate } from '@/common/utils';
 import {
@@ -111,7 +112,7 @@ export const ShiftDetailsScreen: React.FC<ShiftDetailsScreen> = ({
         </Row>
       );
 
-      const isActionNotAllowed = !shiftInfoData?.shiftInfo?.shiftActionsAllow;
+      const isActionNotAllowed = !shiftInfo.shiftActionsAllow;
       const headerRight = () => (
         <TouchableOpacity
           disabled={isActionNotAllowed}
@@ -159,7 +160,7 @@ export const ShiftDetailsScreen: React.FC<ShiftDetailsScreen> = ({
       navigation.setOptions({
         headerTitleAlign: 'center',
         headerShown: true,
-        headerRight,
+        ...(!isBeforeNow(shiftInfo.date) && { headerRight }),
         ...(areNewFieldsAndUnitsActive ? {} : { headerTitle }),
       });
     } else if (!areNewFieldsAndUnitsActive) {
@@ -177,9 +178,11 @@ export const ShiftDetailsScreen: React.FC<ShiftDetailsScreen> = ({
     }
   }, [
     navigation,
+    shiftId,
     shiftInfo,
     areNewFieldsAndUnitsActive,
     shiftInfoData.isLoading,
+    shiftInfoData?.shiftInfo?.date,
     shiftInfoData?.shiftInfo?.shiftActionsAllow,
     claimRequests,
     t,

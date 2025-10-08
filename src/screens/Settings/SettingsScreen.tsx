@@ -9,6 +9,7 @@ import {
 } from 'react-native';
 import { useTranslation } from 'react-i18next';
 import { RefreshControl, ScrollView } from 'react-native-gesture-handler';
+import { useSafeAreaInsets } from 'react-native-safe-area-context';
 import { useDispatch, useSelector } from 'react-redux';
 import { CompositeScreenProps } from '@react-navigation/native';
 import { StackScreenProps } from '@react-navigation/stack';
@@ -51,6 +52,7 @@ export const SettingsScreen: React.FC<SettingsModalProps> = ({
   navigation,
 }) => {
   const { t } = useTranslation();
+  const { top } = useSafeAreaInsets();
 
   const {
     data: facilityProfile,
@@ -202,7 +204,7 @@ export const SettingsScreen: React.FC<SettingsModalProps> = ({
   );
 
   const settingsScreen = (
-    <View style={styles.safeArea}>
+    <View style={[styles.safeArea, { paddingTop: top }]}>
       <ScrollView
         refreshControl={
           <RefreshControl refreshing={isRefetching} onRefresh={refetch} />

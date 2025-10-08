@@ -1,6 +1,6 @@
-import { Platform, StyleSheet } from 'react-native';
+import { StyleSheet } from 'react-native';
 
-import { BLACK, WHITE } from './colors';
+import { WHITE } from './colors';
 import { SPACE_VALUES } from './spacing';
 
 export const commonStyles = StyleSheet.create({
@@ -12,7 +12,6 @@ export const commonStyles = StyleSheet.create({
     backgroundColor: WHITE,
     padding: SPACE_VALUES.medium,
     marginBottom: 8,
-    elevation: 2,
     borderRadius: 14,
     marginHorizontal: 10,
   },
@@ -38,17 +37,3 @@ export const commonStyles = StyleSheet.create({
     backgroundColor: WHITE,
   },
 });
-
-export const shadowStyle = {
-  ...Platform.select({
-    ios: {
-      shadowColor: BLACK,
-      shadowOffset: { width: 0, height: 2 },
-      shadowOpacity: 0.2,
-      shadowRadius: 2,
-    },
-    android: {
-      elevation: 4,
-    },
-  }),
-};

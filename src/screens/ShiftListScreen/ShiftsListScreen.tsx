@@ -232,7 +232,7 @@ export const ShiftsListScreen: React.FC<ShiftListScreenProps> = ({
   );
 
   return (
-    <SafeAreaView style={[styles.safeArea, { top }]}>
+    <SafeAreaView style={[styles.safeArea, { paddingTop: top }]}>
       <ScreenTitle
         style={styles.headerStyle}
         title={t('shift_list_published_shifts_title')}
@@ -264,7 +264,7 @@ const styles = StyleSheet.create({
   },
   addButtonContainer: {
     position: 'absolute',
-    bottom: 72,
+    bottom: 20,
     right: 20,
   },
   refreshDataContainer: {

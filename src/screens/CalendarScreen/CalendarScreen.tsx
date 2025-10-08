@@ -21,14 +21,16 @@ import StyledText from '@/components/StyledText';
 
 import { useEffectOnce } from '@/hooks/useEffectOnce';
 import {
+  ACTION_BLUE,
   BADGE_GRAY,
   BLACK,
   DARK_BLUE,
   GRAY,
+  NEW_LIGHT_GRAY,
   PURPLE,
   WHITE,
 } from '@/styles/colors';
-import { commonStyles, shadowStyle } from '@/styles/commonStyles';
+import { commonStyles } from '@/styles/commonStyles';
 import { fontWeight, LayoutTextEnum } from '@/styles/fonts';
 import { SPACE_VALUES } from '@/styles/spacing';
 
@@ -69,9 +71,7 @@ export const CalendarScreen: React.FC<CalendarScreenProps> = ({
   const { dayShiftsData, shiftInfoData } = useSelector(
     (state: RootState) => state.shiftData
   );
-  const { facilityProfile } = useSelector(
-    (state: RootState) => state.profileData
-  );
+
   const [calendarModalVisible, setCalendarModalVisible] = useState(false);
   const [loading, setIsLoading] = useState(false);
   const insets = useSafeAreaInsets();
@@ -137,7 +137,7 @@ export const CalendarScreen: React.FC<CalendarScreenProps> = ({
           setShifts([]);
           setIsLoading(false);
           const errorMessage =
-            error instanceof ApiApplicationError === true
+            error instanceof ApiApplicationError
               ? error.message
               : t('shift_list_error_server_message');
           Alert.alert(t('shift_list_error_loading_shifts'), errorMessage);
@@ -224,13 +224,13 @@ export const CalendarScreen: React.FC<CalendarScreenProps> = ({
                 backgroundColor: isSelected
                   ? isHoliday
                     ? PURPLE
-                    : DARK_BLUE
+                    : ACTION_BLUE
                   : hasShifts
                     ? WHITE
                     : 'transparent',
                 borderWidth: isToday || isHoliday ? 1 : 0,
                 borderColor: isToday
-                  ? DARK_BLUE
+                  ? ACTION_BLUE
                   : isHoliday
                     ? PURPLE
                     : 'transparent',
@@ -273,10 +273,10 @@ export const CalendarScreen: React.FC<CalendarScreenProps> = ({
         <LivoIcon name="chevron-left" size={24} color={BADGE_GRAY} />
       </TouchableOpacity>
       <Row alignItems={'center'} justifyContent={'space-between'} flex={1}>
-        {weekShiftDays.map((dayShift, index) => {
+        {weekShiftDays.map((dayShift) => {
           return (
             <DayRowItem
-              key={index}
+              key={dayShift.weekDay}
               weekDay={dayShift.dayNumber}
               day={dayShift.weekDay.toString()}
               isSelected={dayShift.date === daySelected}
@@ -370,8 +370,8 @@ const styles = StyleSheet.create({
   header: {
     paddingBottom: SPACE_VALUES.large,
     paddingHorizontal: SPACE_VALUES.large,
-    ...shadowStyle,
-    borderRadius: SPACE_VALUES.large,
+    borderWidth: 1,
+    borderColor: NEW_LIGHT_GRAY,
     backgroundColor: WHITE,
     zIndex: 2,
   },
@@ -407,8 +407,8 @@ const styles = StyleSheet.create({
   dayCircle: {
     alignItems: 'center',
     justifyContent: 'center',
-    borderRadius: 50,
-    width: 25,
-    height: 25,
+    borderRadius: 4,
+    width: 27,
+    height: 27,
   },
 });
