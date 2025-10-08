@@ -1,6 +1,4 @@
-import React from 'react';
-import { StyleSheet, View } from 'react-native';
-import { TouchableOpacity } from 'react-native';
+import { StyleSheet, TouchableOpacity, View } from 'react-native';
 
 import { SPACE_VALUES } from '@/styles/spacing';
 

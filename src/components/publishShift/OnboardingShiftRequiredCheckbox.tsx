@@ -1,9 +1,7 @@
 import { StyleSheet, View } from 'react-native';
 import { useTranslation } from 'react-i18next';
 
-import { IconSquare, IconSquareCheckFilled } from 'tabler-icons-react-native';
-
-import CustomCheckBox from '@/components/common/CustomCheckBox';
+import LabeledCheckbox from '@/components/common/LabeledCheckbox';
 
 import { SPACE_VALUES } from '@/styles/spacing';
 
@@ -17,24 +15,9 @@ const OnboardingShiftRequiredCheckbox = ({
   const { t } = useTranslation();
   return (
     <View style={styles.container}>
-      <CustomCheckBox
+      <LabeledCheckbox
         option={t('onboarding_shift_required')}
         checked={onboardingShiftsRequired}
-        checkedIcon={
-          <IconSquareCheckFilled
-            size={24}
-            color={'#0277C8'}
-            strokeWidth={0.3}
-            style={{ marginRight: -SPACE_VALUES.small }}
-          />
-        }
-        uncheckedIcon={
-          <IconSquare
-            size={24}
-            color="#B0BEC5"
-            style={{ marginRight: -SPACE_VALUES.small }}
-          />
-        }
         onPress={() => {
           setOnboardingShiftsRequired(!onboardingShiftsRequired);
         }}

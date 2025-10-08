@@ -14,6 +14,9 @@ import Animated, {
   withTiming,
 } from 'react-native-reanimated';
 
+import Row from '@/components/atoms/Row';
+import { Typography } from '@/components/atoms/Typography';
+
 import { ACTION_BLUE, BADGE_GRAY, DARK_GRAY } from '@/styles/colors';
 
 import LivoIcon from '@/assets/icons/LivoIcon';
@@ -29,23 +32,20 @@ interface CustomCheckBoxProps {
   style?: StyleProp<ViewStyle>;
   disabled?: boolean;
   rowStyle?: StyleProp<ViewStyle>;
-  singleSelect?: boolean;
 }
 
 const animationTime = 200;
 
-const CustomCheckBox: React.FC<CustomCheckBoxProps> = ({
+const LabeledCheckbox: React.FC<CustomCheckBoxProps> = ({
   option,
   onPress,
   checked,
   disabled,
   partial,
-  type = 'radiobox',
+  type = 'checkbox',
   style,
-
   textStyle,
   rowStyle,
-  singleSelect,
 }) => {
   const scale = useSharedValue(1);
   const progress = useSharedValue(checked ? 1 : 0);
@@ -86,22 +86,33 @@ const CustomCheckBox: React.FC<CustomCheckBoxProps> = ({
 
   return (
     <Pressable onPress={toggle} style={style} disabled={disabled}>
-      <Animated.View style={[styles.iconContainer, animatedStyle]}>
-        <Animated.View style={[StyleSheet.absoluteFill, checkedStyle]}>
-          <LivoIcon
-            size={24}
-            name={`${lastCheckWasPartial.current}-checked`}
-            color={disabled ? DARK_GRAY : ACTION_BLUE}
-          />
+      <Row
+        style={rowStyle}
+        gap={4}
+        alignItems={'center'}
+        justifyContent={'space-between'}
+        fullWidth
+      >
+        <Animated.View style={[styles.iconContainer, animatedStyle]}>
+          <Animated.View style={[StyleSheet.absoluteFill, checkedStyle]}>
+            <LivoIcon
+              size={24}
+              name={`${lastCheckWasPartial.current}-checked`}
+              color={disabled ? DARK_GRAY : ACTION_BLUE}
+            />
+          </Animated.View>
+          <Animated.View style={[StyleSheet.absoluteFill, uncheckedStyle]}>
+            <LivoIcon
+              size={24}
+              name={`${type}-unchecked`}
+              color={disabled ? DARK_GRAY : BADGE_GRAY}
+            />
+          </Animated.View>
         </Animated.View>
-        <Animated.View style={[StyleSheet.absoluteFill, uncheckedStyle]}>
-          <LivoIcon
-            size={24}
-            name={`${type}-unchecked`}
-            color={disabled ? DARK_GRAY : BADGE_GRAY}
-          />
-        </Animated.View>
-      </Animated.View>
+        <Typography variant="body/regular" style={textStyle}>
+          {option}
+        </Typography>
+      </Row>
     </Pressable>
   );
 };
@@ -110,7 +121,9 @@ const styles = StyleSheet.create({
   iconContainer: {
     width: 24,
     height: 24,
+    marginBottom: 2,
+    padding: 0,
   },
 });
 
-export default CustomCheckBox;
+export default LabeledCheckbox;

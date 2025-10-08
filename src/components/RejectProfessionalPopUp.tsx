@@ -13,7 +13,7 @@ import { fontWeight, LayoutTextEnum } from '@/styles/fonts';
 
 import CommonButton from './buttons/CommonButton';
 import UndoButton from './buttons/UndoButton';
-import CustomCheckBox from './common/CustomCheckBox';
+import LabeledCheckbox from './common/LabeledCheckbox';
 import CustomTextInput from './common/CustomTextInput';
 import StyledText from './StyledText';
 
@@ -103,7 +103,7 @@ export const RejectProfessionalPopUp: React.FC<Props> = ({
         {options.map((option) => {
           return (
             <View key={option.name}>
-              <CustomCheckBox
+              <LabeledCheckbox
                 key={option.name}
                 option={
                   option?.displayText ?? option.translations?.es ?? option.name

@@ -1,4 +1,3 @@
-import React from 'react';
 import { useTranslation } from 'react-i18next';
 import { NavigatorScreenParams } from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack';
@@ -22,8 +21,8 @@ import { ProfessionalReviewsScreen } from '@/components/ProfessionalReviewsScree
 
 import { ProfessionalOverviewDTO } from '@/types/professionals';
 
+import TabNavigation, { TabsParamsList } from '@/router/TabsNavigator';
 import { Category, ClaimSummary, Shift } from '@/types';
-import TabNavigation, { TabsParamsList } from './TabsNavigator';
 
 export enum ProtectedStackRoutes {
   Home = 'Home',
@@ -101,7 +100,7 @@ export const ProtectedStack = () => {
       <Stack.Screen
         name={ProtectedStackRoutes.PublishShift}
         component={PublishShiftScreen}
-        options={({ navigation, route }) => ({
+        options={({ navigation }) => ({
           title: t('shift_list_publish_shift_title'),
           headerBackTitleVisible: false,
           headerShown: true,

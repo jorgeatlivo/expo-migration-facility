@@ -9,6 +9,7 @@ import {
 } from 'react-native';
 import { useTranslation } from 'react-i18next';
 import { ScrollView } from 'react-native-gesture-handler';
+import { useSafeAreaInsets } from 'react-native-safe-area-context';
 import { useDispatch, useSelector } from 'react-redux';
 import { CompositeScreenProps } from '@react-navigation/native';
 import { StackScreenProps } from '@react-navigation/stack';
@@ -51,7 +52,7 @@ export const ShiftsListScreen: React.FC<ShiftListScreenProps> = ({
   navigation,
 }) => {
   const { t } = useTranslation();
-
+  const { top } = useSafeAreaInsets();
   const { dayShiftsData, shiftInfoData, newNotificationToggle } = useSelector(
     (state: RootState) => state.shiftData
   );
@@ -61,7 +62,9 @@ export const ShiftsListScreen: React.FC<ShiftListScreenProps> = ({
   const [isRefreshing, setIsRefreshing] = useState(false);
   const dispatch = useDispatch();
   const { isLoading, dayShifts, newShiftAvailable } = dayShiftsData;
-  const [tab, setTab] = useState(t('shift_list_claims_shifts_title'));
+  const [tab, setTab] = useState<string>(
+    t('shift_list_claims_shifts_title') as string
+  );
 
   const filterShifts = (chosenTab: string, shifts: Shift[]) => {
     return shifts.filter((shift) => {
@@ -229,7 +232,7 @@ export const ShiftsListScreen: React.FC<ShiftListScreenProps> = ({
   );
 
   return (
-    <SafeAreaView style={styles.safeArea}>
+    <SafeAreaView style={[styles.safeArea, { top }]}>
       <ScreenTitle
         style={styles.headerStyle}
         title={t('shift_list_published_shifts_title')}
@@ -261,7 +264,7 @@ const styles = StyleSheet.create({
   },
   addButtonContainer: {
     position: 'absolute',
-    bottom: 20,
+    bottom: 72,
     right: 20,
   },
   refreshDataContainer: {

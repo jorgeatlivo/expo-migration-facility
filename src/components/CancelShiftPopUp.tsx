@@ -10,8 +10,8 @@ import { fontWeight, LayoutTextEnum } from '@/styles/fonts';
 
 import CommonButton from './buttons/CommonButton';
 import UndoButton from './buttons/UndoButton';
-import CustomCheckBox from './common/CustomCheckBox';
 import CustomTextInput from './common/CustomTextInput';
+import LabeledCheckbox from './common/LabeledCheckbox';
 import StyledText from './StyledText';
 
 interface Props {
@@ -100,7 +100,7 @@ export const CancelShiftPopUp: React.FC<Props> = ({
         {options.map((option) => {
           return (
             <View key={option.name}>
-              <CustomCheckBox
+              <LabeledCheckbox
                 option={
                   option?.displayText ?? option.translations?.es ?? option.name
                 }
