@@ -62,9 +62,7 @@ export const ShiftsListScreen: React.FC<ShiftListScreenProps> = ({
   const [isRefreshing, setIsRefreshing] = useState(false);
   const dispatch = useDispatch();
   const { isLoading, dayShifts, newShiftAvailable } = dayShiftsData;
-  const [tab, setTab] = useState<string>(
-    t('shift_list_claims_shifts_title') as string
-  );
+  const [tab, setTab] = useState<string>('shift_list_claims_shifts_title');
 
   const filterShifts = (chosenTab: string, shifts: Shift[]) => {
     return shifts.filter((shift) => {
@@ -239,9 +237,9 @@ export const ShiftsListScreen: React.FC<ShiftListScreenProps> = ({
       />
       <HeaderTabs
         tabs={[
-          t('shift_list_claims_shifts_title'),
-          t('shift_list_pending_shifts_title'),
-          t('shift_list_filled_shifts_title'),
+          'shift_list_claims_shifts_title',
+          'shift_list_pending_shifts_title',
+          'shift_list_filled_shifts_title',
         ]}
         activeTab={tab}
         onTabPress={setTab}

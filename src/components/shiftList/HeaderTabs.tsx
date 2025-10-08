@@ -1,5 +1,6 @@
 import React from 'react';
 import { StyleSheet, TouchableOpacity } from 'react-native';
+import { useTranslation } from 'react-i18next';
 
 import Row from '@/components/atoms/Row';
 import StyledText from '@/components/StyledText';
@@ -19,18 +20,20 @@ export const HeaderTabs: React.FC<HeaderTabsProps> = ({
   activeTab,
   onTabPress,
 }) => {
+  const { t } = useTranslation();
+
   return (
     <Row justifyContent={'space-between'} style={styles.row}>
-      {tabs.map((tab, index) => (
+      {tabs.map((tab) => (
         <TouchableOpacity
-          key={index}
+          key={tab}
           onPress={() => onTabPress(tab)}
           style={[styles.tab, activeTab === tab && styles.activeTab]}
         >
           <StyledText
             style={[styles.tabLabel, activeTab === tab && styles.activeLabel]}
           >
-            {tab}
+            {t(tab)}
           </StyledText>
         </TouchableOpacity>
       ))}
