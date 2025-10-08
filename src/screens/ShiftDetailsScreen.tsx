@@ -43,7 +43,7 @@ import {
 import { typographyStyles } from '@/styles/livoFonts';
 import { BORDER, SPACE_VALUES } from '@/styles/spacing';
 import { professionalProfileToOverviewDTO } from '@/types/professionals';
-import { isBeforeNow } from '@/utils/dateUtils';
+import { isBeforeDay } from '@/utils/dateUtils';
 
 import { formatDate } from '@/common/utils';
 import {
@@ -160,7 +160,9 @@ export const ShiftDetailsScreen: React.FC<ShiftDetailsScreen> = ({
       navigation.setOptions({
         headerTitleAlign: 'center',
         headerShown: true,
-        ...(!isBeforeNow(shiftInfo.date) && { headerRight }),
+        ...(isBeforeDay(new Date(), shiftInfo.startTime) && {
+          headerRight,
+        }),
         ...(areNewFieldsAndUnitsActive ? {} : { headerTitle }),
       });
     } else if (!areNewFieldsAndUnitsActive) {
