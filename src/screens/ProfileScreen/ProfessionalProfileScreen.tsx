@@ -252,11 +252,11 @@ const styles = StyleSheet.create({
   screen: {
     flex: 1,
     backgroundColor: LIGHT_GRAY,
-    padding: SPACE_VALUES.large,
     justifyContent: 'space-between',
   },
   scrollView: {
     flexGrow: 1,
+    padding: SPACE_VALUES.large,
     paddingBottom: SPACE_VALUES.xLarge,
   },
   actions: {
