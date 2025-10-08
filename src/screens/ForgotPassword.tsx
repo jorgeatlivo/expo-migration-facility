@@ -14,6 +14,8 @@ import { StackScreenProps } from '@react-navigation/stack';
 
 import { resetPasswordRequest } from '@/services/authentication';
 
+import { AuthStackRoutes } from '@/screens/Authentication/AuthenticationStack.types';
+
 import ActionButton from '@/components/buttons/ActionButton';
 import CustomTextInput from '@/components/common/CustomTextInput';
 import LivoText from '@/components/common/LivoText';
@@ -29,7 +31,6 @@ import { typographyStyles } from '@/styles/livoFonts';
 import { SPACE_VALUES } from '@/styles/spacing';
 
 import { RootStackParamList } from '@/router/AuthenticationProvider';
-import { AuthStackRoutes } from './Authentication/AuthenticationStack';
 
 type ForgotPasswordScreenProps = StackScreenProps<
   RootStackParamList,

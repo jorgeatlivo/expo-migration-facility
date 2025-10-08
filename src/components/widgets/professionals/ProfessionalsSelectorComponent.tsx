@@ -19,7 +19,7 @@ import { SPACE_VALUES } from '@/styles/spacing';
 import { ProfessionalOverviewDTO } from '@/types/professionals';
 
 import LivoIcon from '@/assets/icons/LivoIcon';
-import { ProtectedStackRoutes } from '@/router/ProtectedStack';
+import { ProtectedStackRoutes } from '@/router/ProtectedStack.types';
 
 interface ProfessionalsSelectorComponentProps {
   title: string;

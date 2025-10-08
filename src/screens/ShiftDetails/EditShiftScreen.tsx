@@ -34,7 +34,7 @@ import { getStartAndEndTimeFromDate } from '@/utils/utils';
 import {
   ProtectedStackParamsList,
   ProtectedStackRoutes,
-} from '@/router/ProtectedStack';
+} from '@/router/ProtectedStack.types';
 import { RootState, ShiftTimeInDayEnum } from '@/types';
 
 type EditShiftScreenProps = StackScreenProps<

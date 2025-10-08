@@ -1,27 +1,29 @@
 import { Alert } from 'react-native';
 
 import AsyncStorage from '@react-native-async-storage/async-storage';
-import messaging, {
+import {
+  AuthorizationStatus,
   FirebaseMessagingTypes,
 } from '@react-native-firebase/messaging';
 import i18next from 'i18next';
 
+import MessagingService from '@/services/firebase/messaging-service';
 import { newNotificationToggleAction } from '@/store/actions/shiftActions';
 import store from '@/store/configureStore';
 
 import { navigate } from '@/utils/navigation';
 
-import { ProtectedStackRoutes } from '@/router/ProtectedStack';
+import { ProtectedStackRoutes } from '@/router/ProtectedStack.types';
 import api from './api';
 import { retrieveUserSession } from './authentication';
 
 let FCM_TOKEN_STORAGE_KEY = 'FCMToken';
 
 export async function requestUserPermission() {
-  const authStatus = await messaging().requestPermission();
+  const authStatus = await MessagingService.requestPermission();
   const enabled =
-    authStatus === messaging.AuthorizationStatus.AUTHORIZED ||
-    authStatus === messaging.AuthorizationStatus.PROVISIONAL;
+    authStatus === AuthorizationStatus.AUTHORIZED ||
+    authStatus === AuthorizationStatus.PROVISIONAL;
 
   if (enabled) {
     console.log('Authorization status:', authStatus);
@@ -51,12 +53,12 @@ async function updateStoredFCMToken(assignedFCMToken: string) {
 }
 
 export async function syncFCMToken() {
-  if (!messaging().isDeviceRegisteredForRemoteMessages) {
-    await messaging().registerDeviceForRemoteMessages();
+  if (!MessagingService.isDeviceRegisteredForRemoteMessages()) {
+    await MessagingService.registerDeviceForRemoteMessages();
   }
 
   setTimeout(async () => {
-    const assignedFCMToken = await messaging().getToken();
+    const assignedFCMToken = await MessagingService.getToken();
     await updateStoredFCMToken(assignedFCMToken);
   }, 1000);
 }
@@ -66,7 +68,7 @@ export async function getFCMToken() {
 }
 
 export function registerForegroundNotification() {
-  messaging().onMessage(async (remoteMessage) => {
+  MessagingService.onMessage(async (remoteMessage) => {
     notificationHandler(remoteMessage);
     console.log(
       'Foreground: A new FCM message arrived!',
@@ -76,7 +78,7 @@ export function registerForegroundNotification() {
 }
 
 function registerOnNotificationOpenedApp() {
-  messaging().onNotificationOpenedApp((remoteMessage) => {
+  MessagingService.onNotificationOpenedApp((remoteMessage) => {
     notificationHandler(remoteMessage);
     console.log(
       'Notification caused app to open from background state:',
@@ -123,21 +125,19 @@ function notificationHandler(
 }
 
 function registerOnInitialNotification() {
-  messaging()
-    .getInitialNotification()
-    .then((remoteMessage) => {
-      if (remoteMessage) {
-        notificationHandler(remoteMessage);
-        console.log(
-          'Notification caused app to open from quit state:',
-          remoteMessage.notification
-        );
-      }
-    });
+  MessagingService.getInitialNotification().then((remoteMessage) => {
+    if (remoteMessage) {
+      notificationHandler(remoteMessage);
+      console.log(
+        'Notification caused app to open from quit state:',
+        remoteMessage.notification
+      );
+    }
+  });
 }
 
 function registerOnTokenRefresh() {
-  messaging().onTokenRefresh(syncFCMToken);
+  MessagingService.onTokenRefresh(syncFCMToken);
 }
 
 export function initialiseNotifications() {

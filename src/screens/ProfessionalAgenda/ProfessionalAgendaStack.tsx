@@ -2,22 +2,15 @@ import React from 'react';
 import { useTranslation } from 'react-i18next';
 import { createStackNavigator } from '@react-navigation/stack';
 
+import {
+  ProfessionalAgendaStackParamList,
+  ProfessionalAgendaStackRoutes,
+} from '@/screens/ProfessionalAgenda/ProfessionalAgendaStack.types';
+
 import { CustomHeaderBackIcon } from '@/components/common/CustomHeaderBackIcon';
 
 import { ProfessionalAgendaList } from './ProfessionalAgenda';
 import { ProfessionalAgendaDetailViewComponent } from './ProfessionalAgendaDetailView';
-
-export enum ProfessionalAgendaStackRoutes {
-  ProfessionalAgendaList = 'ProfessionalAgendaList',
-  ProfessionalAgendaDetail = 'ProfessionalAgendaDetail',
-}
-
-export type ProfessionalAgendaStackParamList = {
-  [ProfessionalAgendaStackRoutes.ProfessionalAgendaList]: undefined;
-  [ProfessionalAgendaStackRoutes.ProfessionalAgendaDetail]: {
-    professionalId: string;
-  };
-};
 
 const Stack = createStackNavigator<ProfessionalAgendaStackParamList>();
 const commonOptions = { headerShown: false };

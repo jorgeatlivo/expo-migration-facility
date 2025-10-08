@@ -39,8 +39,8 @@ import { handleLinkPress } from '@/common/utils';
 import {
   ProtectedStackParamsList,
   ProtectedStackRoutes,
-} from '@/router/ProtectedStack';
-import { TabRoutes, TabsParamsList } from '@/router/TabsNavigator';
+} from '@/router/ProtectedStack.types';
+import { TabRoutes, TabsParamsList } from '@/router/TabNavigator.types';
 import { RootState, UserFeatureEnum } from '@/types';
 
 type SettingsModalProps = CompositeScreenProps<

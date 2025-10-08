@@ -8,10 +8,8 @@ import {
   createBottomTabNavigator,
 } from '@react-navigation/bottom-tabs';
 
-import analytics from '@react-native-firebase/analytics';
-import remoteConfig from '@react-native-firebase/remote-config';
-
 import AnalyticsService from '@/services/analytics/analytics.service';
+import RemoteConfigService from '@/services/firebase/remote-config-service';
 import {
   setAppState,
   setLastActiveTime,
@@ -33,21 +31,8 @@ import { useEffectOnce } from '@/hooks/useEffectOnce';
 import { GRAY, PRIMARY_BLUE } from '@/styles/colors';
 
 import LivoIcon from '@/assets/icons/LivoIcon';
+import { TabRoutes, TabsParamsList } from '@/router/TabNavigator.types';
 import { RootState } from '@/types';
-
-export enum TabRoutes {
-  ShiftsList = 'shift-listing',
-  ShiftsCalendar = 'shift-calendar',
-  Settings = 'Settings',
-  ProAgenda = 'professional-agenda',
-}
-
-export type TabsParamsList = {
-  [TabRoutes.ShiftsList]: undefined;
-  [TabRoutes.ShiftsCalendar]: undefined;
-  [TabRoutes.Settings]: undefined;
-  [TabRoutes.ProAgenda]: undefined;
-};
 
 const ICON_SIZE = 36;
 const Tab = createBottomTabNavigator<TabsParamsList>();
@@ -89,17 +74,16 @@ export const TabNavigation = () => {
   );
 
   const logAnalyticAndFetch = useCallback(async () => {
-    await analytics().setUserProperty('userId', userId);
-    await remoteConfig()
-      .setDefaults({
-        auto_refresh_interval: '120000',
-        faster_shift_version: false,
-        can_publish_unit: false,
-        auto_reload_translations_interval_ms: Number(
-          ENV.AUTO_RELOAD_TRANSLATIONS_INTERVAL_MS
-        ),
-      })
-      .then(() => remoteConfig().fetchAndActivate())
+    await AnalyticsService.identifyUser(userId);
+    await RemoteConfigService.setDefaults({
+      auto_refresh_interval: '120000',
+      faster_shift_version: false,
+      can_publish_unit: false,
+      auto_reload_translations_interval_ms: Number(
+        ENV.AUTO_RELOAD_TRANSLATIONS_INTERVAL_MS
+      ),
+    })
+      .then(() => RemoteConfigService.fetchAndActivate())
       .then((fetchedRemotely) => {
         console.log(
           fetchedRemotely
@@ -110,6 +94,7 @@ export const TabNavigation = () => {
           AnalyticsService.initPostHogFromRemoteConfig();
         }
       });
+    // @ts-ignore
     await dispatch(fetchFacilityProfileAction());
     setInitializing(false);
   }, [dispatch, userId]);
@@ -139,7 +124,7 @@ export const TabNavigation = () => {
   });
 
   useEffect(() => {
-    let remoteConfigListenerUnsubscriber = remoteConfig().onConfigUpdated(
+    let remoteConfigListenerUnsubscriber = RemoteConfigService.onConfigUpdated(
       (event, error) => {
         if (error) {
           console.log(
@@ -156,8 +141,8 @@ export const TabNavigation = () => {
 
           // If you use realtime updates, the SDK fetches the new config for you.
           // However, you must activate the new config so it is in effect
-          remoteConfig().activate();
-
+          RemoteConfigService.activate();
+          console.log('JORGITO', event);
           if (event?.updatedKeys.includes('facility_app_posthog_api_key')) {
             AnalyticsService.initPostHogFromRemoteConfig();
           }
@@ -233,6 +218,7 @@ export const TabNavigation = () => {
     <EmptyScreen
       style={{ paddingBottom: insets.bottom }}
       onPress={() => {
+        // @ts-ignore
         dispatch(fetchFacilityProfileAction());
       }}
     />

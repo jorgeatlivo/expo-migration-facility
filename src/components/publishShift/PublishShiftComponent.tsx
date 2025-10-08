@@ -50,7 +50,7 @@ import i18n from '@/locale/i18n';
 import {
   ProtectedStackParamsList,
   ProtectedStackRoutes,
-} from '@/router/ProtectedStack';
+} from '@/router/ProtectedStack.types';
 import { Category, UserFeatureEnum, ValueDisplayPair } from '@/types';
 import { CapacitySelectorComponent } from './CapacitySelectorComponent';
 import { CompensationSelector } from './CompensationSelector';

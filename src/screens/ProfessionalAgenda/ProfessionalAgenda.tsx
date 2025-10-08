@@ -9,6 +9,11 @@ import { StackScreenProps } from '@react-navigation/stack';
 import { fetchProfessionalAgendaThunk } from '@/store/actions/professionalAgendaActions';
 import { AppDispatch } from '@/store/configureStore';
 
+import {
+  ProfessionalAgendaStackParamList,
+  ProfessionalAgendaStackRoutes,
+} from '@/screens/ProfessionalAgenda/ProfessionalAgendaStack.types';
+
 import { EmptyScreen } from '@/components/common/EmptyScreen';
 import { LoadingScreen } from '@/components/common/LoadingScreen';
 import { ProfessionalAgendaHeader } from '@/components/professionalAgenda/header';
@@ -20,10 +25,6 @@ import { typographyStyles } from '@/styles/livoFonts';
 import { SPACE_VALUES } from '@/styles/spacing';
 
 import { RootState, ShiftTimeInDayEnum } from '@/types';
-import {
-  ProfessionalAgendaStackParamList,
-  ProfessionalAgendaStackRoutes,
-} from './ProfessionalAgendaStack';
 
 type ProfessionalAgendaList = StackScreenProps<
   ProfessionalAgendaStackParamList,

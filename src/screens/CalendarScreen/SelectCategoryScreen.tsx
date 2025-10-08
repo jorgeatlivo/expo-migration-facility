@@ -6,7 +6,7 @@ import { SelectCategoryComponent } from '@/components/publishShift/SelectCategor
 import {
   ProtectedStackParamsList,
   ProtectedStackRoutes,
-} from '@/router/ProtectedStack';
+} from '@/router/ProtectedStack.types';
 
 type SelectCategoryScreenProps = StackScreenProps<
   ProtectedStackParamsList,

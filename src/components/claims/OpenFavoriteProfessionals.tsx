@@ -4,7 +4,7 @@ import { NavigationProp } from '@react-navigation/native';
 
 import TouchableRow from '@/components/common/TouchableRow';
 
-import { ProtectedStackRoutes } from '@/router/ProtectedStack';
+import { ProtectedStackRoutes } from '@/router/ProtectedStack.types';
 
 interface OpenFavoriteProfessionalsProps {
   navigation: NavigationProp<any>;

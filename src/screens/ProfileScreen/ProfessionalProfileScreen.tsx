@@ -41,7 +41,7 @@ import { SPACE_VALUES } from '@/styles/spacing';
 import {
   ProtectedStackParamsList,
   ProtectedStackRoutes,
-} from '@/router/ProtectedStack';
+} from '@/router/ProtectedStack.types';
 import { RootState, ShiftModalityEnum } from '@/types';
 
 type ProfessionalProfileScreenProps = StackScreenProps<

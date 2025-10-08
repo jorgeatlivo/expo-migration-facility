@@ -39,8 +39,8 @@ import { timeConfiguration } from '@/locale/timeConfiguration';
 import {
   ProtectedStackParamsList,
   ProtectedStackRoutes,
-} from '@/router/ProtectedStack';
-import { TabRoutes, TabsParamsList } from '@/router/TabsNavigator';
+} from '@/router/ProtectedStack.types';
+import { TabRoutes, TabsParamsList } from '@/router/TabNavigator.types';
 import { DayShift, RootState, Shift } from '@/types';
 import { CalendarModal } from './CalendarModal';
 import { CalendarShiftList } from './CalendarShiftList';

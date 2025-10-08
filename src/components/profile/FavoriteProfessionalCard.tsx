@@ -7,7 +7,7 @@ import { ProfessionalProfile } from '@/services/shifts';
 import { WHITE } from '@/styles/colors';
 import { SPACE_VALUES } from '@/styles/spacing';
 
-import { ProtectedStackRoutes } from '@/router/ProtectedStack';
+import { ProtectedStackRoutes } from '@/router/ProtectedStack.types';
 import { ShiftModalityEnum } from '@/types';
 import FavoriteProfessional from './FavoriteProfessional';
 

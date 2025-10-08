@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { TouchableOpacity, View } from 'react-native';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
 import { useDispatch } from 'react-redux';
@@ -11,7 +11,6 @@ import { ACTION_BLUE, DIVIDER_GRAY, WHITE } from '@/styles/colors';
 import { SPACE_VALUES } from '@/styles/spacing';
 
 import LivoIcon from '@/assets/icons/LivoIcon';
-import { TabRoutes } from '@/router/TabsNavigator';
 
 interface LivoTabBarProps extends BottomTabBarProps {}
 
@@ -23,16 +22,6 @@ export const LivoTabBar: React.FC<LivoTabBarProps> = ({
 }) => {
   const insets = useSafeAreaInsets();
   const dispatch = useDispatch<AppDispatch>();
-
-  const initialNotifications = {
-    [TabRoutes.ShiftsList]: false,
-    [TabRoutes.ShiftsCalendar]: false,
-    [TabRoutes.Settings]: false,
-    [TabRoutes.ProAgenda]: false,
-  };
-  // TODO - repair notifications
-  const [notificationDots, setNotificationDots] =
-    useState(initialNotifications);
 
   return (
     <View
@@ -68,6 +57,7 @@ export const LivoTabBar: React.FC<LivoTabBarProps> = ({
             navigation.navigate(route.name, route.params);
           } else {
             if (route.name === TabRoutes.ProAgenda) {
+              // @ts-ignore
               dispatch(fetchProfessionalAgendaThunk());
             }
           }
@@ -86,7 +76,6 @@ export const LivoTabBar: React.FC<LivoTabBarProps> = ({
             accessibilityRole="button"
             accessibilityState={isFocused ? { selected: true } : {}}
             accessibilityLabel={options.tabBarAccessibilityLabel}
-            testID={options.tabBarTestID}
             onPress={onPress}
             onLongPress={onLongPress}
             style={styles.tabButton}
@@ -97,9 +86,6 @@ export const LivoTabBar: React.FC<LivoTabBarProps> = ({
                 size={36}
                 color={isFocused ? ACTION_BLUE : DIVIDER_GRAY}
               />
-              {notificationDots[route.name as keyof typeof notificationDots] ? (
-                <View style={styles.notification} />
-              ) : null}
             </View>
           </TouchableOpacity>
         );
@@ -109,6 +95,8 @@ export const LivoTabBar: React.FC<LivoTabBarProps> = ({
 };
 
 import { StyleSheet } from 'react-native';
+
+import { TabRoutes } from '@/router/TabNavigator.types';
 
 const styles = StyleSheet.create({
   tabRow: {

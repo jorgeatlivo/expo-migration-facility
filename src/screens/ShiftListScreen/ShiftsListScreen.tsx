@@ -14,10 +14,10 @@ import { useDispatch, useSelector } from 'react-redux';
 import { CompositeScreenProps } from '@react-navigation/native';
 import { StackScreenProps } from '@react-navigation/stack';
 
-import remoteConfig from '@react-native-firebase/remote-config';
 import moment from 'moment';
 
 import { ApiApplicationError } from '@/services/api';
+import RemoteConfigService from '@/services/firebase/remote-config-service';
 import { fetchShifts } from '@/services/shifts';
 import {
   loadShiftsAction,
@@ -39,8 +39,8 @@ import { SPACE_VALUES } from '@/styles/spacing';
 import {
   ProtectedStackParamsList,
   ProtectedStackRoutes,
-} from '@/router/ProtectedStack';
-import { TabRoutes, TabsParamsList } from '@/router/TabsNavigator';
+} from '@/router/ProtectedStack.types';
+import { TabRoutes, TabsParamsList } from '@/router/TabNavigator.types';
 import { DayShift, RootState, Shift } from '@/types';
 
 type ShiftListScreenProps = CompositeScreenProps<
@@ -80,7 +80,7 @@ export const ShiftsListScreen: React.FC<ShiftListScreenProps> = ({
     });
   };
 
-  const refreshInterval = remoteConfig().getValue('auto_refresh_interval');
+  const refreshInterval = RemoteConfigService.getValue('auto_refresh_interval');
   const fetchShiftData = async () => {
     if (shiftInfoData.isLoading) {
       return;

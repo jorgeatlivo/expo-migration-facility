@@ -11,7 +11,7 @@ import LivoIcon from '@/assets/icons/LivoIcon';
 import {
   ProtectedStackParamsList,
   ProtectedStackRoutes,
-} from '@/router/ProtectedStack';
+} from '@/router/ProtectedStack.types';
 import { ProfessionalReviewComponent } from './ProfessionalReviewComponent';
 import StyledText from './StyledText';
 

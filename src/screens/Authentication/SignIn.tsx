@@ -19,6 +19,11 @@ import { signInRequest, storeUserSession } from '@/services/authentication';
 import { signInAction } from '@/store/actions/authenticationActions';
 import { loadUserId } from '@/store/actions/configurationActions';
 
+import {
+  AuthenticationStackParamslist,
+  AuthStackRoutes,
+} from '@/screens/Authentication/AuthenticationStack.types';
+
 import Col from '@/components/atoms/Col';
 import ActionButton from '@/components/buttons/ActionButton';
 import CustomTextInput from '@/components/common/CustomTextInput';
@@ -34,10 +39,6 @@ import { decodeJWT } from '@/utils/utils';
 import LivoTwoColorLogo from '@/assets/icons/LivoTwoColorLogo';
 import { handleLinkPress } from '@/common/utils';
 import { RootState } from '@/types';
-import {
-  AuthenticationStackParamslist,
-  AuthStackRoutes,
-} from './AuthenticationStack';
 
 type SignInScreenProps = StackScreenProps<
   AuthenticationStackParamslist,

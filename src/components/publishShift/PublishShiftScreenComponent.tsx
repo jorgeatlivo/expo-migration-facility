@@ -21,7 +21,7 @@ import { LoadingScreen } from '@/components/common/LoadingScreen';
 import { WHITE } from '@/styles/colors';
 import { buildShiftDateTime } from '@/utils/utils';
 
-import { ProtectedStackRoutes } from '@/router/ProtectedStack';
+import { ProtectedStackRoutes } from '@/router/ProtectedStack.types';
 import { Category, RootState } from '@/types';
 import PublishShiftComponent, {
   PublishShiftConfig,

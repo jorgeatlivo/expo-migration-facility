@@ -15,7 +15,7 @@ import { WHITE } from '@/styles/colors';
 import {
   ProtectedStackParamsList,
   ProtectedStackRoutes,
-} from '@/router/ProtectedStack';
+} from '@/router/ProtectedStack.types';
 
 type FavoriteProfessionalsScreenProps = StackScreenProps<
   ProtectedStackParamsList,

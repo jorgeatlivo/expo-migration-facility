@@ -7,6 +7,11 @@ import { StackScreenProps } from '@react-navigation/stack';
 import { ApiApplicationError } from '@/services/api';
 import { fetchProfessionalAgendaDetailView } from '@/services/professionalAgenda';
 
+import {
+  ProfessionalAgendaStackParamList,
+  ProfessionalAgendaStackRoutes,
+} from '@/screens/ProfessionalAgenda/ProfessionalAgendaStack.types';
+
 import { IconButton } from '@/components/buttons/IconButton';
 import { Divider } from '@/components/common/Divider';
 import { ProfessionalImage } from '@/components/professionalAgenda/ProfessionalImage';
@@ -16,11 +21,6 @@ import { WHITE } from '@/styles/colors';
 import { typographyStyles } from '@/styles/livoFonts';
 import { SPACE_VALUES } from '@/styles/spacing';
 import { ProfessionalAgendaDetailView } from '@/types/professionalAgenda';
-
-import {
-  ProfessionalAgendaStackParamList,
-  ProfessionalAgendaStackRoutes,
-} from './ProfessionalAgendaStack';
 
 type ProfessionalAgendaDetailViewProps = StackScreenProps<
   ProfessionalAgendaStackParamList,

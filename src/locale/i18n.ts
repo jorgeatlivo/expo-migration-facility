@@ -6,8 +6,8 @@ import { initReactI18next } from 'react-i18next';
 import * as Localize from 'react-native-localize';
 
 import AsyncStorage from '@react-native-async-storage/async-storage';
-import remoteConfig from '@react-native-firebase/remote-config';
 
+import RemoteConfigService from '@/services/firebase/remote-config-service';
 import { StorageKeys } from '@/services/storage/storage.keys';
 
 import ENV from '@/constants/env';
@@ -18,7 +18,7 @@ import esTranslation from './translations/es.json';
 import itTranslation from './translations/it.json';
 import plTranslation from './translations/pl.json';
 
-const IS_DEV_ENV = ENV.IS_A_DEV_DISTRIBUTION ?? false;
+const IS_DEV_ENV = ENV.IS_A_DEV_DISTRIBUTION;
 const DEFAULT_NS = 'translation';
 const DEFAULT_LOCALE = 'es-ES';
 const DEFAULT_SUPPORTED_LANGUAGES = ['es', 'it', 'pl'];
@@ -57,7 +57,9 @@ export const reloadTranslations = async () => {
 export const getSupportedLanguages = () => {
   let supportedLanguages = DEFAULT_SUPPORTED_LANGUAGES;
 
-  const supportedLanguagesStr = remoteConfig().getString('supported_languages');
+  const supportedLanguagesStr = RemoteConfigService.getString(
+    'supported_languages'
+  );
   if (!!supportedLanguagesStr && supportedLanguagesStr.length > 0) {
     supportedLanguages = supportedLanguagesStr.split(',');
   }

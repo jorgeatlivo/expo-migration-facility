@@ -1,7 +1,10 @@
-import React from 'react';
 import { useSelector } from 'react-redux';
 import { createStackNavigator } from '@react-navigation/stack';
 
+import {
+  AuthenticationStackParamslist,
+  AuthStackRoutes,
+} from '@/screens/Authentication/AuthenticationStack.types';
 import { VerifyMFAScreen } from '@/screens/VerifyMFAScreen';
 
 import { CustomHeaderBackIcon } from '@/components/common/CustomHeaderBackIcon';
@@ -11,21 +14,6 @@ import { BLACK } from '@/styles/colors';
 import { RootState } from '@/types';
 import { ForgotPasswordScreen } from './ForgotPassword';
 import { SignInScreen } from './SignIn';
-
-export enum AuthStackRoutes {
-  SignIn = 'SignIn',
-  VerifyMFA = 'VerifyMFA',
-  ForgotPassword = 'ForgotPassword',
-}
-
-export type AuthenticationStackParamslist = {
-  [AuthStackRoutes.VerifyMFA]: {
-    email: string;
-    password: string;
-  };
-  [AuthStackRoutes.SignIn]: undefined;
-  [AuthStackRoutes.ForgotPassword]: undefined;
-};
 
 const Stack = createStackNavigator<AuthenticationStackParamslist>();
 

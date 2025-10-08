@@ -6,8 +6,8 @@ import { PublishShiftScreenComponent } from '@/components/publishShift/PublishSh
 import {
   ProtectedStackParamsList,
   ProtectedStackRoutes,
-} from '@/router/ProtectedStack';
-import { TabRoutes } from '@/router/TabsNavigator';
+} from '@/router/ProtectedStack.types';
+import { TabRoutes } from '@/router/TabNavigator.types';
 
 type PublishShiftScreenProps = StackScreenProps<
   ProtectedStackParamsList,

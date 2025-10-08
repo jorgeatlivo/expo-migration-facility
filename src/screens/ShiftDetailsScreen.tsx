@@ -49,7 +49,7 @@ import { formatDate } from '@/common/utils';
 import {
   ProtectedStackParamsList,
   ProtectedStackRoutes,
-} from '@/router/ProtectedStack';
+} from '@/router/ProtectedStack.types';
 import { RootState, ShiftModalityEnum, UserFeatureEnum } from '@/types';
 
 type ShiftDetailsScreen = StackScreenProps<

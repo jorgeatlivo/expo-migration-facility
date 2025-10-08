@@ -10,7 +10,7 @@ import SectionHeader from '@/components/common/SectionHeader';
 
 import { SPACE_VALUES } from '@/styles/spacing';
 
-import { ProtectedStackRoutes } from '@/router/ProtectedStack';
+import { ProtectedStackRoutes } from '@/router/ProtectedStack.types';
 import { FacilityStaffProfile, ShiftModalityEnum } from '@/types';
 import CancellationRequestCard from './CancellationRequestCard';
 import CompensationOptionCard from './CompensationOptionCard';

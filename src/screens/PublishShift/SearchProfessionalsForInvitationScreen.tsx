@@ -19,7 +19,7 @@ import { ProfessionalOverviewDTO } from '@/types/professionals';
 import {
   ProtectedStackParamsList,
   ProtectedStackRoutes,
-} from '@/router/ProtectedStack';
+} from '@/router/ProtectedStack.types';
 
 type SearchProfessionalsForShiftInvitationScreenProps = StackScreenProps<
   ProtectedStackParamsList,

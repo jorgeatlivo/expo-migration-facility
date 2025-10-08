@@ -22,7 +22,7 @@ import { ACTION_BLUE } from '@/styles/colors';
 import { typographyStyles } from '@/styles/livoFonts';
 import { SPACE_VALUES } from '@/styles/spacing';
 
-import { ProtectedStackRoutes } from '@/router/ProtectedStack';
+import { ProtectedStackRoutes } from '@/router/ProtectedStack.types';
 
 interface FavoriteProfessionalProps {
   professionalId: number;

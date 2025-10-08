@@ -13,6 +13,11 @@ import { StackScreenProps } from '@react-navigation/stack';
 
 import { resetPasswordRequest } from '@/services/authentication';
 
+import {
+  AuthenticationStackParamslist,
+  AuthStackRoutes,
+} from '@/screens/Authentication/AuthenticationStack.types';
+
 import ActionButton from '@/components/buttons/ActionButton';
 import CustomTextInput from '@/components/common/CustomTextInput';
 import { LoadingScreen } from '@/components/common/LoadingScreen';
@@ -20,11 +25,6 @@ import StyledText from '@/components/StyledText';
 
 import { WHITE } from '@/styles/colors';
 import { fontSize, fontWeight, LayoutTextEnum } from '@/styles/fonts';
-
-import {
-  AuthenticationStackParamslist,
-  AuthStackRoutes,
-} from './AuthenticationStack';
 
 type ForgotPasswordScreenProps = StackScreenProps<
   AuthenticationStackParamslist,

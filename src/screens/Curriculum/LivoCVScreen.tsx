@@ -16,7 +16,7 @@ import { LivoCVDetailsDTO } from '@/types/curriculum';
 import {
   ProtectedStackParamsList,
   ProtectedStackRoutes,
-} from '@/router/ProtectedStack';
+} from '@/router/ProtectedStack.types';
 
 type LivoCVScreenProps = StackScreenProps<
   ProtectedStackParamsList,

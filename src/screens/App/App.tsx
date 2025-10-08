@@ -1,12 +1,11 @@
-import React, { useEffect, useState } from 'react';
+import { useEffect, useState } from 'react';
 import { StyleSheet, View } from 'react-native';
 import { SafeAreaProvider } from 'react-native-safe-area-context';
 import { Provider } from 'react-redux';
 
-import crashlytics from '@react-native-firebase/crashlytics';
-import remoteConfig from '@react-native-firebase/remote-config';
-
 import QueryProvider from '@/providers/QueryProvider';
+import CrashlyticsService from '@/services/firebase/crashlytics-service';
+import RemoteConfigService from '@/services/firebase/remote-config-service';
 import { initialiseNotifications } from '@/services/notifications';
 import store from '@/store/configureStore';
 
@@ -23,7 +22,7 @@ const App = () => {
 
   useEffect(() => {
     initialiseNotifications();
-    crashlytics().log('App mounted.');
+    CrashlyticsService.log('App mounted.');
   }, []);
 
   useEffect(() => {
@@ -40,7 +39,7 @@ const App = () => {
   useEffect(() => {
     let intervalId: NodeJS.Timeout | undefined;
     let intervalMs =
-      remoteConfig().getNumber('auto_reload_translations_interval_ms') ??
+      RemoteConfigService.getNumber('auto_reload_translations_interval_ms') ??
       Number(ENV.AUTO_RELOAD_TRANSLATIONS_INTERVAL_MS);
 
     if (isI18nextReady && typeof intervalMs === 'number' && intervalMs > 0) {

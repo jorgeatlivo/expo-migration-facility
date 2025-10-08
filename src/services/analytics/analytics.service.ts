@@ -1,8 +1,7 @@
-import remoteConfig from '@react-native-firebase/remote-config';
-
 import { IAnalyticsAdapter } from '@/services/analytics/adapters/analytics.adapter';
 import PostHogAnalyticsAdapter from '@/services/analytics/adapters/posthog.adapter';
 import { AnalyticEvents } from '@/services/analytics/events';
+import RemoteConfigService from '@/services/firebase/remote-config-service';
 
 import ENV from '@/constants/env';
 
@@ -92,7 +91,7 @@ class AnalyticsService {
   /* ----------------------------- PUBLIC METHODS ----------------------------- */
 
   static initPostHogFromRemoteConfig() {
-    const posthogApiKey = remoteConfig().getString(
+    const posthogApiKey = RemoteConfigService.getString(
       'facility_app_posthog_api_key'
     );
     if (!!posthogApiKey && posthogApiKey.length > 0) {

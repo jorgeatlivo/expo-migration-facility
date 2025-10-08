@@ -17,7 +17,7 @@ import { typographyStyles } from '@/styles/livoFonts';
 import { SPACE_VALUES } from '@/styles/spacing';
 
 import LivoIcon from '@/assets/icons/LivoIcon';
-import { ProtectedStackRoutes } from '@/router/ProtectedStack';
+import { ProtectedStackRoutes } from '@/router/ProtectedStack.types';
 
 interface ReviewsCardProps {
   professionalProfile: ProfessionalProfile;

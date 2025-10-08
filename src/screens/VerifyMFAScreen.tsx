@@ -24,6 +24,11 @@ import {
 import { signInAction } from '@/store/actions/authenticationActions';
 import { loadUserId } from '@/store/actions/configurationActions';
 
+import {
+  AuthenticationStackParamslist,
+  AuthStackRoutes,
+} from '@/screens/Authentication/AuthenticationStack.types';
+
 import Row from '@/components/atoms/Row';
 import ActionButton from '@/components/buttons/ActionButton';
 import { LoadingScreen } from '@/components/common/LoadingScreen';
@@ -39,11 +44,6 @@ import {
 import { typographyStyles } from '@/styles/livoFonts';
 import { SPACE_VALUES } from '@/styles/spacing';
 import { decodeJWT } from '@/utils/utils';
-
-import {
-  AuthenticationStackParamslist,
-  AuthStackRoutes,
-} from './Authentication/AuthenticationStack';
 
 type VerifyMFAScreenProps = StackScreenProps<
   AuthenticationStackParamslist,
@@ -149,7 +149,7 @@ export const VerifyMFAScreen: React.FC<VerifyMFAScreenProps> = ({ route }) => {
                   <Row>
                     {OTP.map((otpDigit, index) => (
                       <View
-                        key={index}
+                        key={index.toString()}
                         style={[
                           styles.otpBox,
                           focusedIndex === index && styles.focusedBox,
