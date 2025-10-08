@@ -25,14 +25,14 @@ echo "📦 Prebuilding iOS app..."
 npx expo prebuild --platform ios
 
 if [[ "$TARGET" == "dev" ]]; then
-  SCHEME="LivoInterno Dev"
+  SCHEME="LivoFacilities Dev"
   EXPORT_METHOD="development"
 else
-  SCHEME="LivoInterno"
+  SCHEME="LivoFacilities"
   EXPORT_METHOD="app-store"
 fi
 
-WORKSPACE="ios/LivoInterno.xcworkspace"
+WORKSPACE="ios/LivoFacilities.xcworkspace"
 ARCHIVE_PATH="ios/build/${SCHEME// /_}.xcarchive"
 EXPORT_PATH="ios/build/${SCHEME// /_}"
 EXPORT_OPTIONS_PATH="ios/build/exportOptions_${TARGET}.plist"

@@ -39,10 +39,6 @@ export default {
       },
       UIBackgroundModes: ['remote-notification'],
       usesBroadcastPushNotifications: true,
-      associatedDomains: [
-        'applinks:livo-385512.web.app',
-        'applinks:getlivo.onelink.me',
-      ],
       config: {
         usesNonExemptEncryption: false,
       },
@@ -63,26 +59,6 @@ export default {
       edgeToEdgeEnabled: true,
       package: 'com.getlivo.facilityapp',
       blockedPermissions: ['android.permission.RECORD_AUDIO'],
-      intentFilters: [
-        {
-          autoVerify: true,
-          action: 'VIEW',
-          data: {
-            scheme: 'https',
-            host: 'livo-385512.web.app',
-          },
-          category: ['BROWSABLE', 'DEFAULT'],
-        },
-        {
-          autoVerify: true,
-          action: 'VIEW',
-          data: {
-            scheme: 'https',
-            host: 'getlivo.onelink.me',
-          },
-          category: ['BROWSABLE', 'DEFAULT'],
-        },
-      ],
     },
     plugins: [
       [
