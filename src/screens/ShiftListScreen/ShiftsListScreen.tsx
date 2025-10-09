@@ -9,6 +9,7 @@ import {
 } from 'react-native';
 import { useTranslation } from 'react-i18next';
 import { ScrollView } from 'react-native-gesture-handler';
+import { useSafeAreaInsets } from 'react-native-safe-area-context';
 import { useDispatch, useSelector } from 'react-redux';
 import { CompositeScreenProps } from '@react-navigation/native';
 import { StackScreenProps } from '@react-navigation/stack';
@@ -49,6 +50,7 @@ export const ShiftsListScreen: React.FC<ShiftListScreenProps> = ({
   navigation,
 }) => {
   const { t } = useTranslation();
+  const { top } = useSafeAreaInsets();
 
   const { newNotificationToggle, dayShiftsData } = useSelector(
     (state: RootState) => state.shiftData
@@ -236,7 +238,7 @@ export const ShiftsListScreen: React.FC<ShiftListScreenProps> = ({
   );
 
   return (
-    <SafeAreaView style={styles.safeArea}>
+    <SafeAreaView style={[styles.safeArea, { paddingTop: top }]}>
       <ScreenTitle
         style={styles.headerStyle}
         title={t('shift_list_published_shifts_title')}

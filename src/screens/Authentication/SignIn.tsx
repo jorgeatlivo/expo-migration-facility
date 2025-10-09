@@ -226,7 +226,7 @@ export const SignInScreen: React.FC<SignInScreenProps> = ({ navigation }) => {
 const styles = StyleSheet.create({
   screen: {
     flex: 1,
-    backgroundColor: '#375D68',
+    backgroundColor: '#114454',
   },
   flex: {
     flex: 1,
