@@ -24,7 +24,17 @@ const api = axios.create({
   },
 });
 
-export class ApiApplicationError extends Error {}
+export class ApiApplicationError extends Error {
+  errorCode?: string;
+  errorMessage?: string;
+
+  constructor(message: string, errorCode?: string) {
+    super(message);
+    this.errorMessage = message;
+    this.errorCode = errorCode;
+    this.name = 'ApiApplicationError';
+  }
+}
 
 export function setApiToken(token: string) {
   api.defaults.headers.common.Authorization = token;
@@ -104,8 +114,10 @@ export function handleApiError(error: AxiosError): never | void {
     const responseData = error.response.data;
     // @ts-ignore
     const message = responseData?.errorMessage;
+    // @ts-ignore
+    const errorCode = responseData?.errorCode;
     if (message) {
-      throw new ApiApplicationError(message);
+      throw new ApiApplicationError(message, errorCode);
     } else {
       throw new ApiApplicationError(
         i18n.t('common_connecting_to_server_error_message')

@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useCallback, useEffect, useMemo, useState } from 'react';
 import {
   Alert,
   FlatList,
@@ -9,19 +9,15 @@ import {
 } from 'react-native';
 import { useTranslation } from 'react-i18next';
 import { ScrollView } from 'react-native-gesture-handler';
-import { useSafeAreaInsets } from 'react-native-safe-area-context';
 import { useDispatch, useSelector } from 'react-redux';
 import { CompositeScreenProps } from '@react-navigation/native';
 import { StackScreenProps } from '@react-navigation/stack';
 
+import remoteConfig from '@react-native-firebase/remote-config';
 import moment from 'moment';
 
 import { ApiApplicationError } from '@/services/api';
-import RemoteConfigService from '@/services/firebase/remote-config-service';
-import { fetchShifts } from '@/services/shifts';
 import {
-  loadShiftsAction,
-  loadShiftsActionSuccess,
   newNotificationToggleAction,
   toggleNewShiftAvailableAction,
 } from '@/store/actions/shiftActions';
@@ -33,6 +29,7 @@ import { ShiftsDayView } from '@/components/ShiftsDayView';
 import { HeaderTabs } from '@/components/shiftList/HeaderTabs';
 import { ShiftsEmptyState } from '@/components/shiftList/ShiftsEmptyState';
 
+import { useFetchShifts } from '@/hooks/useFetchShifts';
 import { commonStyles } from '@/styles/commonStyles';
 import { SPACE_VALUES } from '@/styles/spacing';
 
@@ -52,104 +49,116 @@ export const ShiftsListScreen: React.FC<ShiftListScreenProps> = ({
   navigation,
 }) => {
   const { t } = useTranslation();
-  const { top } = useSafeAreaInsets();
-  const { dayShiftsData, shiftInfoData, newNotificationToggle } = useSelector(
+
+  const { newNotificationToggle, dayShiftsData } = useSelector(
     (state: RootState) => state.shiftData
   );
+  const { newShiftAvailable } = dayShiftsData;
   const { lastActiveTime, appState } = useSelector(
     (state: RootState) => state.configurationData
   );
-  const [isRefreshing, setIsRefreshing] = useState(false);
   const dispatch = useDispatch();
-  const { isLoading, dayShifts, newShiftAvailable } = dayShiftsData;
   const [tab, setTab] = useState<string>('shift_list_claims_shifts_title');
 
-  const filterShifts = (chosenTab: string, shifts: Shift[]) => {
-    return shifts.filter((shift) => {
-      if (chosenTab === 'shift_list_claims_shifts_title') {
-        return (
-          shift.totalPendingClaims > 0 || shift.totalCancellationRequests > 0
-        );
-      } else if (chosenTab === 'shift_list_pending_shifts_title') {
-        return shift.capacity - shift.totalAcceptedClaims > 0;
-      } else if (chosenTab === 'shift_list_filled_shifts_title') {
-        return shift.capacity === shift.totalAcceptedClaims;
-      }
-    });
-  };
+  // Prepare query parameters based on current tab
+  const today = useMemo(() => new Date(), []);
+  const queryParams = useMemo(
+    () => ({
+      fromDate: today,
+      toDate: undefined,
+      ordering: 'ASC' as const,
+      withPendingClaims:
+        tab === t('shift_list_claims_shifts_title') ? true : undefined,
+      isFilled:
+        tab === t('shift_list_filled_shifts_title')
+          ? true
+          : tab === t('shift_list_pending_shifts_title')
+            ? false
+            : undefined,
+    }),
+    [tab, today, t]
+  );
 
-  const refreshInterval = RemoteConfigService.getValue('auto_refresh_interval');
-  const fetchShiftData = async () => {
-    if (shiftInfoData.isLoading) {
-      return;
-    }
-    const today = new Date();
-    dispatch(loadShiftsAction());
-    fetchShifts(
-      today,
-      undefined,
-      undefined,
-      tab === 'shift_list_claims_shifts_title' ? true : undefined, // fetch shifts with pending claims
-      tab === 'shift_list_filled_shifts_title'
-        ? true // fetch shifts that are filled
-        : tab === 'shift_list_pending_shifts_title'
-          ? false // fetch shifts that are not filled
-          : undefined
-    )
-      .then((dayShiftsResponse) => {
-        const filteredDayShifts = dayShiftsResponse
-          .map((dayShift) => {
-            return {
-              ...dayShift,
-              shifts: filterShifts(tab, dayShift.shifts),
-            };
-          })
-          .filter((dayShift) => dayShift.shifts.length > 0);
-        dispatch(loadShiftsActionSuccess(filteredDayShifts));
-      })
-      .catch((error) => {
-        dispatch(loadShiftsActionSuccess([]));
-        const errorMessage =
-          error instanceof ApiApplicationError
-            ? error.message
-            : t('shift_list_error_server_message');
-        Alert.alert(t('shift_list_error_loading_shifts'), errorMessage);
+  // Use the new useQuery hook
+  const {
+    dayShifts: rawDayShifts,
+    isLoading,
+    isFetching,
+    error,
+    refetch,
+  } = useFetchShifts(queryParams, true);
+
+  const filterShifts = useCallback(
+    (chosenTab: string, shifts: Shift[]) => {
+      return shifts.filter((shift) => {
+        if (chosenTab === 'shift_list_claims_shifts_title') {
+          return (
+            shift.totalPendingClaims > 0 || shift.totalCancellationRequests > 0
+          );
+        } else if (chosenTab === 'shift_list_pending_shifts_title') {
+          return shift.capacity - shift.totalAcceptedClaims > 0;
+        } else if (chosenTab === 'shift_list_filled_shifts_title') {
+          return shift.capacity === shift.totalAcceptedClaims;
+        }
       });
+    },
+    [t]
+  );
+
+  // Filter and process the dayShifts data
+  const dayShifts = useMemo(
+    () =>
+      rawDayShifts
+        .map((dayShift) => ({
+          ...dayShift,
+          shifts: filterShifts(tab, dayShift.shifts),
+        }))
+        .filter((dayShift) => dayShift.shifts.length > 0),
+    [rawDayShifts, tab, filterShifts]
+  );
+
+  // Handle error display
+  useEffect(() => {
+    if (error) {
+      const errorMessage =
+        error instanceof ApiApplicationError
+          ? error.message
+          : t('shift_list_error_server_message');
+      Alert.alert(t('shift_list_error_loading_shifts'), errorMessage);
+    }
+  }, [error, t]);
+
+  const refreshIntervalMs = useMemo(
+    () => remoteConfig().getValue('auto_refresh_interval').asNumber(),
+    []
+  );
+
+  const handleRefetch = useCallback(() => {
+    refetch();
     dispatch(toggleNewShiftAvailableAction(false));
-  };
+  }, [refetch, dispatch]);
 
   useEffect(() => {
     if (
       appState === 'active' &&
-      Date.now() - Number(lastActiveTime) > refreshInterval.asNumber()
+      Date.now() - Number(lastActiveTime) > refreshIntervalMs
     ) {
-      fetchShiftData();
+      handleRefetch();
     }
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [appState]);
+  }, [appState, lastActiveTime, refreshIntervalMs, handleRefetch]);
 
   useEffect(() => {
     if (newShiftAvailable) {
-      fetchShiftData();
+      handleRefetch();
     }
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [shiftInfoData.isLoading, newShiftAvailable]);
+  }, [newShiftAvailable, handleRefetch]);
 
   useEffect(() => {
     if (newNotificationToggle) {
-      fetchShiftData().then(() => {
-        dispatch(newNotificationToggleAction(false));
-      });
+      handleRefetch();
+      dispatch(newNotificationToggleAction(false));
     }
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [newNotificationToggle]);
-
-  useEffect(() => {
-    if (!shiftInfoData.isLoading) {
-      fetchShiftData();
-    }
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [shiftInfoData.isLoading, tab]);
+  }, [newNotificationToggle, handleRefetch, dispatch]);
 
   function navigateToPublishShiftScreen() {
     navigation.navigate(ProtectedStackRoutes.PublishShift, {
@@ -163,10 +172,7 @@ export const ShiftsListScreen: React.FC<ShiftListScreenProps> = ({
   }
 
   const refreshData = () => {
-    setIsRefreshing(true);
-    fetchShiftData().then(() => {
-      setIsRefreshing(false);
-    });
+    refetch();
   };
 
   function renderDayShift({ item }: { item: DayShift; index: number }) {
@@ -194,15 +200,15 @@ export const ShiftsListScreen: React.FC<ShiftListScreenProps> = ({
         contentContainerStyle={styles.shiftList}
         keyExtractor={(item) => item.date}
         onRefresh={refreshData}
-        refreshing={isRefreshing}
-        ListFooterComponent={<View style={{ height: 70 }} />}
+        refreshing={isFetching}
+        ListFooterComponent={<View style={styles.listFooter} />}
       />
     </>
   ) : (
     <ScrollView
       showsVerticalScrollIndicator={false}
       refreshControl={
-        <RefreshControl refreshing={isRefreshing} onRefresh={refreshData} />
+        <RefreshControl refreshing={isFetching} onRefresh={refreshData} />
       }
       contentContainerStyle={styles.refreshDataContainer}
     >
@@ -226,11 +232,11 @@ export const ShiftsListScreen: React.FC<ShiftListScreenProps> = ({
   );
 
   const filteredContent = (
-    <>{isLoading && !isRefreshing ? <LoadingScreen /> : content}</>
+    <>{isLoading && !isFetching ? <LoadingScreen /> : content}</>
   );
 
   return (
-    <SafeAreaView style={[styles.safeArea, { paddingTop: top }]}>
+    <SafeAreaView style={styles.safeArea}>
       <ScreenTitle
         style={styles.headerStyle}
         title={t('shift_list_published_shifts_title')}
@@ -268,5 +274,8 @@ const styles = StyleSheet.create({
   refreshDataContainer: {
     justifyContent: 'center',
     alignItems: 'center',
+  },
+  listFooter: {
+    height: 70,
   },
 });

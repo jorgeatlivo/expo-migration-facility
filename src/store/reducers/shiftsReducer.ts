@@ -1,6 +1,5 @@
 import moment from 'moment';
 
-import { ShiftAction, ShiftState } from '@/types';
 import {
   LOAD_DAY_SHIFTS,
   LOAD_DAY_SHIFTS_SUCCESS,
@@ -12,6 +11,8 @@ import {
   SET_DAY_SELECTED,
   TOGGLE_NEW_SHIFT_AVAILABLE,
 } from '@/store/actions/actionTypes';
+
+import { ShiftAction, ShiftState } from '@/types';
 
 const initialState: ShiftState = {
   dayShiftsData: {

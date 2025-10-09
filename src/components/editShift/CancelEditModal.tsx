@@ -3,12 +3,12 @@ import { StyleSheet, TouchableOpacity, View } from 'react-native';
 import { useTranslation } from 'react-i18next';
 import Modal from 'react-native-modal';
 
-import Icon from 'react-native-vector-icons/FontAwesome';
-
 import StyledText from '@/components/StyledText';
 
 import { BLACK, CORAL } from '@/styles/colors';
 import { LayoutTextEnum } from '@/styles/fonts';
+
+import LivoIcon from '@/assets/icons/LivoIcon';
 
 interface CancelEditModalProps {
   visible: boolean;
@@ -51,18 +51,18 @@ export const CancelEditModal: React.FC<CancelEditModalProps> = ({
         {/* Dismissible indicator */}
         <View style={styles.dismissibleIndicator} />
         <TouchableOpacity onPress={handleEditShift} style={styles.row}>
-          <Icon
+          <LivoIcon
             name="pencil"
             size={20}
             color={BLACK}
             style={styles.iconStyle}
           />
           <StyledText type={LayoutTextEnum.headerSmall}>
-            {t('shift_detail_edit_shift')}
+            {t('shift_detail_edit_shift_title')}
           </StyledText>
         </TouchableOpacity>
         <TouchableOpacity onPress={handleCancelShift} style={styles.row}>
-          <Icon name="trash" size={20} color={CORAL} style={styles.iconStyle} />
+          <LivoIcon name="trash" size={20} color={CORAL} style={styles.iconStyle} />
           <StyledText
             type={LayoutTextEnum.headerSmall}
             style={styles.cancelText}

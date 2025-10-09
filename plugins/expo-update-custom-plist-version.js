@@ -3,11 +3,11 @@ const path = require('path');
 const plistModule = require('@expo/plist');
 const plist = plistModule.default || plistModule;
 
-const CUSTOM_PLIST_FILENAME = 'Livo Dev-info.plist';
+const CUSTOM_PLIST_FILENAME = 'LivoFacilities Dev-info.plist';
 const CUSTOM_PLIST_PATH = `ios/${CUSTOM_PLIST_FILENAME}`;
 
 /**
- * Expo config plugin: Update CFBundleVersion in ios/Livo Dev-info.plist
+ * Expo config plugin: Update CFBundleVersion in ios/LivoFacilities Dev-info.plist
  * to match ios.buildNumber in app.config.js
  */
 module.exports = function withCustomPlistVersion(config) {

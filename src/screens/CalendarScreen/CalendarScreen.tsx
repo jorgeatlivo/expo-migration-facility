@@ -10,28 +10,20 @@ import { StackScreenProps } from '@react-navigation/stack';
 import moment from 'moment';
 
 import { ApiApplicationError } from '@/services/api';
-import { fetchShifts } from '@/services/shifts';
 import { setDaySelectedAction } from '@/store/actions/shiftActions';
 import { AppDispatch } from '@/store/configureStore';
+
+import { DayRowItem } from '@/screens/CalendarScreen/DayRowItem';
 
 import Row from '@/components/atoms/Row';
 import { LoadingScreen } from '@/components/common/LoadingScreen';
 import ScreenTitle from '@/components/common/ScreenTitle';
 import StyledText from '@/components/StyledText';
 
-import { useEffectOnce } from '@/hooks/useEffectOnce';
-import {
-  ACTION_BLUE,
-  BADGE_GRAY,
-  BLACK,
-  DARK_BLUE,
-  GRAY,
-  NEW_LIGHT_GRAY,
-  PURPLE,
-  WHITE,
-} from '@/styles/colors';
+import { useFetchCalendarShifts } from '@/hooks/useFetchCalendarShifts';
+import { BADGE_GRAY, DARK_BLUE, NEW_LIGHT_GRAY, WHITE } from '@/styles/colors';
 import { commonStyles } from '@/styles/commonStyles';
-import { fontWeight, LayoutTextEnum } from '@/styles/fonts';
+import { LayoutTextEnum } from '@/styles/fonts';
 import { SPACE_VALUES } from '@/styles/spacing';
 
 import LivoIcon from '@/assets/icons/LivoIcon';
@@ -63,48 +55,42 @@ export const CalendarScreen: React.FC<CalendarScreenProps> = ({
 }) => {
   const { t } = useTranslation();
 
-  const [shifts, setShifts] = useState<DayShift[]>([]);
-  const [isRefreshing, setIsRefreshing] = useState(false);
   const { daySelected } = useSelector(
     (state: RootState) => state.shiftData.calendarData
   );
-  const { dayShiftsData, shiftInfoData } = useSelector(
-    (state: RootState) => state.shiftData
-  );
-
+  const { dayShiftsData } = useSelector((state: RootState) => state.shiftData);
   const [calendarModalVisible, setCalendarModalVisible] = useState(false);
-  const [loading, setIsLoading] = useState(false);
   const insets = useSafeAreaInsets();
   const dispatch = useDispatch<AppDispatch>();
   const { newShiftAvailable } = dayShiftsData;
 
-  const getWeekDayShifts = (
-    startOfWeek: Date,
-    shiftsForWeek: DayShift[]
-  ): DayShiftFormatted[] => {
-    const weekDayShifts = [];
-    const days = timeConfiguration().dayNamesShort;
+  const getWeekDayShifts = useCallback(
+    (startOfWeek: Date, shiftsForWeek: DayShift[]): DayShiftFormatted[] => {
+      const weekDayShifts = [];
+      const days = timeConfiguration().dayNamesShort;
 
-    for (let i = 0; i < 7; i++) {
-      const currentDay = new Date(startOfWeek);
-      currentDay.setDate(startOfWeek.getDate() + i);
-      const formattedDay = moment(currentDay).format('YYYY-MM-DD');
-      const dayOfMonth = currentDay.getDate();
-      const day = days[currentDay.getDay()];
-      const matchingShift = shiftsForWeek.find(
-        (shift) => shift.date === formattedDay
-      );
-      weekDayShifts.push({
-        weekDay: dayOfMonth,
-        dayNumber: day,
-        shifts: matchingShift?.shifts || [],
-        date: formattedDay,
-        hasAlert: matchingShift?.hasAlert || false,
-        holiday: matchingShift?.holiday || undefined,
-      });
-    }
-    return weekDayShifts;
-  };
+      for (let i = 0; i < 7; i++) {
+        const currentDay = new Date(startOfWeek);
+        currentDay.setDate(startOfWeek.getDate() + i);
+        const formattedDay = moment(currentDay).format('YYYY-MM-DD');
+        const dayOfMonth = currentDay.getDate();
+        const day = days[currentDay.getDay()];
+        const matchingShift = shiftsForWeek.find(
+          (shift) => shift.date === formattedDay
+        );
+        weekDayShifts.push({
+          weekDay: dayOfMonth,
+          dayNumber: day,
+          shifts: matchingShift?.shifts || [],
+          date: formattedDay,
+          hasAlert: matchingShift?.hasAlert || false,
+          holiday: matchingShift?.holiday || undefined,
+        });
+      }
+      return weekDayShifts;
+    },
+    []
+  );
 
   const startOfWeek = useMemo(() => {
     const selectedDate = new Date(daySelected);
@@ -115,68 +101,47 @@ export const CalendarScreen: React.FC<CalendarScreenProps> = ({
   }, [daySelected]);
 
   const endOfWeek = useMemo(() => {
-    const endOfWeek = new Date(startOfWeek);
-    endOfWeek.setDate(startOfWeek.getDate() + 6); // Set to Sunday
-    return endOfWeek;
+    const end = new Date(startOfWeek);
+    end.setDate(startOfWeek.getDate() + 6); // Set to Sunday
+    return end;
   }, [startOfWeek]);
 
-  const weekShiftDays = getWeekDayShifts(startOfWeek, shifts);
+  // Use the new hook to fetch shifts
+  const { shifts, isLoading, error, refetch, isRefetching } =
+    useFetchCalendarShifts({ startOfWeek, endOfWeek }, true);
 
-  // Get the name of the month from the middle day
-  const monthName =
-    timeConfiguration().monthNames[new Date(daySelected).getMonth()];
-
-  const fetchShiftData = useCallback(
-    async (initialDay: Date, finalDay: Date) => {
-      fetchShifts(initialDay, finalDay, 'DESC')
-        .then((dayShifts) => {
-          setShifts(dayShifts);
-          setIsLoading(false);
-        })
-        .catch((error) => {
-          setShifts([]);
-          setIsLoading(false);
-          const errorMessage =
-            error instanceof ApiApplicationError
-              ? error.message
-              : t('shift_list_error_server_message');
-          Alert.alert(t('shift_list_error_loading_shifts'), errorMessage);
-        });
-    },
-    [t]
+  const weekShiftDays = useMemo(
+    () => getWeekDayShifts(startOfWeek, shifts),
+    [getWeekDayShifts, startOfWeek, shifts]
   );
 
-  const refreshData = () => {
-    setIsRefreshing(true);
-    fetchShiftData(startOfWeek, endOfWeek).then(() => {
-      setIsRefreshing(false);
-    });
-  };
+  // Get the name of the month from the middle day
+  const monthName = useMemo(
+    () => timeConfiguration().monthNames[new Date(daySelected).getMonth()],
+    [daySelected]
+  );
 
-  const fetchData = useCallback(() => {
-    setIsLoading(true);
-    fetchShiftData(startOfWeek, endOfWeek);
-  }, [endOfWeek, fetchShiftData, startOfWeek]);
-
-  useEffectOnce(() => {
-    fetchData();
-  });
-
+  // Handle error display
   useEffect(() => {
-    fetchData();
-  }, [fetchData, startOfWeek]);
+    if (error) {
+      const errorMessage =
+        error instanceof ApiApplicationError
+          ? error.message
+          : t('shift_list_error_server_message');
+      Alert.alert(t('shift_list_error_loading_shifts'), errorMessage);
+    }
+  }, [error, t]);
 
+  const refreshData = useCallback(() => {
+    refetch();
+  }, [refetch]);
+
+  // Refetch when newShiftAvailable changes
   useEffect(() => {
     if (newShiftAvailable) {
-      fetchData();
+      refetch();
     }
-  }, [fetchData, newShiftAvailable]);
-
-  useEffect(() => {
-    if (!shiftInfoData.isLoading) {
-      fetchData();
-    }
-  }, [fetchData, shiftInfoData.isLoading]);
+  }, [newShiftAvailable, refetch]);
 
   function navigateToShiftDetails(shiftId: number) {
     navigation.navigate(ProtectedStackRoutes.ShiftDetails, { shiftId });
@@ -188,69 +153,6 @@ export const CalendarScreen: React.FC<CalendarScreenProps> = ({
       timeInDay: shiftTimeInDay,
     });
   }
-
-  interface DayRowItemProps {
-    weekDay: string;
-    day: string;
-    isSelected: boolean;
-    hasShifts: boolean;
-    onPress: () => void;
-    hasAlert: boolean;
-    isToday: boolean;
-    isHoliday?: boolean;
-  }
-
-  const DayRowItem: React.FC<DayRowItemProps> = ({
-    weekDay,
-    day,
-    isSelected,
-    hasShifts,
-    onPress,
-    hasAlert,
-    isToday,
-    isHoliday,
-  }) => {
-    return (
-      <TouchableOpacity onPress={onPress} style={styles.dayButton}>
-        <StyledText type={LayoutTextEnum.body} style={styles.weekdayTitle}>
-          {weekDay}
-        </StyledText>
-        <View>
-          {hasAlert && <View style={styles.alert} />}
-          <View
-            style={[
-              styles.dayCircle,
-              {
-                backgroundColor: isSelected
-                  ? isHoliday
-                    ? PURPLE
-                    : ACTION_BLUE
-                  : hasShifts
-                    ? WHITE
-                    : 'transparent',
-                borderWidth: isToday || isHoliday ? 1 : 0,
-                borderColor: isToday
-                  ? ACTION_BLUE
-                  : isHoliday
-                    ? PURPLE
-                    : 'transparent',
-              },
-            ]}
-          >
-            <StyledText
-              type={LayoutTextEnum.body}
-              style={{
-                color: isSelected ? WHITE : hasShifts ? DARK_BLUE : BLACK,
-                fontFamily: hasShifts ? fontWeight.bold : fontWeight.regular,
-              }}
-            >
-              {day}
-            </StyledText>
-          </View>
-        </View>
-      </TouchableOpacity>
-    );
-  };
 
   const selectFollowingWeek = useCallback(() => {
     const nextMonday = new Date(startOfWeek);
@@ -276,7 +178,7 @@ export const CalendarScreen: React.FC<CalendarScreenProps> = ({
         {weekShiftDays.map((dayShift) => {
           return (
             <DayRowItem
-              key={dayShift.weekDay}
+              key={dayShift.date}
               weekDay={dayShift.dayNumber}
               day={dayShift.weekDay.toString()}
               isSelected={dayShift.date === daySelected}
@@ -298,9 +200,12 @@ export const CalendarScreen: React.FC<CalendarScreenProps> = ({
     </Row>
   );
 
-  const shiftsForDay =
-    weekShiftDays.find((dayShift) => dayShift.date === daySelected)?.shifts ||
-    [];
+  const shiftsForDay = useMemo(
+    () =>
+      weekShiftDays.find((dayShift) => dayShift.date === daySelected)?.shifts ||
+      [],
+    [weekShiftDays, daySelected]
+  );
 
   return (
     <View style={styles.screen}>
@@ -325,19 +230,18 @@ export const CalendarScreen: React.FC<CalendarScreenProps> = ({
         </ScreenTitle>
         {daysRow}
       </View>
-      {loading ? (
+      {isLoading ? (
         <LoadingScreen />
       ) : (
         <ScrollView
           showsVerticalScrollIndicator={false}
           contentContainerStyle={styles.scrollView}
           refreshControl={
-            <RefreshControl refreshing={isRefreshing} onRefresh={refreshData} />
+            <RefreshControl refreshing={isRefetching} onRefresh={refreshData} />
           }
         >
           <CalendarShiftList
             shifts={shiftsForDay}
-            isRefreshing={isRefreshing}
             navigateToShiftDetails={navigateToShiftDetails}
             navigateToPublishShift={navigateToPublishShift}
           />
@@ -383,32 +287,5 @@ const styles = StyleSheet.create({
     paddingTop: SPACE_VALUES.large,
     paddingHorizontal: SPACE_VALUES.large,
     paddingBottom: SPACE_VALUES.large,
-  },
-  alert: {
-    position: 'absolute',
-    top: 1,
-    right: 1,
-    backgroundColor: 'red',
-    borderRadius: 5,
-    width: 7,
-    height: 7,
-    zIndex: 2,
-  },
-  weekdayTitle: {
-    fontSize: 13,
-    color: GRAY,
-    marginBottom: SPACE_VALUES.small,
-  },
-  dayButton: {
-    alignItems: 'center',
-    justifyContent: 'center',
-    flex: 1,
-  },
-  dayCircle: {
-    alignItems: 'center',
-    justifyContent: 'center',
-    borderRadius: 4,
-    width: 27,
-    height: 27,
   },
 });

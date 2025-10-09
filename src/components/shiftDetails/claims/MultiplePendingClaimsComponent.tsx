@@ -22,6 +22,7 @@ interface MultiplePendingClaimsComponentProps {
   navigateToReviews: (claimRequest: ClaimRequest) => void;
   navigateToCV: (claimRequest: ClaimRequest) => void;
   navigateToLivoCV: (claimRequest: ClaimRequest) => void;
+  onReject: (claimId: number) => void;
 }
 
 export const MultiplePendingClaimsComponent: React.FC<
@@ -34,6 +35,7 @@ export const MultiplePendingClaimsComponent: React.FC<
   navigateToReviews,
   navigateToCV,
   navigateToLivoCV,
+  onReject,
 }) => {
   const { t } = useTranslation();
 
@@ -55,6 +57,7 @@ export const MultiplePendingClaimsComponent: React.FC<
             onHandleClaim();
             setSelectedRequest(null);
           }}
+          onReject={onReject}
           setLoading={setLoading}
           navigateToCV={navigateToCV}
           navigateToLivoCV={navigateToLivoCV}

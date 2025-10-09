@@ -23,6 +23,8 @@
   },
   "dependencies": {
     "@expo/vector-icons": "^14.1.0",
+    "@gorhom/bottom-sheet": "^5.2.6",
+    "@hookform/resolvers": "^5.2.2",
     "@react-native-async-storage/async-storage": "2.1.2",
     "@react-native-clipboard/clipboard": "^1.16.3",
     "@react-native-community/datetimepicker": "8.4.1",
@@ -63,6 +65,7 @@
     "posthog-react-native": "^4.7.1",
     "react": "19.0.0",
     "react-dom": "19.0.0",
+    "react-hook-form": "^7.64.0",
     "react-i18next": "^16.0.0",
     "react-native": "0.79.5",
     "react-native-blob-util": "^0.22.2",
@@ -79,7 +82,7 @@
     "react-native-marked": "^7.0.2",
     "react-native-mmkv": "^3.3.3",
     "react-native-modal": "^14.0.0-rc.1",
-    "react-native-pdf": "^6.7.7",
+    "react-native-pdf": "^7.0.0",
     "react-native-reanimated": "~3.17.4",
     "react-native-render-html": "^6.3.4",
     "react-native-safe-area-context": "5.4.0",
@@ -93,7 +96,8 @@
     "redux": "^5.0.1",
     "swr": "^2.3.6",
     "tabler-icons-react-native": "^3.1.0",
-    "use-debounce": "^10.0.6"
+    "use-debounce": "^10.0.6",
+    "zod": "^4.1.12"
   },
   "devDependencies": {
     "@biomejs/biome": "2.2.5",

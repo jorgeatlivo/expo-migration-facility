@@ -6,14 +6,17 @@
  * @link https://www.i18next.com/overview/typescript
  */
 import 'i18next';
+
+import enTranslation from '@/locale/translations/en.json';
 import esTranslation from '@/locale/translations/es.json';
 import itTranslation from '@/locale/translations/it.json';
-import enTranslation from '@/locale/translations/en.json';
+import plTranslation from '@/locale/translations/pl.json';
 
 const resources = {
   es: esTranslation,
-  it: itTranslation,
   en: enTranslation,
+  it: itTranslation,
+  pl: plTranslation,
 } as const;
 
 declare module 'i18next' {

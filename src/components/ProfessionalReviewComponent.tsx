@@ -1,14 +1,12 @@
-import React from 'react';
 import { StyleSheet, View } from 'react-native';
 import { useTranslation } from 'react-i18next';
-
-import Icon from 'react-native-vector-icons/FontAwesome'; // Adjust this import based on your icon library
 
 import { ProfessionalReview, ReviewFeedback } from '@/services/shifts';
 
 import { LIGHT_GRAY, YELLOW } from '@/styles/colors';
 import { fontSize, fontWeight, LayoutTextEnum } from '@/styles/fonts';
 
+import LivoIcon from '@/assets/icons/LivoIcon';
 import StyledText from './StyledText';
 
 export const ProfessionalReviewComponent = ({
@@ -24,7 +22,7 @@ export const ProfessionalReviewComponent = ({
         type={LayoutTextEnum.headerSmall}
         style={styles.reviewComponentGeneralRating}
       >
-        <Icon name="star" size={15} color={YELLOW} />
+        <LivoIcon name="star" size={15} color={YELLOW} />
         &nbsp;
         {reviewFeedback.generalRating.toFixed(1)}{' '}
         {t('shift_list_general_label')}

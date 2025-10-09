@@ -16,7 +16,7 @@ import { typographyStyles } from '@/styles/livoFonts';
 
 import LivoIcon from '@/assets/icons/LivoIcon';
 
-interface CustomCheckBoxProps extends TouchableOpacityProps {
+interface SingleSelectProps extends TouchableOpacityProps {
   option: string;
   buttonStyle?: StyleProp<ViewStyle>;
   textStyle?: StyleProp<TextStyle>;
@@ -25,7 +25,7 @@ interface CustomCheckBoxProps extends TouchableOpacityProps {
   rowStyle?: StyleProp<ViewStyle>;
 }
 
-const SingleSelect: React.FC<CustomCheckBoxProps> = ({
+const SingleSelect: React.FC<SingleSelectProps> = ({
   option,
   onPress,
   checked,

@@ -573,3 +573,45 @@ export interface ShiftFillRateResponse {
   displayBanner: boolean;
   banner: CommonBannerDto;
 }
+
+export interface CancellationReason {
+  name: string;
+  displayText: string;
+}
+
+export interface RecurrentShift {
+  shiftId: number;
+  startTime: string;
+}
+
+export interface ShiftCancellationMetadata {
+  reasons: CancellationReason[];
+  recurrentShifts?: RecurrentShift[];
+}
+
+export interface CancelShiftPayload {
+  reason: string;
+  reasonDetails?: string;
+  recurrentShiftIds: number[];
+}
+
+export async function fetchShiftCancellationMetadata(
+  shiftId: number
+): Promise<ShiftCancellationMetadata> {
+  const uri = `/facility/shifts/${shiftId}/shift-cancellation-metadata`;
+  return api
+    .get(uri)
+    .then((res) => res.data)
+    .catch(handleApiError);
+}
+
+export async function cancelShiftWithReason(
+  shiftId: number,
+  payload: CancelShiftPayload
+): Promise<void> {
+  const uri = `/facility/shifts/${shiftId}/cancel-shift`;
+  return api
+    .post(uri, payload)
+    .then((res) => res.data)
+    .catch(handleApiError);
+}

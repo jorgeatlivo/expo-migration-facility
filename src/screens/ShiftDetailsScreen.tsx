@@ -1,4 +1,10 @@
-import React, { useCallback, useEffect, useMemo, useState } from 'react';
+import React, {
+  useCallback,
+  useEffect,
+  useMemo,
+  useRef,
+  useState,
+} from 'react';
 import {
   RefreshControl,
   ScrollView,
@@ -8,18 +14,16 @@ import {
 } from 'react-native';
 import { useTranslation } from 'react-i18next';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
-import { useDispatch, useSelector } from 'react-redux';
 import { StackScreenProps } from '@react-navigation/stack';
 
-import { IconPencil } from 'tabler-icons-react-native';
-
 import { ClaimRequest, ShiftClaimStatus } from '@/services/shifts';
-import { fetchShiftInfoDataAction } from '@/store/actions/shiftActions';
-import { AppDispatch } from '@/store/configureStore';
 
 import Row from '@/components/atoms/Row';
 import NoClaimsPlaceholder from '@/components/claims/NoClaimsPlaceholder';
 import { LoadingScreen } from '@/components/common/LoadingScreen';
+import ClaimRejectionModal, {
+  ClaimRejectionModalRef,
+} from '@/components/modals/ClaimRejectionModal';
 import { TagComponent } from '@/components/profile/TagComponent';
 import StyledText from '@/components/StyledText';
 import { ConfirmedProfessionalsComponent } from '@/components/shiftDetails/claims/ConfirmedProfessionals';
@@ -31,6 +35,7 @@ import { ShiftInfo } from '@/components/shiftDetails/ShiftInfo';
 import { ModalityTag } from '@/components/shiftList/ModalityTag';
 
 import { useFetchFacility } from '@/hooks/useFetchFacility';
+import { useFetchShiftInfoData } from '@/hooks/useFetchShiftInfoData';
 import {
   ACTION_BLUE,
   BADGE_GRAY,
@@ -43,14 +48,14 @@ import {
 import { typographyStyles } from '@/styles/livoFonts';
 import { BORDER, SPACE_VALUES } from '@/styles/spacing';
 import { professionalProfileToOverviewDTO } from '@/types/professionals';
-import { isBeforeDay } from '@/utils/dateUtils';
 
+import LivoIcon from '@/assets/icons/LivoIcon';
 import { formatDate } from '@/common/utils';
 import {
   ProtectedStackParamsList,
   ProtectedStackRoutes,
 } from '@/router/ProtectedStack.types';
-import { RootState, ShiftModalityEnum, UserFeatureEnum } from '@/types';
+import { ShiftModalityEnum, UserFeatureEnum } from '@/types';
 
 type ShiftDetailsScreen = StackScreenProps<
   ProtectedStackParamsList,
@@ -63,6 +68,7 @@ export const ShiftDetailsScreen: React.FC<ShiftDetailsScreen> = ({
 }) => {
   const { t } = useTranslation();
   const { data: facilityProfile } = useFetchFacility();
+  const claimRejectionRef = useRef<ClaimRejectionModalRef>(null);
 
   const areNewFieldsAndUnitsActive = useMemo(
     () =>
@@ -72,13 +78,21 @@ export const ShiftDetailsScreen: React.FC<ShiftDetailsScreen> = ({
     [facilityProfile?.userFeatures]
   );
 
-  const { shiftInfoData } = useSelector((state: RootState) => state.shiftData);
   const [isLoading, setIsLoading] = useState(false);
-  const dispatch = useDispatch<AppDispatch>();
   const insets = useSafeAreaInsets();
   const { shiftId } = props.route.params;
-  const claimRequests = shiftInfoData.claimRequests || [];
-  const shiftInfo = shiftInfoData.shiftInfo;
+
+  const {
+    data: shiftInfoData,
+    isLoading: isShiftInfoLoading,
+    refetch: refetchShiftInfo,
+  } = useFetchShiftInfoData(shiftId);
+
+  const claimRequests = useMemo(
+    () => shiftInfoData?.claimRequests || [],
+    [shiftInfoData?.claimRequests]
+  );
+  const shiftInfo = shiftInfoData?.shiftInfo;
 
   const pendingClaimRequests = claimRequests.filter((request) =>
     [
@@ -95,7 +109,7 @@ export const ShiftDetailsScreen: React.FC<ShiftDetailsScreen> = ({
   );
 
   useEffect(() => {
-    if (!shiftInfoData.isLoading && shiftInfo) {
+    if (!isShiftInfoLoading && shiftInfo) {
       const headerTitle = () => (
         <Row>
           <StyledText style={styles.headerTitleText}>
@@ -112,7 +126,7 @@ export const ShiftDetailsScreen: React.FC<ShiftDetailsScreen> = ({
         </Row>
       );
 
-      const isActionNotAllowed = !shiftInfo.shiftActionsAllow;
+      const isActionNotAllowed = !shiftInfo?.shiftActionsAllow;
       const headerRight = () => (
         <TouchableOpacity
           disabled={isActionNotAllowed}
@@ -148,8 +162,9 @@ export const ShiftDetailsScreen: React.FC<ShiftDetailsScreen> = ({
             >
               {t('common_edit')}
             </StyledText>
-            <IconPencil
+            <LivoIcon
               size={24}
+              name={'pencil'}
               color={isActionNotAllowed ? BADGE_GRAY : ACTION_BLUE}
               style={styles.headerRightIcon}
             />
@@ -160,9 +175,7 @@ export const ShiftDetailsScreen: React.FC<ShiftDetailsScreen> = ({
       navigation.setOptions({
         headerTitleAlign: 'center',
         headerShown: true,
-        ...(isBeforeDay(new Date(), shiftInfo.startTime) && {
-          headerRight,
-        }),
+        headerRight,
         ...(areNewFieldsAndUnitsActive ? {} : { headerTitle }),
       });
     } else if (!areNewFieldsAndUnitsActive) {
@@ -180,21 +193,17 @@ export const ShiftDetailsScreen: React.FC<ShiftDetailsScreen> = ({
     }
   }, [
     navigation,
-    shiftId,
     shiftInfo,
     areNewFieldsAndUnitsActive,
-    shiftInfoData.isLoading,
-    shiftInfoData?.shiftInfo?.date,
-    shiftInfoData?.shiftInfo?.shiftActionsAllow,
+    isShiftInfoLoading,
+    shiftInfo?.shiftActionsAllow,
     claimRequests,
     t,
   ]);
 
   const refreshData = useCallback(() => {
-    dispatch(fetchShiftInfoDataAction(shiftId));
-  }, [dispatch, shiftId]);
-
-  useEffect(() => refreshData(), []);
+    refetchShiftInfo();
+  }, [refetchShiftInfo]);
 
   const navigateToProfile = useCallback(
     (request: ClaimRequest) => {
@@ -236,7 +245,7 @@ export const ShiftDetailsScreen: React.FC<ShiftDetailsScreen> = ({
 
   return (
     <View style={[styles.container, { paddingBottom: insets.bottom }]}>
-      {shiftInfoData.isLoading || isLoading ? (
+      {isShiftInfoLoading || isLoading ? (
         <View style={styles.loadingContainer}>
           <LoadingScreen />
         </View>
@@ -316,6 +325,9 @@ export const ShiftDetailsScreen: React.FC<ShiftDetailsScreen> = ({
                       navigateToReviews={navigateToReviews}
                       navigateToCV={handleOpenCV}
                       navigateToLivoCV={navigateToLivoCV}
+                      onReject={(claimId: number) => {
+                        claimRejectionRef.current?.open(claimId);
+                      }}
                     />
                   ) : (
                     <PendingProfessionalClaimItem
@@ -325,6 +337,9 @@ export const ShiftDetailsScreen: React.FC<ShiftDetailsScreen> = ({
                       navigateToReviews={navigateToReviews}
                       navigateToLivoCV={navigateToLivoCV}
                       onHandleClaim={refreshData}
+                      onReject={(claimId: number) => {
+                        claimRejectionRef.current?.open(claimId);
+                      }}
                       setLoading={setIsLoading}
                     />
                   )
@@ -333,6 +348,7 @@ export const ShiftDetailsScreen: React.FC<ShiftDetailsScreen> = ({
                 )}
               </View>
             )}
+            <ClaimRejectionModal ref={claimRejectionRef} shiftId={shiftId} />
           </>
         )
       )}

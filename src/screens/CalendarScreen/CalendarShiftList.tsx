@@ -15,7 +15,6 @@ import { CalendarListEmptyState } from './CalendarListEmptyState';
 
 interface CalendarShiftListProps {
   shifts: Shift[];
-  isRefreshing: boolean;
   navigateToShiftDetails: (shiftId: number) => void;
   navigateToPublishShift: (shiftTimeInDay: string) => void;
 }
@@ -44,12 +43,12 @@ export const CalendarShiftList = ({
 
   return (
     <Col gap={SPACE_VALUES.large}>
-      {Object.keys(shiftTimeInDayLabels).map((shiftTimeInDay, index) => {
+      {Object.keys(shiftTimeInDayLabels).map((shiftTimeInDay) => {
         const timeInDayShifts = shifts.filter(
           (shift) => shift.shiftTimeInDay === shiftTimeInDay
         );
         return (
-          <View key={index}>
+          <View key={shiftTimeInDay}>
             <View
               style={{
                 marginBottom: SPACE_VALUES.medium,

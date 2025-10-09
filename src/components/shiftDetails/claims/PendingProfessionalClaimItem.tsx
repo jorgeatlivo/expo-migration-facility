@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { Alert, StyleSheet, TouchableOpacity, View } from 'react-native';
 import { useTranslation } from 'react-i18next';
 import { useDispatch, useSelector } from 'react-redux';
@@ -9,7 +9,6 @@ import {
   SlotReason,
   SlotReasonOption,
   shiftClaimAccept,
-  shiftClaimReject,
 } from '@/services/shifts';
 import { fetchShiftInfoDataAction } from '@/store/actions/shiftActions';
 import { AppDispatch } from '@/store/configureStore';
@@ -18,7 +17,6 @@ import ActionButton from '@/components/buttons/ActionButton';
 import SelectAttributeModal from '@/components/common/SelectOptionWithDescriptionModal';
 import { ProfileExperienceComponent } from '@/components/profile/ProfileExperienceComponent';
 import StyledText from '@/components/StyledText';
-import { RejectProfessionalModal } from '@/components/shiftDetails/RejectProfessionalReasonModal';
 
 import { useModal } from '@/hooks/ModalContext';
 import { ACTION_BLACK, BORDER_GRAY, NOTIFICATION_RED } from '@/styles/colors';
@@ -42,6 +40,7 @@ interface PendingProfessionalClaimItemProps {
   onHandleClaim: () => void;
   setLoading: (loading: boolean) => void;
   goBack?: () => void;
+  onReject: (claimId: number) => void;
 }
 
 export const PendingProfessionalClaimItem: React.FC<
@@ -55,11 +54,10 @@ export const PendingProfessionalClaimItem: React.FC<
   onHandleClaim,
   setLoading,
   goBack,
+  onReject,
 }) => {
   const { t } = useTranslation();
 
-  const [showRejectProfessionalModal, setShowRejectProfessionalModal] =
-    useState(false);
   const { livoPoolOnboarded, livoInternalOnboarded } = useSelector(
     (state: RootState) => state.profileData.facilityProfile
   );
@@ -90,32 +88,6 @@ export const PendingProfessionalClaimItem: React.FC<
         Alert.alert(
           t('shift_list_claim_accepted_title'),
           t('shift_list_claim_accepted_message'),
-          [
-            {
-              text: t('shift_list_accept_button'),
-              onPress: () => onHandleClaim(),
-            },
-          ]
-        );
-      })
-      .catch((error) => {
-        setLoading(false);
-        const errorMessage =
-          error instanceof ApiApplicationError
-            ? error.message
-            : t('shift_list_error_server_message');
-        Alert.alert('Error', errorMessage);
-      });
-    dispatch(fetchShiftInfoDataAction(shiftId));
-  };
-  const handleRejectClaim = async (reason: string, reasonDetail: string) => {
-    setLoading(true);
-    await shiftClaimReject(shiftId, claimRequest.id, reason, reasonDetail)
-      .then(() => {
-        setLoading(false);
-        Alert.alert(
-          t('shift_list_claim_rejected_title'),
-          t('shift_list_claim_rejected_message'),
           [
             {
               text: t('shift_list_accept_button'),
@@ -180,7 +152,11 @@ export const PendingProfessionalClaimItem: React.FC<
         {!claimRequest.invitation && (
           <StyledText
             style={styles.rejectText}
-            onPress={() => setShowRejectProfessionalModal(true)}
+            onPress={() => {
+              if (typeof claimRequest.id === 'number') {
+                onReject(claimRequest.id);
+              }
+            }}
           >
             {t('shift_detail_reject_pending_claim')}
           </StyledText>
@@ -227,11 +203,6 @@ export const PendingProfessionalClaimItem: React.FC<
           }
         />
       )}
-      <RejectProfessionalModal
-        isVisible={showRejectProfessionalModal}
-        dismissModal={() => setShowRejectProfessionalModal(false)}
-        rejectShift={handleRejectClaim}
-      />
     </>
   );
 };

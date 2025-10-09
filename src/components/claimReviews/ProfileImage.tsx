@@ -1,9 +1,9 @@
 import React from 'react';
 import { Image, StyleSheet, View } from 'react-native';
 
-import Icon from 'react-native-vector-icons/FontAwesome';
-
 import { GRAY } from '@/styles/colors';
+
+import LivoIcon from '@/assets/icons/LivoIcon';
 
 interface ProfileImageProps {
   imageSize: number;
@@ -26,7 +26,7 @@ export const ProfileImage: React.FC<ProfileImageProps> = ({
           }}
         />
       ) : (
-        <Icon style={styles.imageIcon} size={imageSize} name="user-circle" />
+        <LivoIcon color={GRAY} size={imageSize} name="user-circle" />
       )}
     </View>
   );
@@ -37,8 +37,5 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     justifyContent: 'center',
     position: 'relative',
-  },
-  imageIcon: {
-    color: GRAY,
   },
 });

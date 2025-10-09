@@ -1,5 +1,6 @@
 import { useEffect, useState } from 'react';
 import { StyleSheet, View } from 'react-native';
+import { GestureHandlerRootView } from 'react-native-gesture-handler';
 import { SafeAreaProvider } from 'react-native-safe-area-context';
 import { Provider } from 'react-redux';
 
@@ -37,7 +38,7 @@ const App = () => {
   }, []);
 
   useEffect(() => {
-    let intervalId: NodeJS.Timeout | undefined;
+    let intervalId: any | undefined;
     let intervalMs =
       RemoteConfigService.getNumber('auto_reload_translations_interval_ms') ??
       Number(ENV.AUTO_RELOAD_TRANSLATIONS_INTERVAL_MS);
@@ -74,9 +75,11 @@ const App = () => {
   return (
     <Provider store={store}>
       <SafeAreaProvider>
-        <QueryProvider>
-          <AuthProvider />
-        </QueryProvider>
+        <GestureHandlerRootView style={styles.container}>
+          <QueryProvider>
+            <AuthProvider />
+          </QueryProvider>
+        </GestureHandlerRootView>
       </SafeAreaProvider>
     </Provider>
   );
@@ -85,6 +88,9 @@ const App = () => {
 export default App;
 
 const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+  },
   loadingScreen: {
     flex: 1,
     backgroundColor: WHITE,

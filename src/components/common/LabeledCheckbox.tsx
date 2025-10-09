@@ -21,7 +21,7 @@ import { ACTION_BLUE, BADGE_GRAY, DARK_GRAY } from '@/styles/colors';
 
 import LivoIcon from '@/assets/icons/LivoIcon';
 
-interface CustomCheckBoxProps {
+interface LabeledCheckBoxProps {
   option: string;
   partial?: boolean;
   type?: 'checkbox' | 'radiobox';
@@ -36,7 +36,7 @@ interface CustomCheckBoxProps {
 
 const animationTime = 200;
 
-const LabeledCheckbox: React.FC<CustomCheckBoxProps> = ({
+const LabeledCheckbox: React.FC<LabeledCheckBoxProps> = ({
   option,
   onPress,
   checked,

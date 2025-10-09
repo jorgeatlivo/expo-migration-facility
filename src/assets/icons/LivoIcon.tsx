@@ -64,7 +64,7 @@ import {
   IconTrash,
   IconUrgent,
   IconUser,
-  IconUserCheck,
+  IconUserCheck, IconUserCircle,
   IconUsersGroup,
   IconUserX,
   IconX,
@@ -224,6 +224,8 @@ const LivoIcon: React.FC<LivoIconProps> = ({ name, size, color, style }) => {
         return <IconPhone size={size} color={color} />;
       case 'user-check':
         return <IconUserCheck size={size} color={color} />;
+      case 'user-circle':
+        return <IconUserCircle size={size} color={color} />;
       case 'copy':
         return <IconCopy size={size} color={color} />;
       case 'arrow-right':

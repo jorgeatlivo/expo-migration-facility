@@ -1,8 +1,6 @@
 import React from 'react';
 import { Image, StyleSheet, View } from 'react-native';
 
-import Icon from 'react-native-vector-icons/FontAwesome';
-
 import { GRAY } from '@/styles/colors';
 
 import { Avatar } from '@/assets/images/Avatar';

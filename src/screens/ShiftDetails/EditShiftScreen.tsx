@@ -8,7 +8,6 @@ import moment from 'moment';
 
 import { ApiApplicationError } from '@/services/api';
 import {
-  cancelShiftRequest,
   ShiftUpdateRequest,
   updateShiftRequest,
   useConfiguration,
@@ -22,6 +21,8 @@ import { AppDispatch } from '@/store/configureStore';
 
 import { LoadingScreen } from '@/components/common/LoadingScreen';
 import { CancelShiftModalContent } from '@/components/modals/CancelShiftModalContent';
+import { ShiftCancellationModal } from '@/components/modals/ShiftCancellationModal';
+import { ShiftCancellationModalRef } from '@/components/modals/ShiftCancellationModal/ShiftCancellationModal';
 import PublishShiftComponent, {
   PublishShiftConfig,
 } from '@/components/publishShift/PublishShiftComponent';
@@ -56,6 +57,7 @@ export const EditShiftScreen: React.FC<EditShiftScreenProps> = ({
   const { isLoading, configuration } = useConfiguration(
     shiftInfo.category.code
   );
+  const shiftCancellationRef = React.useRef<ShiftCancellationModalRef>(null);
   const dispatch = useDispatch<AppDispatch>();
   const { configureBottomModal, hideModal } = useModal();
 
@@ -84,24 +86,6 @@ export const EditShiftScreen: React.FC<EditShiftScreenProps> = ({
       });
     }
   }, [configuration, shiftId, shiftInfo]);
-
-  const handleCancelShift = async (
-    cancelReason: string,
-    reasonDetails: string
-  ) => {
-    await cancelShiftRequest(shiftId, cancelReason, reasonDetails)
-      .then(() => {
-        dispatch(toggleNewShiftAvailableAction(true));
-        navigation.popToTop();
-      })
-      .catch((error) => {
-        const errorMessage =
-          error instanceof ApiApplicationError
-            ? error.message
-            : t('shift_list_error_server_message');
-        Alert.alert(t('shift_detail_cancel_shift_error'), errorMessage);
-      });
-  };
 
   const updateShift = async (
     id: number,
@@ -199,42 +183,41 @@ export const EditShiftScreen: React.FC<EditShiftScreenProps> = ({
     }
   };
 
-  return shiftConfiguration !== null && configuration ? (
-    <PublishShiftComponent
-      initialValues={shiftConfiguration}
-      livoPoolOnboarded={livoPoolOnboarded}
-      livoInternalOnboarded={livoInternalOnboarded}
-      timeInDay={
-        mapShiftTimeEnumToConfig(shiftInfo.shiftTimeInDay) || 'dayShift'
-      }
-      shiftTimeConfig={configuration.shiftTimeConfig}
-      onPublish={onShiftUpdate}
-      isEditing
-      undoTitle={t('edit_shift_delete_shift_button')}
-      undoAction={() => {
-        const modalContent = (
-          <CancelShiftModalContent
-            buttonTitle={t('shift_detail_shift_cancelation_popup_button')}
-            title={t('shift_detail_shift_cancelation_popup_title')}
-            cancelShift={(
-              removeReason: string,
-              removeReasonDetails: string
-            ) => {
-              hideModal();
-              handleCancelShift(removeReason, removeReasonDetails);
-            }}
-            goBack={() => hideModal()}
-          />
-        );
-        configureBottomModal(modalContent, CANCEL_SHIFT_MODAL);
-      }}
-      units={configuration.units}
-      professionalFields={configuration.professionalFields}
-      category={shiftInfo.category}
-      compensationOptions={configuration.compensationOptions}
-      source={ProtectedStackRoutes.EditShift}
-      onboardingShifts={configuration.onboardingShifts}
-      onboardingShiftsEnabled={configuration.onboardingShifts?.featureEnabled}
-    />
-  ) : null;
+  return (
+    <View style={{ flex: 1, backgroundColor: WHITE }}>
+      {shiftConfiguration !== null && configuration ? (
+        <PublishShiftComponent
+          initialValues={shiftConfiguration}
+          livoPoolOnboarded={livoPoolOnboarded}
+          livoInternalOnboarded={livoInternalOnboarded}
+          timeInDay={
+            mapShiftTimeEnumToConfig(shiftInfo.shiftTimeInDay) || 'dayShift'
+          }
+          shiftTimeConfig={configuration.shiftTimeConfig}
+          onPublish={onShiftUpdate}
+          isEditing
+          undoTitle={t('edit_shift_delete_shift_button')}
+          undoAction={() => {
+            shiftCancellationRef.current?.open();
+          }}
+          units={configuration.units}
+          professionalFields={configuration.professionalFields}
+          category={shiftInfo.category}
+          compensationOptions={configuration.compensationOptions}
+          source={ProtectedStackRoutes.EditShift}
+          onboardingShifts={configuration.onboardingShifts}
+          onboardingShiftsEnabled={
+            configuration.onboardingShifts?.featureEnabled
+          }
+        />
+      ) : null}
+      <ShiftCancellationModal
+        ref={shiftCancellationRef}
+        shiftId={shiftInfo?.id}
+        onCompleteFlow={() => {
+          navigation.popToTop();
+        }}
+      />
+    </View>
+  );
 };

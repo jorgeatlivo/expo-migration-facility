@@ -48,8 +48,8 @@ if [[ "$PLATFORM" == "android" ]]; then
   fi
 elif [[ "$PLATFORM" == "ios" ]]; then
   if [[ "$VARIANT" == "dev" ]]; then
-    expo run:ios --scheme="Livo Dev" --configuration="Debug" "${EXTRA_ARGS[@]}"
+    expo run:ios --scheme="LivoFacilities Dev" --configuration="Debug" "${EXTRA_ARGS[@]}"
   else
-    expo run:ios --scheme="Livo" --configuration="Release" "${EXTRA_ARGS[@]}"
+    expo run:ios --scheme="LivoFacilities" --configuration="Release" "${EXTRA_ARGS[@]}"
   fi
 fi
