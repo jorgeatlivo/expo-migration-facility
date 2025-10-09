@@ -1,20 +1,23 @@
-import React from 'react';
 import {
-  View,
-  StyleSheet,
-  Pressable,
   Dimensions,
+  Pressable,
   ScrollView,
+  StyleSheet,
+  View,
 } from 'react-native';
 import { Control, Controller } from 'react-hook-form';
 import { useTranslation } from 'react-i18next';
+
+import moment from 'moment';
+
 import { Typography } from '@/components/atoms/Typography';
 import CancelButton from '@/components/buttons/CancelButton';
-import CheckboxView from './CheckboxView';
 import { CancellationFormData } from '@/components/modals/ShiftCancellationModal/configs/form';
+
 import { PRIMARY_BLUE } from '@/styles/colors';
+
 import { getCurrentLocale } from '@/locale/i18n';
-import moment from 'moment';
+import CheckboxView from './CheckboxView';
 
 const screenHeight = Dimensions.get('window').height;
 

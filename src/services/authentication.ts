@@ -15,16 +15,7 @@ export interface SignInRequestData {
   password: string;
 }
 
-export const getEmailKey = async (): Promise<string | undefined> => {
-  return StorageService.get<string>(StorageKeys.EMAIL_KEY);
-};
-export interface SignInResponseData {
-  errorMessage: string;
-  userToken: string;
-  mfaEnabled: boolean;
-}
-
-export const signInRequest = (signInData: SignInRequestData) => {
+export const signInRequest = async (signInData: SignInRequestData) => {
   const url = '/facility/account/sign-in';
 
   return api

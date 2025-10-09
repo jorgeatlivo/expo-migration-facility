@@ -47,6 +47,7 @@ export const ProfessionalAgendaList: React.FC<ProfessionalAgendaList> = ({
     (state: RootState) => state.professionalAgendaData.professionalAgendaList
   );
   const loadPage = (date?: string, shiftTimeInDay?: ShiftTimeInDayEnum) => {
+    // @ts-ignore
     dispatch(fetchProfessionalAgendaThunk(date, shiftTimeInDay));
   };
   const reloadData = () => {
@@ -116,7 +117,7 @@ export const ProfessionalAgendaList: React.FC<ProfessionalAgendaList> = ({
             professionalAgendaList.professionalAgenda.professionalsPerUnit.map(
               (professionalPerUnit, index) => (
                 <View
-                  key={index}
+                  key={index.toString()}
                   style={{
                     marginBottom: SPACE_VALUES.medium,
                   }}
@@ -145,7 +146,7 @@ export const ProfessionalAgendaList: React.FC<ProfessionalAgendaList> = ({
                               { professionalId: professional.professionalId }
                             );
                           }}
-                          key={index}
+                          key={index.toString()}
                           style={{
                             flexDirection: 'row',
                             paddingVertical: SPACE_VALUES.small,

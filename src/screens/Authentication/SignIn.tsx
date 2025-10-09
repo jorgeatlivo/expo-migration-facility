@@ -232,11 +232,10 @@ const styles = StyleSheet.create({
     flex: 1,
   },
   backdrop: {
-    paddingTop: SPACE_VALUES.large,
-    paddingBottom: SPACE_VALUES.xLarge,
+    paddingTop: SPACE_VALUES.xLarge,
+    paddingBottom: SPACE_VALUES.huge,
     alignItems: 'center',
     justifyContent: 'center',
-    height: 96,
   },
   whiteSheet: {
     paddingTop: SPACE_VALUES.large,

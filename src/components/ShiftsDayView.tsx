@@ -1,4 +1,4 @@
-import React, { useMemo } from 'react';
+import  { useMemo } from 'react';
 import { StyleSheet } from 'react-native';
 import { useTranslation } from 'react-i18next';
 
@@ -10,12 +10,12 @@ import { BORDER, SPACE_VALUES } from '@/styles/spacing';
 
 import { formatDate } from '@/common/utils';
 import { DayShift, Shift } from '@/types';
-import Col from './atoms/Col';
-import Row from './atoms/Row';
-import { shiftTimeInDayLabels } from './claimReviews/Separators';
-import { TagComponent } from './profile/TagComponent';
-import StyledText from './StyledText';
-import { ShiftCard } from './shiftList/ShiftCard';
+import Col from '@/components/atoms/Col';
+import Row from '@/components/atoms/Row';
+import { shiftTimeInDayLabels } from '@/components/claimReviews/Separators';
+import { TagComponent } from '@/components/profile/TagComponent';
+import StyledText from '@/components/StyledText';
+import { ShiftCard } from '@/components/shiftList/ShiftCard';
 
 interface ShiftsDayViewProps {
   dayShift: DayShift;
