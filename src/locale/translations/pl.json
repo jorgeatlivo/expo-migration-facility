@@ -382,5 +382,6 @@
   "publish_shift_price_title": "Wynagrodzenie",
   "publish_shift_additional_informations_label": "Dodatkowe informacje",
   "publish_shift_capacity_label": "Pojemność",
-  "publish_shift_compensation_label": "Kompensacja"
+  "publish_shift_compensation_label": "Kompensacja",
+  "first_shift": "Pierwszy obrót"
 }

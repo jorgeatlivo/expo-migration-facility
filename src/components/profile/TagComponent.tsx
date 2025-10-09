@@ -28,7 +28,6 @@ export const TagComponent: React.FC<TagComponentProps> = ({
   >
     <StyledText
       style={{
-        // TODO Locales
         ...typographyStyles.info.caption,
         color, //Text-Inverse
       }}

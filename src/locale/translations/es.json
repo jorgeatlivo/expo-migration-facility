@@ -382,8 +382,8 @@
   "publish_shift_price_title": "Remuneración",
   "publish_shift_additional_informations_label": "Información adicional",
   "publish_shift_capacity_label": "Capacidad",
-  "publish_shift_compensation_label": "Compensación",
   "prediction_low": "Baja",
   "prediction_medium": "Media",
-  "publish_shift_compensation_label": "Compensación"
+  "publish_shift_compensation_label": "Compensación",
+  "first_shift": "Primer turno"
 }

@@ -384,5 +384,6 @@
   "publish_shift_capacity_label": "Capacity",
   "prediction_low": "Low",
   "prediction_medium": "Medium",
-  "publish_shift_compensation_label": "Compensation"
+  "publish_shift_compensation_label": "Compensation",
+  "first_shift": "First shift"
 }

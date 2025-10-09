@@ -66,13 +66,13 @@ export const ShiftsListScreen: React.FC<ShiftListScreenProps> = ({
 
   const filterShifts = (chosenTab: string, shifts: Shift[]) => {
     return shifts.filter((shift) => {
-      if (chosenTab === t('shift_list_claims_shifts_title')) {
+      if (chosenTab === 'shift_list_claims_shifts_title') {
         return (
           shift.totalPendingClaims > 0 || shift.totalCancellationRequests > 0
         );
-      } else if (chosenTab === t('shift_list_pending_shifts_title')) {
+      } else if (chosenTab === 'shift_list_pending_shifts_title') {
         return shift.capacity - shift.totalAcceptedClaims > 0;
-      } else if (chosenTab === t('shift_list_filled_shifts_title')) {
+      } else if (chosenTab === 'shift_list_filled_shifts_title') {
         return shift.capacity === shift.totalAcceptedClaims;
       }
     });
@@ -89,10 +89,10 @@ export const ShiftsListScreen: React.FC<ShiftListScreenProps> = ({
       today,
       undefined,
       undefined,
-      tab === t('shift_list_claims_shifts_title') ? true : undefined, // fetch shifts with pending claims
-      tab === t('shift_list_filled_shifts_title')
+      tab === 'shift_list_claims_shifts_title' ? true : undefined, // fetch shifts with pending claims
+      tab === 'shift_list_filled_shifts_title'
         ? true // fetch shifts that are filled
-        : tab === t('shift_list_pending_shifts_title')
+        : tab === 'shift_list_pending_shifts_title'
           ? false // fetch shifts that are not filled
           : undefined
     )
