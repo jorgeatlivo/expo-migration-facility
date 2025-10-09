@@ -10,7 +10,7 @@ import {
 } from 'react-native';
 import { useTranslation } from 'react-i18next';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
-import { useDispatch, useSelector } from 'react-redux';
+import { useDispatch } from 'react-redux';
 import { useHeaderHeight } from '@react-navigation/elements';
 import { StackScreenProps } from '@react-navigation/stack';
 
@@ -30,15 +30,13 @@ import CustomTextInput from '@/components/common/CustomTextInput';
 import { LoadingScreen } from '@/components/common/LoadingScreen';
 import StyledText from '@/components/StyledText';
 
-import { ACTION_BLUE, BLUE_FADED, WHITE } from '@/styles/colors';
+import { WHITE } from '@/styles/colors';
 import { fontSize, fontWeight, LayoutTextEnum } from '@/styles/fonts';
 import { typographyStyles } from '@/styles/livoFonts';
 import { SPACE_VALUES } from '@/styles/spacing';
 import { decodeJWT } from '@/utils/utils';
 
 import LivoTwoColorLogo from '@/assets/icons/LivoTwoColorLogo';
-import { handleLinkPress } from '@/common/utils';
-import { RootState } from '@/types';
 
 type SignInScreenProps = StackScreenProps<
   AuthenticationStackParamslist,
@@ -48,9 +46,6 @@ type SignInScreenProps = StackScreenProps<
 export const SignInScreen: React.FC<SignInScreenProps> = ({ navigation }) => {
   const { t } = useTranslation();
 
-  const contactInformation = useSelector(
-    (state: RootState) => state.configurationData.livoContact
-  );
   const headerHeight = useHeaderHeight();
   const insets = useSafeAreaInsets();
   const [isLoading, setIsLoading] = useState(false);
@@ -179,44 +174,6 @@ export const SignInScreen: React.FC<SignInScreenProps> = ({ navigation }) => {
               </Col>
             </View>
           </KeyboardAvoidingView>
-
-          <View style={styles.footer}>
-            <StyledText style={styles.linkRow}>
-              <StyledText
-                style={styles.link}
-                onPress={() =>
-                  handleLinkPress(
-                    contactInformation.privacyPolicyLink ||
-                      t('signin_privacy_policy_link')
-                  )
-                }
-              >
-                {t('signin_privacy_policy_link_text')} {' | '}
-              </StyledText>
-              <StyledText
-                style={styles.link}
-                onPress={() =>
-                  handleLinkPress(
-                    contactInformation.termsAndConditionsLink ||
-                      t('signin_terms_and_conditions_link')
-                  )
-                }
-              >
-                {t('signin_terms_and_conditions_link_text')} {' | '}
-              </StyledText>
-              <StyledText
-                style={styles.link}
-                onPress={() =>
-                  handleLinkPress(
-                    contactInformation.cookiesPolicyLink ||
-                      t('signin_cookies_policy_link')
-                  )
-                }
-              >
-                {t('signin_cookies_policy_link_text')}
-              </StyledText>
-            </StyledText>
-          </View>
         </View>
       </View>
     </TouchableWithoutFeedback>
@@ -271,20 +228,5 @@ const styles = StyleSheet.create({
     fontFamily: fontWeight.bold,
     lineHeight: 16,
     textAlign: 'center',
-  },
-  footer: {
-    marginHorizontal: 16,
-    marginVertical: 12,
-    paddingHorizontal: 20,
-  },
-  linkRow: {
-    color: BLUE_FADED,
-    marginBottom: SPACE_VALUES.large,
-    ...typographyStyles.info.caption,
-    textAlign: 'center',
-  },
-  link: {
-    ...typographyStyles.action.small,
-    color: ACTION_BLUE,
   },
 });
