@@ -24,7 +24,10 @@ This is an app for facilities, meant to help them create and manage shifts on th
 * On the left column, selectLivoFacilities and, under **Targets**, duplicate _LivoFacilities_ as _LivoFacilities Dev_.
 * On _LivoFacilities Dev_, go to **Build Settings** and change the following data:
   * **Product bundle identifier**: Append `.com` to the end to distinguish it from the prod bundle.
-  * **Icon**: Change it from _AppIcon_ to _AppIcon Dev_
+  * **Icon**: Change it from _AppIcon_ to `AppIcon Dev`
+  *  **Info.plist File**: 
+    * Change it from _LivoFacilities Copy-Info.plist_ to `LivoFacilities Dev-Info.plist`
+    * Then rename the actual file in the ios folder.
 
 4. **Install the app on your device or emulator**
 

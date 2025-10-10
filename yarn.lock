@@ -4912,7 +4912,7 @@ __metadata:
     react-native-marked: "npm:^7.0.2"
     react-native-mmkv: "npm:^3.3.3"
     react-native-modal: "npm:^14.0.0-rc.1"
-    react-native-pdf: "npm:^7.0.0"
+    react-native-pdf: "npm:^7.0.1"
     react-native-reanimated: "npm:~3.17.4"
     react-native-render-html: "npm:^6.3.4"
     react-native-safe-area-context: "npm:5.4.0"
@@ -9287,7 +9287,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"react-native-pdf@npm:^7.0.0":
+"react-native-pdf@npm:^7.0.1":
   version: 7.0.1
   resolution: "react-native-pdf@npm:7.0.1"
   dependencies:

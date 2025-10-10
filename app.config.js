@@ -92,6 +92,7 @@ export default {
       './plugins/add-dev-ic-launcher.js',
       './plugins/add-dev-strings.js',
       './plugins/add-flavors.js',
+      './plugins/with-proguard-keep-rules.js',
       './plugins/expo-update-custom-plist-version.js',
       './plugins/fix-blob-provider-authority.js',
       [
