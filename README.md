@@ -8,9 +8,11 @@ This is an app for facilities, meant to help them create and manage shifts on th
 
 ## Get started
 
-1. **Install dependencies**
+1. **Install dependencies and prepare the project**
+
    ```bash
    yarn install
+   yarn prepare
    ```
 2. **Prebuild native code**
 

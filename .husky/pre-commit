@@ -1,0 +1,56 @@
+#!/bin/bash
+
+# Do not allow committing changes to android/gradle.properties
+# To prevent push secrets or sensitive information
+RED='\033[0;31m'
+YELLOW='\033[1;33m'
+GREEN='\033[0;32m'
+NC='\033[0m' # No Color
+
+echo "${YELLOW}🔍 Checking for sensitive files...${NC}"
+
+# List of sensitive files that should not be committed
+SENSITIVE_FILES=(
+  "android/gradle.properties"
+  "ios/Livo/GoogleService-Info.plist"
+  "android/app/google-services.json"
+  ".*\.keystore"
+  ".*\.p12"
+  ".*\.mobileprovision"
+)
+
+# Check if any sensitive files are staged for commit
+BLOCKED_FILES=()
+for file_pattern in "${SENSITIVE_FILES[@]}"; do
+  if git diff --cached --name-only | grep -E "^${file_pattern}$" > /dev/null; then
+    BLOCKED_FILES+=("$file_pattern")
+  fi
+done
+
+if [ ${#BLOCKED_FILES[@]} -ne 0 ]; then
+  echo "${RED}✗ Error: The following sensitive files are not allowed to be committed:${NC}"
+  for file in "${BLOCKED_FILES[@]}"; do
+    echo "${RED}  - $file${NC}"
+  done
+  echo ""
+  echo "${RED}✗ These files may contain sensitive information (keys, passwords, credentials).${NC}"
+  echo "${RED}✗ Please remove them from the commit using:${NC}"
+  for file in "${BLOCKED_FILES[@]}"; do
+    echo "${RED}    git reset HEAD $file${NC}"
+  done
+  echo "${RED}✗ If you intend to update them, please use 'git commit --no-verify' to bypass this check.${NC}"
+  echo ""
+  echo "${YELLOW}📄 Current staged changes:${NC}"
+  for file in "${BLOCKED_FILES[@]}"; do
+    echo "${YELLOW}--- Changes in $file ---${NC}"
+    git diff --cached "$file" || true
+    echo ""
+  done
+  exit 1
+fi
+
+echo "${GREEN}✅ No sensitive files detected.${NC}"
+echo "${YELLOW}🔍 Running lint-staged...${NC}"
+npx lint-staged
+
+echo "${GREEN}✅ Pre-commit checks passed!${NC}"

@@ -19,7 +19,8 @@
     "snap": "scripts/snap.sh",
     "lint": "biome lint .",
     "format": "biome format --write .",
-    "biome:check": "biome check --write ."
+    "biome:check": "biome check --write .",
+    "prepare": "husky"
   },
   "dependencies": {
     "@expo/vector-icons": "^14.1.0",
@@ -101,12 +102,20 @@
   },
   "devDependencies": {
     "@biomejs/biome": "2.2.5",
+    "@commitlint/config-conventional": "^20.0.0",
     "@react-native-community/cli": "^20.0.2",
     "@types/base-64": "^1.0.2",
     "@types/react": "~19.0.10",
+    "commitlint": "20.1.0",
+    "husky": "^9.1.7",
     "sharp": "^0.34.4",
     "typescript": "~5.8.3"
   },
+  "lint-staged": {
+    "**/*.{js,jsx,ts,tsx}": [
+      "npx biome check --write --unsafe --log-level=debug"
+    ]
+  },
   "private": true,
-  "packageManager": "yarn@1.22.22+sha1.ac34549e6aa8e7ead463a7407e1c7390f61a6610"
+  "packageManager": "yarn@4.9.2"
 }

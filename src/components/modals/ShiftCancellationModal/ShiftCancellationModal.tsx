@@ -102,7 +102,9 @@ const ShiftCancellationModal = forwardRef<
   );
 
   useEffect(() => {
-    if (!shiftCancellationMetadata) return;
+    if (!shiftCancellationMetadata) {
+      return;
+    }
 
     const hasRecurrentShifts =
       (shiftCancellationMetadata.recurrentShifts?.length ?? 0) > 0;
